@@ -1,0 +1,31 @@
+/**************************************************************************
+ Program:  Tr00_to_cnb03.sas
+ Library:  Macros
+ Project:  NeighborhoodInfo DC
+ Author:   P. Tatian
+ Created:  08/01/06
+ Version:  SAS 8.2
+ Environment:  Windows
+ 
+ Description:  Autocall macro to convert tract ID to 
+ Casey Target Neighborhoods ID.
+
+ Modifications:
+**************************************************************************/
+
+/** Macro Tr00_to_cnb03 - Start Definition **/
+
+%macro Tr00_to_cnb03( tract=Geo2000, cnb=Casey_nbr2003 );
+
+  length &cnb $ 1;
+  
+  &cnb = put( &tract, $tr0cnb. );
+  
+  label &cnb = "Casey target area neighborhood (2003)";
+  
+  format &cnb $cnb03f.;
+
+%mend Tr00_to_cnb03;
+
+/** End Macro Definition **/
+

@@ -1,0 +1,33 @@
+/**************************************************************************
+ Program:  Block10_to_cluster00.sas
+ Library:  Macros
+ Project:  NeighborhoodInfo DC
+ Author:   P. Tatian
+ Created:  03/21/11
+ Version:  SAS 9.1
+ Environment:  Windows
+ 
+ Description:  Autocall macro to convert Census block IDs (2010) to
+ DC Neighborhood Clusters (2000).
+
+ Modifications:
+**************************************************************************/
+
+/** Macro Block10_to_cluster00 - Start Definition **/
+
+%macro Block10_to_cluster00( invar=geoblk2010, outvar=Cluster2000, format=Y );
+
+  length &outvar $ 2;
+  
+  &outvar = put( &invar, $bk1cl0f. );
+  
+  label &outvar = "Neighborhood cluster (2000)";
+  
+  %if %upcase( &format ) = Y %then %do;
+    format &outvar $clus00a.;
+  %end;
+
+%mend Block10_to_cluster00;
+
+/** End Macro Definition **/
+
