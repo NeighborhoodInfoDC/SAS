@@ -10,7 +10,7 @@
 **************************************************************************/
 
 %global _dcdata_l_drive _dcdata_r_drive _dcdata_l_path _dcdata_r_path 
-        _remote_session _userid;
+        _remote_session _remote_batch_submit _userid;
 
 %let _dcdata_l_drive = D;
 %let _dcdata_r_drive = L;
@@ -22,15 +22,18 @@
 
 ** Locations of SAS autocall macro libraries **;
 
-***filename uiautos  "K:\Metro\PTatian\UISUG\Uiautos";
 filename uiautos  "L:\Uiautos"; /** TEMPORARY FOR TESTING **/
 filename dcautos  "&_dcdata_r_drive:\SAS\Macros";
-options sasautos=(dcautos uiautos sasautos);
+filename ttautos  "D:\DCData\SAS\Macros";
+options sasautos=(ttautos dcautos uiautos sasautos);
 
 ** Program name & library **;
 
 %GetProgName( _program )
 %GetProgLib( _library )
+%GetProgDrive( _pdrive )
+
+%let _remote_batch_submit = %is_remote_batch( &_pdrive );
 
 ** Metadata library **;
 
