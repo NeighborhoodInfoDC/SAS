@@ -59,7 +59,10 @@
 
     %** Default list of base macro search locations **;
     
-    %if &macdef = %then %let macdef = genera_l genera_r dcautos uiautos sasautos;
+    %if &macdef = %then %do;
+      %if &_remote_batch_submit %then %let macdef = genera_r genera_l dcautos uiautos sasautos;
+      %else %let macdef = genera_l genera_r dcautos uiautos sasautos;
+    %end;
   
     %** Set up libraries for local session **;
   
@@ -117,6 +120,7 @@
         %end;
         %else %do;
           libname &r_libname "&_dcdata_r_path\&library\Data" access=readonly;
+          %note_mput( macro=DCData_lib, msg=Access to remote library %upcase(&r_libname) is read only. )
         %end;
         %let r_ref = 1;
         /***%let concat_libs = &concat_libs &prename._r;***/
@@ -136,7 +140,7 @@
       libname &library ( &r_libname &c_libname &l_libname );
     %end;
     %else %do;
-      %** Local session, local batch submit **;
+      %** Local session, local batch/interactive submit **;
       libname &library ( &c_libname &l_libname &r_libname );
     %end;
     
@@ -163,7 +167,7 @@
       %end;
     %end;
     %else %do;
-      %** Local session, local batch submit **;
+      %** Local session, local batch/interactive submit **;
       %if &c_exist and &c_ref %then %do;
         filename &prename._c "&conf_path\&library\Macros";
         %MacroSearch( cat=&prename._c, action=M, def=&macdef )
@@ -199,7 +203,18 @@
       %goto exit_macro;
     %end;
     
-    libname &prename._r "&_dcdata_r_path\&library\Data";
+    %let r_libname = &prename._r;
+    
+    %if &_remote_batch_submit %then %do;
+      %** Remote session, remote batch submit **;
+      libname &r_libname "&_dcdata_r_path\&library\Data";
+    %end;
+    %else %do;
+      %** Remote session, interactive submit **;
+      libname &r_libname "&_dcdata_r_path\&library\Data" access=readonly;
+      %note_mput( macro=DCData_lib, msg=Access to remote library %upcase(&r_libname) is read only. )
+    %end;
+
     libname &library "&_dcdata_r_path\&library\Data";
     
     ** Add library to format search **;
@@ -215,6 +230,7 @@
   %end;
   
   %exit_macro:
+  %PUT _LOCAL_;
 
   %if &mprint = N %then %do;
     options mprint;
