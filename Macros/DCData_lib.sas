@@ -215,7 +215,7 @@
       %note_mput( macro=DCData_lib, msg=Access to remote library %upcase(&r_libname) is read only. )
     %end;
 
-    libname &library "&_dcdata_r_path\&library\Data";
+    libname &library ( &r_libname );
     
     ** Add library to format search **;
     
