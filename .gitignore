@@ -1,4 +1,5 @@
 *.bak
+Temp/
 
 # SAS files
 *.sas7bdat
