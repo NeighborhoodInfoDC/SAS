@@ -22,10 +22,9 @@
 
 ** Locations of SAS autocall macro libraries **;
 
-filename uiautos  "L:\Uiautos"; /** TEMPORARY FOR TESTING **/
+filename uiautos  "L:\Uiautos"; 
 filename dcautos  "&_dcdata_r_drive:\SAS\Macros";
-filename ttautos  "D:\DCData\SAS\Macros";
-options sasautos=(ttautos dcautos uiautos sasautos);
+options sasautos=(dcautos uiautos sasautos);
 
 ** Program name & library **;
 

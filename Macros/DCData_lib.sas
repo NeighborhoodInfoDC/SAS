@@ -24,7 +24,7 @@
 
 %macro DCData_lib( library, mprint=n, env=, macdef=, conf_drive=, local=y, remote=y );
 
-  %local conf_path prename l_exist r_exist c_exist l_ref r_ref c_ref /***concat_libs***/
+  %local conf_path prename l_exist r_exist c_exist l_ref r_ref c_ref
          l_libname r_libname c_libname;
 
   %let mprint = %upcase( &mprint );
@@ -88,13 +88,10 @@
       %goto exit_macro;
     %end;
     
-    /***%let concat_libs = ;***/
-    
     %if &c_exist %then %do;
       %let c_libname = &prename._c;
       libname &c_libname "&conf_path\&library\Data";
       %let c_ref = 1;
-      /***%let concat_libs = &concat_libs &prename._c;***/
     %end;
     %else %if &conf_drive ~= %then %do;
       %note_mput( macro=DCData_lib, msg=The library %upcase(&library) does not exist on %upcase(&conf_path). )
@@ -105,7 +102,6 @@
         %let l_libname = &prename._l;
         libname &l_libname "&_dcdata_l_path\&library\Data";
         %let l_ref = 1;
-        /***%let concat_libs = &concat_libs &prename._l;***/
       %end;
       %else %do;
         %note_mput( macro=DCData_lib, msg=The library %upcase(&library) does not exist on %upcase(&_dcdata_l_path). )
@@ -123,7 +119,6 @@
           %note_mput( macro=DCData_lib, msg=Access to remote library %upcase(&r_libname) is read only. )
         %end;
         %let r_ref = 1;
-        /***%let concat_libs = &concat_libs &prename._r;***/
       %end;
       %else %do;
         %note_mput( macro=DCData_lib, msg=The library %upcase(&library) does not exist on %upcase(&_dcdata_r_path). )
@@ -150,7 +145,6 @@
 
     ** Create filename references for autocall macro searching **;
 
-/* options mprint nosymbolgen nomlogic; */
     %if &_remote_batch_submit %then %do;
       %** Local session, remote batch submit **;
       %if &r_exist and &r_ref %then %do;
@@ -181,10 +175,7 @@
         %MacroSearch( cat=&prename._r, action=M, def=&macdef )
       %end;
     %end;
-/* options nomprint nosymbolgen nomlogic; */
-
   %end;
-  
   %else %do;
   
     %**** Set up libraries for REMOTE session (running on SAS1) ****;
@@ -230,7 +221,6 @@
   %end;
   
   %exit_macro:
-  %PUT _LOCAL_;
 
   %if &mprint = N %then %do;
     options mprint;
