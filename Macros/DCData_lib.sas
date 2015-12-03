@@ -22,7 +22,7 @@
 
 /** Macro DCData_lib - Start Definition **/
 
-%macro DCData_lib( library, mprint=n, env=, macdef=, conf_drive=, local=y, remote=y );
+%macro DCData_lib( library, mprint=n, env=, macdef=, conf_drive=, local=y, remote=y, rreadonly= );
 
   %local conf_path prename l_exist r_exist c_exist l_ref r_ref c_ref
          l_libname r_libname c_libname;
@@ -31,6 +31,7 @@
   %let env = %upcase( &env );
   %let local = %upcase( &local);
   %let remote = %upcase( &remote ); 
+  %let rreadonly = %upcase( &rreadonly );
 
   %if &mprint = N %then %do;
     options nomprint;
@@ -111,7 +112,7 @@
     %if not( &remote = N or &remote = NO ) %then %do; 
       %if &r_exist %then %do;
         %let r_libname = &prename._r;
-        %if &_remote_batch_submit %then %do;
+        %if ( &_remote_batch_submit or &rreadonly = N ) and &rreadonly ~= Y %then %do;
           libname &r_libname "&_dcdata_r_path\&library\Data";
         %end;
         %else %do;
@@ -196,7 +197,7 @@
     
     %let r_libname = &prename._r;
     
-    %if &_remote_batch_submit %then %do;
+    %if ( &_remote_batch_submit or &rreadonly = N ) and &rreadonly ~= Y %then %do;
       %** Remote session, remote batch submit **;
       libname &r_libname "&_dcdata_r_path\&library\Data";
     %end;
