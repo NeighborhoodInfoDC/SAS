@@ -47,6 +47,8 @@ options compress=yes msglevel=i nocenter mprint nofmterr source2
 
 options ls=124 ps=48;    ** Landscape **;
 
+%SAS_compatibility()
+
 ** Output title **;
 
 title "&_library/&_program:  NeighborhoodInfo DC";
