@@ -7,8 +7,7 @@
  Version:  SAS 9.2
  Environment:  Windows
  
- Description:  Autocall macro for creating all summary level files
- from a tract level summary file.
+ Description:  Create all summary level files from a tract level summary file.
 
  Modifications:
   08/27/06 PAT Added REVISIONS= parameter.

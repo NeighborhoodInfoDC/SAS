@@ -7,7 +7,7 @@
  Version:  SAS 9.1
  Environment:  Windows
  
- Description:  Autocall macro to calculate percentages or rates
+ Description: Calculate percentages or rates
  across multiple years.
 
  Modifications:

@@ -7,7 +7,7 @@
  Version:  SAS 8.2
  Environment:  Windows
  
- Description:  Autocall macro to convert OCTO ward id to
+ Description: Convert OCTO ward id to
  NeighborhoodInfo DC standard var Ward2012.
 
  Modifications:

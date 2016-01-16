@@ -7,8 +7,7 @@
  Version:  SAS 9.2
  Environment:  Windows
  
- Description:  Autocall macro to update file entry in metadata
- system.
+ Description: Update file entry in metadata system.
 
  Modifications:
   12/30/04  Allow specification of desc_stats= parameter.

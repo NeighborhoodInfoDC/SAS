@@ -7,7 +7,7 @@
  Version:  SAS 8.2
  Environment:  Windows
  
- Description:  Autocall macro to convert OCTO census block ID to
+ Description: Convert OCTO census block ID to
  NeighborhoodInfo DC standard var GeoBlk2000.
 
  Modifications:

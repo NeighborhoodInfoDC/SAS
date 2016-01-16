@@ -7,7 +7,7 @@
  Version:  SAS 9.1
  Environment:  Windows
  
- Description:  Autocall macro to return local library name.
+ Description: Return local library name.
 
  Modifications:
 **************************************************************************/

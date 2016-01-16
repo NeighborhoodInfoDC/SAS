@@ -7,7 +7,7 @@
  Version:  SAS 8.2
  Environment:  Windows
  
- Description:  Autocall macro to convert OCTO ZIP Code to
+ Description: Convert OCTO ZIP Code to
  NeighborhoodInfo DC standard var ZIP.
 
  Modifications:

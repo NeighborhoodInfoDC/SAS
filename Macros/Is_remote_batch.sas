@@ -7,7 +7,7 @@
  Version:  SAS 9.2
  Environment:  Local Windows session (desktop)
  
- Description:  Autocall macro returns 1 if current SAS session is a
+ Description:  Returns 1 if current SAS session is a
 remote batch submit, 0 if local batch or interactive.
 
  Modifications:

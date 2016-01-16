@@ -7,7 +7,7 @@
  Version:  SAS 8.2
  Environment:  Windows
  
- Description:  Autocall macro to convert OCTO neighborhood cluster ID to
+ Description: Convert OCTO neighborhood cluster ID to
  NeighborhoodInfo DC standard var Cluster2000.
 
  Modifications:

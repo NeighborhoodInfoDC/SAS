@@ -7,7 +7,7 @@
  Version:  SAS 8.2
  Environment:  Windows
  
- Description:  Autocall macro to convert NeighborhoodInfo DC standard 
+ Description: Convert NeighborhoodInfo DC standard 
  var GeoBlk2000 to OCTO census block ID (cjrTractBl).
 
  Modifications:

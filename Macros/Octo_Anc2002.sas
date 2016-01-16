@@ -7,7 +7,7 @@
  Version:  SAS 8.2
  Environment:  Windows
  
- Description:  Autocall macro to convert OCTO ANC ID to
+ Description: Convert OCTO ANC ID to
  NeighborhoodInfo DC standard var Anc2002.
 
  Modifications:

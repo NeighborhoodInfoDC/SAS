@@ -7,7 +7,7 @@
 * Version:  SAS 8.2
 * Environment:  Alpha only
 * 
-* Description:  Autocall macro to update library entry in metadata
+* Description: Update library entry in metadata
 * system.
 *
 * Modifications:

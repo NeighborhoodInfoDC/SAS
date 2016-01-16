@@ -7,7 +7,7 @@
  Version:  SAS 8.2
  Environment:  Windows
  
- Description:  Autocall macro to convert tract ID to city ID.
+ Description: Convert tract ID to city ID.
 
  Modifications:
 **************************************************************************/

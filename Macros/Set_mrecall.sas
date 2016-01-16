@@ -7,7 +7,7 @@
  Version:  SAS 8.2
  Environment:  Windows
  
- Description:  Autocall macro to set MRECALL option based on value of
+ Description: Set MRECALL option based on value of
  _PROGRAM macro var.
 
  Modifications:

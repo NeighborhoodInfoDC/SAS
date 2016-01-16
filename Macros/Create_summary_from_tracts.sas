@@ -7,7 +7,7 @@
  Version:  SAS 8.2
  Environment:  Windows
  
- Description:  Autocall macro to create geographic summary data set
+ Description: Create geographic summary data set
  from a tract summary data set for the specified geography.
 
  Modifications:

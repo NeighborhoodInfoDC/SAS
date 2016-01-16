@@ -7,7 +7,7 @@
  Version:  SAS 8.2
  Environment:  Windows
  
- Description:  Autocall macro to create FEDTRACTNO variable for
+ Description: Create FEDTRACTNO variable for
  matching census tract data to OCTO tract shape file.
 
  Modifications:

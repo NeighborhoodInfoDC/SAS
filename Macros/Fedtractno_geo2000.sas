@@ -7,7 +7,7 @@
  Version:  SAS 8.2
  Environment:  Windows
  
- Description:  Autocall macro to convert Fedtractno in OCTO tract
+ Description: Convert Fedtractno in OCTO tract
  shapefile to standard Geo2000 tract ID.
 
  Modifications:

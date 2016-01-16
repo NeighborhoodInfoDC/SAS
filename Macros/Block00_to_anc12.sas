@@ -7,7 +7,7 @@
  Version:  SAS 9.2
  Environment:  Windows
  
- Description:  Autocall macro to convert Census block IDs (2000) to
+ Description: Convert Census block IDs (2000) to
  DC ANCs (2012).
 
  Modifications:
