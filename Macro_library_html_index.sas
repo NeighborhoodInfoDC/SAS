@@ -192,7 +192,7 @@ length FirstWord $20 Field $20 text $32767;
 input line $varying132. len ;
 **PT** Remove leading blanks and *s from line ;
 if index(line,'*****/') = 0 then do;
-  do until ( line not in: ( ' ', '*' ) or line = '' );
+  do while ( line in: ( ' ', '*' ) and line ne '' );
     line = substr( line, 2 );
   end;
 end;
@@ -225,7 +225,7 @@ stop;
 end;
 run;
 
-/*********PT************
+/************PT*************
 PROC PRINT DATA=__MINFO;
 ID FIELD;
 FORMAT TEXT $40.;
@@ -281,7 +281,7 @@ put @01 '<!doctype html public "-//w3c//dtd html 4.0 final//en">'
 / @01 "</html>"
 ;
 run;
-/*****PT*************
+/************PT*************
 PROC CONTENTS DATA=__ALLMACINFO;
 RUN;
 PROC PRINT DATA=__ALLMACINFO;
