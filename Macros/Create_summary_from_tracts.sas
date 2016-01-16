@@ -1,6 +1,6 @@
 /**************************************************************************
  Macro:    Create_summary_from_tracts
- Library:  General
+ Library:  Macros
  Project:  NeighborhoodInfo DC
  Author:   P. Tatian
  Created:  07/29/06
