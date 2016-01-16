@@ -11,6 +11,8 @@
 %macro CodeIndex
 (path = /* path for directory with macro code */
 ,htmpath = /* path to write html files (copy of each sas program and index) */
+,htmtitle = /**PT** title for HTML pages (character value) **/
+,htmstyle = Minimal /**PT** ODS style for HTML pages **/
 ,debug = 0 /* boolean, debug mode or not */
 ,taglist=macro description use author approval approver version /**PT** List of header tags to process **/
 );
@@ -40,13 +42,15 @@ urltext
 %let program=%scan(&programlist,&i,|);
 %do %while (%length(&program));
 %*write out an html copy of program;
-%makehtml(file=&path/&program
+%makehtml(file=&path\&program
 ,out=&htmpath/%scan(&program,1,.).htm
 )
 %*read in program and write a dataset __macinfo with data from program header;
 %ExtractHeaderInfo(path=&path,program=&program,out=__macinfo,
 taglist=&taglist)
 %*build a dataset that has one record per macro, with data from program header;
+%put ;
+%put /////  Processing &program..  /////;
 proc append base=__allmacinfo data=__macinfo;
 run;
 proc datasets library=work memtype=data nolist;
@@ -55,7 +59,7 @@ quit;
 %let i=%eval(&i+1);
 %let program=%scan(&programlist,&i,|);
 %end;
-%BuildIndex(data=__allmacinfo, path=&htmpath)
+%BuildIndex(data=__allmacinfo, path=&htmpath, htmtitle=&htmtitle, htmstyle=&htmstyle)
 proc datasets library=work memtype=data nolist;
 delete __allmacinfo;
 quit;
@@ -182,16 +186,22 @@ History: Created 2/11/2004
 Notes:
 **********************************************************************/
 data __minfo(keep=field text);
-infile "&path/&program" end=eof length = len pad;
+infile "&path\&program" end=eof length = len pad;
 retain field text;
 length FirstWord $20 Field $20 text $32767;
 input line $varying132. len ;
+**PT** Remove leading blanks and *s from line ;
+if index(line,'*****/') = 0 then do;
+  do until ( line not in: ( ' ', '*' ) or line = '' );
+    line = substr( line, 2 );
+  end;
+end;
 if line=' ' then delete; *skip blank lines;
 %* Check first word of each line. If the word is a tag ;
 %* from the macro header, grab the text after the tag. ;
 FirstWord=upcase(left(scan(line,1,':')));
-/************PT*************/
-PUT FIELD= TEXT= FIRSTWORD= LINE=;
+/************PT*************
+PUT "PROGRAM=&PROGRAM" FIELD= TEXT= FIRSTWORD= LINE=;
 /***************************/
 if indexw(upcase("&taglist"),FirstWord) or index(line,'*****/') then do;
   if field ne ' ' then output;
@@ -211,7 +221,7 @@ stop;
 end;
 run;
 
-/*********PT************/
+/*********PT************
 PROC PRINT DATA=__MINFO;
 ID FIELD;
 FORMAT TEXT $40.;
@@ -235,12 +245,14 @@ quit;
 %macro BuildIndex
 (data = /* name of dataset holding information for index */
 ,path = /* path to write index */
+,htmtitle = /**PT** title for HTML pages (character value) **/
+,htmstyle = /**PT** ODS style for HTML pages **/
 ,debug = 0 /* boolean, debug mode or not */
 );
 /**********************************************************************
 Macro: BuildIndex
 Description: Produce 2 html files:
-macroindex.htm lists macro names and descriptions from the
+_macroindex.htm lists macro names and descriptions from the
 input dataset;
 _index.htm is a simple frameset to display the index.
 Example: %BuildIndex(data=macroinfo, path=c:\junk)
@@ -252,20 +264,20 @@ Notes:
 %* Write a simple html with 2 frames, one will hold the macro index ;
 %* the other will hold display macro code. ;
 data _null_;
-file "&path/_index.htm";
+file "&path\_index.htm";
 put @01 '<!doctype html public "-//w3c//dtd html 4.0 final//en">'
 / @01 "<html>"
 / @04 "<head>"
-/ @07 "<title>Macro Library</title>"
+/ @07 "<title>" &htmtitle "</title>"
 / @04 "</head>"
 / @04 '<frameset rows="*,340" border="20" framespacing="2" cols="*">'
-/ @07 '<frame name="Index" src="macroindex.htm">'
+/ @07 '<frame name="Index" src="_macroindex.htm">'
 / @07 '<frame name="Code" src="">'
 / @04 "</frameset>"
 / @01 "</html>"
 ;
 run;
-/***** PETER DEBUG *****/
+/*****PT*************
 PROC CONTENTS DATA=__ALLMACINFO;
 RUN;
 PROC PRINT DATA=__ALLMACINFO;
@@ -279,8 +291,9 @@ DATA _NULL_;
 RUN;
 /***********************/
 ods listing close;
-ods html body = "&path/macroindex.htm" (title="UI SAS Macro Library") style=BarrettsBlue;
-title1 "UI SAS Macro Library";
+ods html body = "&path\_macroindex.htm" (title=&htmtitle) style=&htmstyle;
+title1 &htmtitle;
+footnote1 "Updated %sysfunc(putn(%sysfunc(today()),mmddyy10.))";
 proc report data=&data nowd;
 column program macro description;
 define program / noprint;
@@ -303,12 +316,14 @@ ods listing;
 ***********************************************************************************************;
 *****  Main macro call;
 
-options mprint nosymbolgen nomlogic spool;
+options mprint nosymbolgen nomlogic;
 options msglevel=n;
 
 %CodeIndex( 
 path=C:\DCData\GitHub\SAS\Macros,
 htmpath=C:\DCData\GitHub\SAS\Macros\Html,
+htmtitle="NeighborhoodInfo DC Macro Library",
+htmstyle=Solutions,
 taglist=macro library project author created version environment description modifications,
 debug=1 )
 
