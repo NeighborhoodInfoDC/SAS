@@ -1,5 +1,5 @@
 /**************************************************************************
- Program:  Create_all_summary_from_tracts.sas
+ Macro:    Create_all_summary_from_tracts
  Library:  Macros
  Project:  NeighborhoodInfo DC
  Author:   P. Tatian

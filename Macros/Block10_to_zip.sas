@@ -1,5 +1,5 @@
 /**************************************************************************
- Program:  Block10_to_zip.sas
+ Macro:    Block10_to_zip
  Library:  Macros
  Project:  NeighborhoodInfo DC
  Author:   P. Tatian

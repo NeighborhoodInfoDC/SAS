@@ -1,5 +1,5 @@
 /**************************************************************************
- Program:  SAS_compatibility.sas
+ Macro:    SAS_compatibility
  Library:  Macros
  Project:  NeighborhoodInfo DC
  Author:   P. Tatian

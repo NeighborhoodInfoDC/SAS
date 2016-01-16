@@ -1,5 +1,5 @@
 /**************************************************************************
- Program:  Block00_to_vp12.sas
+ Macro:    Block00_to_vp12
  Library:  
  Project:  NeighborhoodInfo DC
  Author:   P. Tatian

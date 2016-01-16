@@ -1,5 +1,5 @@
 /**************************************************************************
- Program:  Is_remote_batch.sas
+ Macro:    Is_remote_batch
  Library:  Macros
  Project:  NeighborhoodInfo DC
  Author:   P. Tatian

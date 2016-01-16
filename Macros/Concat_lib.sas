@@ -1,5 +1,5 @@
 /************************************************************************
- * Program:  Concat_lib.sas
+ * Macro:    Concat_lib
  * Project:  UI SAS Macro Library
  * Author:   P. Tatian
  * Updated:  9/17/04

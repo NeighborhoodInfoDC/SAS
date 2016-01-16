@@ -1,5 +1,5 @@
 /**************************************************************************
- Program:  ConvertLibname.sas
+ Macro:    ConvertLibname
  Library:  
  Project:  NeighborhoodInfo DC
  Author:   P. Tatian

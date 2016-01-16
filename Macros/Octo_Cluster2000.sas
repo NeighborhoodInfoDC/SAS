@@ -1,5 +1,5 @@
 /**************************************************************************
- Program:  Octo_Cluster2000.sas
+ Macro:    Octo_Cluster2000
  Library:  Octo
  Project:  NeighborhoodInfo DC
  Author:   P. Tatian

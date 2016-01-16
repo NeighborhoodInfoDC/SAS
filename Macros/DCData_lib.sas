@@ -1,5 +1,5 @@
 /**************************************************************************
- Program:  DCData_lib.sas
+ Macro:    DCData_lib
  Project:  NeighborhoodInfo DC
  Author:   P. Tatian
  Updated:  11/2/04

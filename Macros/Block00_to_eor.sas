@@ -1,5 +1,5 @@
 /**************************************************************************
- Program:  Block00_to_eor.sas
+ Macro:    Block00_to_eor
  Library:  Macros
  Project:  NeighborhoodInfo DC
  Author:   P. Tatian

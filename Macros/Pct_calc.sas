@@ -1,5 +1,5 @@
 /**************************************************************************
- Program:  Pct_calc.sas
+ Macro:    Pct_calc
  Library:  Profiles
  Project:  NeighborhoodInfo DC
  Author:   P. Tatian

@@ -1,5 +1,5 @@
 /**************************************************************************
- Program:  Block10_to_cluster00.sas
+ Macro:    Block10_to_cluster00
  Library:  Macros
  Project:  NeighborhoodInfo DC
  Author:   P. Tatian

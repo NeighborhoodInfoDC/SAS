@@ -1,7 +1,7 @@
 /************************************************************************
-* Program:  DC_update_meta_library.sas
+* Macro:    DC_update_meta_library
 * Library:  Macros
-* Project:  DC Data Warehouse
+* Project:  NeighborhoodInfo DC
 * Author:   P. Tatian
 * Created:  11/02/04
 * Version:  SAS 8.2

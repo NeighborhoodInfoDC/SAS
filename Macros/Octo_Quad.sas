@@ -1,5 +1,5 @@
 /**************************************************************************
- Program:  Octo_Quad.sas
+ Macro:    Octo_Quad
  Library:  Octo
  Project:  NeighborhoodInfo DC
  Author:   P. Tatian

@@ -1,7 +1,7 @@
 /**************************************************************************
- Program:  Pctchg.sas
+ Macro:    Pctchg
  Library:  Macros
- Project:  DC Data Warehouse
+ Project:  NeighborhoodInfo DC
  Author:   P. Tatian
  Created:  01/10/05
  Version:  SAS 8.2

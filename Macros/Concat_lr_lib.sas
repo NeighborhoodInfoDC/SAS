@@ -1,5 +1,5 @@
 /**************************************************************************
- Program:  Concat_lr_lib.sas
+ Macro:    Concat_lr_lib
  Library:  UI SAS Macro Library
  Project:  NeighborhoodInfo DC
  Author:   P. Tatian

@@ -1,14 +1,19 @@
-/* Metro03.sas - Census 2000
- *
- * Autocall macro to add 2003 metropolitan/micropolitan statistical
- * area code (METRO03).
- * 
- * NB:  Must have Cen2000 format library in FMTSEARCH.
- *
- * NB:  Program written for SAS Version 8.2
- *
- * 07/22/04  Peter A. Tatian
- ****************************************************************************/
+/**************************************************************************
+ Macro:    Metro03
+ Library:  Macros
+ Project:  NeighborhoodInfo DC
+ Author:   P. Tatian
+ Created:  07/22/04
+ Version:  SAS 8.2
+ Environment:  Windows
+ 
+ Description:  Autocall macro to add 2003 metropolitan/micropolitan 
+ statistical area code (METRO03).
+ 
+ Notes: Must have Cen2000 format library in FMTSEARCH.
+
+ Modifications:
+**************************************************************************/
 
 /** Macro Metro03 - Start Definition **/
 

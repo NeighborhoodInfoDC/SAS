@@ -1,5 +1,5 @@
 /**************************************************************************
- Program:  Block00_to_psa04.sas
+ Macro:    Block00_to_psa04
  Library:  
  Project:  NeighborhoodInfo DC
  Author:   P. Tatian

@@ -1,5 +1,5 @@
 /**************************************************************************
- Program:  Block00_to_anc02.sas
+ Macro:    Block00_to_anc02
  Library:  Macros
  Project:  NeighborhoodInfo DC
  Author:   P. Tatian
