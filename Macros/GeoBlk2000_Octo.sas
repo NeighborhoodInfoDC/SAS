@@ -13,8 +13,6 @@
  Modifications:
 **************************************************************************/
 
-/** Macro GeoBlk2000_Octo - Start Definition **/
-
 %macro GeoBlk2000_Octo( outvar=cjrTractBl, invar=GeoBlk2000 );
 
   length &outvar $ 254;
@@ -31,5 +29,5 @@
     
 %mend GeoBlk2000_Octo;
 
-/** End Macro Definition **/
+
 

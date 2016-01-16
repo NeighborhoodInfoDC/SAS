@@ -13,8 +13,6 @@
  Modifications:
 **************************************************************************/
 
-/** Macro Octo_ZIP - Start Definition **/
-
 %macro Octo_ZIP( invar=Zipcode, outvar=Zip );
 
   ** ZIP code **;
@@ -31,5 +29,5 @@
     
 %mend Octo_ZIP;
 
-/** End Macro Definition **/
+
 

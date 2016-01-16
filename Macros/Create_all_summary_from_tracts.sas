@@ -24,8 +24,6 @@
   12/17/12 PAT Added summary for voting precincts (VoterPre2012).
 **************************************************************************/
 
-/** Macro Create_all_summary_from_tracts - Start Definition **/
-
 %macro Create_all_summary_from_tracts( 
   lib=,
   data_pre=,
@@ -139,5 +137,5 @@
 
 %mend Create_all_summary_from_tracts;
 
-/** End Macro Definition **/
+
 

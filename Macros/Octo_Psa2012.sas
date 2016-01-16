@@ -13,8 +13,6 @@
  Modifications:
 **************************************************************************/
 
-/** Macro Octo_Psa2012 - Start Definition **/
-
 %macro Octo_Psa2012( 
   invar=Name,     /** Input var name **/
   outvar=Psa2012, /** Output var name **/
@@ -44,5 +42,5 @@
     
 %mend Octo_Psa2012;
 
-/** End Macro Definition **/
+
 

@@ -21,8 +21,6 @@
                Set mult= to 1 if missing.
 **************************************************************************/
 
-/** Macro Pct_calc - Start Definition **/
-
 %macro Pct_calc( var=, num=, den=, cons_den=, years=, from=, to=, mult=100, label=, year_only_lbl=N, round=, missval=.i );
 
   %local i y y_lbl;
@@ -101,7 +99,7 @@
   
 %mend Pct_calc;
 
-/** End Macro Definition **/
+
 
 
 /**************  UNCOMMENT TO TEST **************

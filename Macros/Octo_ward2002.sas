@@ -13,8 +13,6 @@
  Modifications:
 **************************************************************************/
 
-/** Macro Octo_ward2002 - Start Definition **/
-
 %macro Octo_ward2002( invar=ward_id, outvar=Ward2002 );
 
   length &outvar $ 1;
@@ -31,5 +29,5 @@
 
 %mend Octo_ward2002;
 
-/** End Macro Definition **/
+
 

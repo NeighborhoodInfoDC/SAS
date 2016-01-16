@@ -29,8 +29,6 @@
                 user id. 
 ************************************************************************/
 
-/** Macro DC_update_meta_file - Start Definition **/
-
 %macro DC_update_meta_file( 
          ds_lib= ,
          ds_name= ,
@@ -107,5 +105,5 @@
 
 %mend DC_update_meta_file;
 
-/** End Macro Definition **/
+
 

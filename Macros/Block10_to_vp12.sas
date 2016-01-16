@@ -13,8 +13,6 @@
  Modifications:
 **************************************************************************/
 
-/** Macro Block10_to_vp12 - Start Definition **/
-
 %macro Block10_to_vp12( invar=geoblk2010, outvar=VoterPre2012, format=Y );
 
   length &outvar $ 3;
@@ -29,5 +27,5 @@
 
 %mend Block10_to_vp12;
 
-/** End Macro Definition **/
+
 

@@ -14,8 +14,6 @@
  07/04/12 PAT Added check= parameter to check block ID values.
 **************************************************************************/
 
-/** Macro Octo_GeoBlk2000 - Start Definition **/
-
 %macro Octo_GeoBlk2000( invar=CJRTRACTBL, outvar=GeoBlk2000, check=n );
 
   %let check = %upcase( &check );
@@ -42,5 +40,5 @@
 
 %mend Octo_GeoBlk2000;
 
-/** End Macro Definition **/
+
 

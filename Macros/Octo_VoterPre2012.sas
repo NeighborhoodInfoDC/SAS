@@ -13,8 +13,6 @@
  Modifications:
 **************************************************************************/
 
-/** Macro Octo_VoterPre2012 - Start Definition **/
-
 %macro Octo_VoterPre2012( 
   invar=Name,   /** Input var name **/
   outvar=VoterPre2012, /** Output var name **/
@@ -43,4 +41,4 @@
     
 %mend Octo_VoterPre2012;
 
-/** End Macro Definition **/
+

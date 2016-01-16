@@ -13,8 +13,6 @@
  Modifications:
 **************************************************************************/
 
-/** Macro Octo_Psa2004 - Start Definition **/
-
 %macro Octo_Psa2004( invar=Name, outvar=Psa2004 );
 
   ** PSA code **;
@@ -31,5 +29,5 @@
     
 %mend Octo_Psa2004;
 
-/** End Macro Definition **/
+
 

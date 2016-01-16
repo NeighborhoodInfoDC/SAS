@@ -14,8 +14,6 @@
   07/14/12 PAT Corrected variable label. 
 **************************************************************************/
 
-/** Macro Octo_Ward2012 - Start Definition **/
-
 %macro Octo_Ward2012( 
   invar=ward,      /** Input var **/
   outvar=Ward2012, /** Output var **/
@@ -43,5 +41,5 @@
     
 %mend Octo_Ward2012;
 
-/** End Macro Definition **/
+
 

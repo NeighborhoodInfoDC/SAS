@@ -13,8 +13,6 @@ remote batch submit, 0 if local batch or interactive.
  Modifications:
 **************************************************************************/
 
-/** Macro Is_remote_batch - Start Definition **/
-
 %macro Is_remote_batch( drive );
 
   %if %upcase(&drive) = %upcase(&_dcdata_r_drive) %then 1;
@@ -22,5 +20,5 @@ remote batch submit, 0 if local batch or interactive.
 
 %mend Is_remote_batch;
 
-/** End Macro Definition **/
+
 

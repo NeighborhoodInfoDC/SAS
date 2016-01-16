@@ -13,8 +13,6 @@
  Modifications:
 **************************************************************************/
 
-/** Macro Block10_to_eor - Start Definition **/
-
 %macro Block10_to_eor( invar=geoblk2010, outvar=eor, format=Y );
 
   length &outvar $ 1;
@@ -29,5 +27,5 @@
 
 %mend Block10_to_eor;
 
-/** End Macro Definition **/
+
 

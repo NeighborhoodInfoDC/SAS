@@ -13,8 +13,6 @@
  Modifications:
 **************************************************************************/
 
-/** Macro Block10_to_bg10 - Start Definition **/
-
 %macro Block10_to_bg10( invar=geoblk2010, outvar=GeoBg2010, format=Y );
 
   length &outvar $ 12;
@@ -29,5 +27,5 @@
 
 %mend Block10_to_bg10;
 
-/** End Macro Definition **/
+
 

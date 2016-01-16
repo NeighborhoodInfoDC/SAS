@@ -13,8 +13,6 @@
  Modifications:
 **************************************************************************/
 
-/** Macro Block10_to_ward12 - Start Definition **/
-
 %macro Block10_to_ward12( invar=geoblk2010, outvar=Ward2012, format=Y );
 
   length &outvar $ 1;
@@ -29,5 +27,5 @@
 
 %mend Block10_to_ward12;
 
-/** End Macro Definition **/
+
 

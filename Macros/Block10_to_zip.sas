@@ -13,8 +13,6 @@
  Modifications:
 **************************************************************************/
 
-/** Macro Block10_to_zip - Start Definition **/
-
 %macro Block10_to_zip( invar=geoblk2010, outvar=Zip, format=Y );
 
   length &outvar $ 5;
@@ -29,5 +27,5 @@
 
 %mend Block10_to_zip;
 
-/** End Macro Definition **/
+
 

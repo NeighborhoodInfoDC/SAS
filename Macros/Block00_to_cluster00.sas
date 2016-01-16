@@ -13,8 +13,6 @@
  Modifications:
 **************************************************************************/
 
-/** Macro Block00_to_cluster00 - Start Definition **/
-
 %macro Block00_to_cluster00( invar=geoblk2000, outvar=Cluster2000, format=Y );
 
   length &outvar $ 2;
@@ -29,5 +27,5 @@
 
 %mend Block00_to_cluster00;
 
-/** End Macro Definition **/
+
 

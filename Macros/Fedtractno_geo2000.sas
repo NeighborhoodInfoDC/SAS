@@ -17,8 +17,6 @@
                to outvar, otherwise output value is missing (blank).
 **************************************************************************/
 
-/** Macro Fedtractno_geo2000 - Start Definition **/
-
 %macro Fedtractno_geo2000( outvar=Geo2000, invar=Fedtractno );
 
   length &outvar $ 11;
@@ -36,5 +34,5 @@
 
 %mend Fedtractno_geo2000;
 
-/** End Macro Definition **/
+
 

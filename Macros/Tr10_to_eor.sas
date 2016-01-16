@@ -12,8 +12,6 @@
  Modifications:
 **************************************************************************/
 
-/** Macro Tr10_to_eor - Start Definition **/
-
 %macro Tr10_to_eor( tract=Geo2010, eor=Eor );
 
   length &eor $ 1;
@@ -26,5 +24,5 @@
 
 %mend Tr10_to_eor;
 
-/** End Macro Definition **/
+
 

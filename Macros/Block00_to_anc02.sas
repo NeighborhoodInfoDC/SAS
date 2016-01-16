@@ -13,8 +13,6 @@
  Modifications:
 **************************************************************************/
 
-/** Macro Block00_to_anc02 - Start Definition **/
-
 %macro Block00_to_anc02( invar=geoblk2000, outvar=Anc2002, format=Y );
 
   length &outvar $ 2;
@@ -29,5 +27,5 @@
 
 %mend Block00_to_anc02;
 
-/** End Macro Definition **/
+
 

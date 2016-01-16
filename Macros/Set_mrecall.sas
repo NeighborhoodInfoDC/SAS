@@ -13,8 +13,6 @@
  Modifications:
 **************************************************************************/
 
-/** Macro Set_mrecall - Start Definition **/
-
 %macro Set_mrecall;
 
   %if &_program = {Interactive} %then %do;
@@ -26,5 +24,5 @@
 
 %mend Set_mrecall;
 
-/** End Macro Definition **/
+
 

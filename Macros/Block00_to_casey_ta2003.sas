@@ -13,8 +13,6 @@
  Modifications:
 **************************************************************************/
 
-/** Macro Block00_to_casey_ta2003 - Start Definition **/
-
 %macro Block00_to_casey_ta2003( invar=geoblk2000, outvar=Casey_ta2003, format=Y );
 
   length &outvar $ 2;
@@ -29,5 +27,5 @@
 
 %mend Block00_to_casey_ta2003;
 
-/** End Macro Definition **/
+
 

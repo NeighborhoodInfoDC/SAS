@@ -15,8 +15,6 @@
  Modifications:
 **************************************************************************/
 
-/** Macro Metro03 - Start Definition **/
-
 %macro Metro03( ucountyv );
 
   ** Create 2003 metro variable from unique county ID **;
@@ -29,5 +27,5 @@
 
 %mend Metro03;
 
-/** End Macro Definition **/
+
 

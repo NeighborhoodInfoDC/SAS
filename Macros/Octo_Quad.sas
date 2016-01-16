@@ -13,8 +13,6 @@
  Modifications:
 **************************************************************************/
 
-/** Macro Octo_Quad - Start Definition **/
-
 %macro Octo_Quad( invar=Quadrant, outvar=Quad );
 
   length &outvar $ 2;
@@ -28,5 +26,5 @@
     
 %mend Octo_Quad;
 
-/** End Macro Definition **/
+
 

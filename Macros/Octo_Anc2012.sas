@@ -13,8 +13,6 @@
  Modifications:
 **************************************************************************/
 
-/** Macro Octo_Anc2012 - Start Definition **/
-
 %macro Octo_Anc2012( 
   invar=ANC_ID,   /** Input var name **/
   outvar=Anc2012, /** Output var name **/
@@ -44,5 +42,5 @@
     
 %mend Octo_Anc2012;
 
-/** End Macro Definition **/
+
 

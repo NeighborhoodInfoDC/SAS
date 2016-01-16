@@ -13,8 +13,6 @@
  Modifications:
 **************************************************************************/
 
-/** Macro Label_var_years - Start Definition **/
-
 %macro Label_var_years( var=, years=, from=, to=, label= );
 
   %local i y y_lbl;
@@ -65,7 +63,7 @@
   
 %mend Label_var_years;
 
-/** End Macro Definition **/
+
 
 
 /**************  UNCOMMENT TO TEST **************

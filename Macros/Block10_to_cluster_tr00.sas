@@ -13,8 +13,6 @@
  Modifications:
 **************************************************************************/
 
-/** Macro Block10_to_cluster_tr00 - Start Definition **/
-
 %macro Block10_to_cluster_tr00( invar=geoblk2010, outvar=Cluster_tr2000, format=Y );
 
   length &outvar $ 2;
@@ -29,5 +27,5 @@
 
 %mend Block10_to_cluster_tr00;
 
-/** End Macro Definition **/
+
 

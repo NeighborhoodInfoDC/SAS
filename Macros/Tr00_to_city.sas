@@ -12,8 +12,6 @@
  Modifications:
 **************************************************************************/
 
-/** Macro Tr00_to_city - Start Definition **/
-
 %macro Tr00_to_city( tract=Geo2000, city=city );
 
   length &city $ 1;
@@ -26,5 +24,5 @@
 
 %mend Tr00_to_city;
 
-/** End Macro Definition **/
+
 

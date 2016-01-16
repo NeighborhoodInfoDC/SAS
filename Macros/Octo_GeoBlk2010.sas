@@ -17,8 +17,6 @@
                Restored INVAR= parameter.
 **************************************************************************/
 
-/** Macro Octo_GeoBlk2010 - Start Definition **/
-
 %macro Octo_GeoBlk2010( 
   outvar=GeoBlk2010, /** Output var name **/
   invar=geoid10,     /** Input var **/
@@ -42,5 +40,5 @@
 
 %mend Octo_GeoBlk2010;
 
-/** End Macro Definition **/
+
 

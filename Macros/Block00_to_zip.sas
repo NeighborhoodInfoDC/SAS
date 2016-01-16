@@ -14,8 +14,6 @@
   03/21/11 PT  Added ZIP format. 
 **************************************************************************/
 
-/** Macro Block00_to_zip - Start Definition **/
-
 %macro Block00_to_zip( invar=geoblk2000, outvar=Zip, format=Y );
 
   length &outvar $ 5;
@@ -30,5 +28,5 @@
 
 %mend Block00_to_zip;
 
-/** End Macro Definition **/
+
 

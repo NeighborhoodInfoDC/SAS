@@ -13,8 +13,6 @@
  Modifications:
 **************************************************************************/
 
-/** Macro Octo_Anc2002 - Start Definition **/
-
 %macro Octo_Anc2002( invar=Name, outvar=Anc2002 );
 
   ** ANC code **;
@@ -31,5 +29,5 @@
     
 %mend Octo_Anc2002;
 
-/** End Macro Definition **/
+
 

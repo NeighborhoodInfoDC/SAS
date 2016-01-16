@@ -14,8 +14,6 @@
   07/30/08  PAT  Changed var length to 1.
 **************************************************************************/
 
-/** Macro Block00_to_city - Start Definition **/
-
 %macro Block00_to_city( invar=geoblk2000, outvar=city, format=Y );
 
   length &outvar $ 1;
@@ -30,5 +28,5 @@
 
 %mend Block00_to_city;
 
-/** End Macro Definition **/
+
 

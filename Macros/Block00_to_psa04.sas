@@ -13,8 +13,6 @@
  Modifications:
 **************************************************************************/
 
-/** Macro Block00_to_psa04 - Start Definition **/
-
 %macro Block00_to_psa04( invar=geoblk2000, outvar=Psa2004, format=Y );
 
   length &outvar $ 3;
@@ -29,5 +27,5 @@
 
 %mend Block00_to_psa04;
 
-/** End Macro Definition **/
+
 

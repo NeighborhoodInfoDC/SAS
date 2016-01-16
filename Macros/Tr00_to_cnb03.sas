@@ -13,8 +13,6 @@
  Modifications:
 **************************************************************************/
 
-/** Macro Tr00_to_cnb03 - Start Definition **/
-
 %macro Tr00_to_cnb03( tract=Geo2000, cnb=Casey_nbr2003 );
 
   length &cnb $ 1;
@@ -27,5 +25,5 @@
 
 %mend Tr00_to_cnb03;
 
-/** End Macro Definition **/
+
 

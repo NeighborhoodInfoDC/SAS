@@ -13,8 +13,6 @@
  Modifications:
 **************************************************************************/
 
-/** Macro Tr00_to_cta03 - Start Definition **/
-
 %macro Tr00_to_cta03( tract=Geo2000, cta=Casey_ta2003 );
 
   length &cta $ 1;
@@ -27,5 +25,5 @@
 
 %mend Tr00_to_cta03;
 
-/** End Macro Definition **/
+
 

@@ -13,8 +13,6 @@
  Modifications:
 **************************************************************************/
 
-/** Macro SAS_compatibility - Start Definition **/
-
 %macro SAS_compatibility(  );
 
   %if %sysevalf(&sysver >= 9.3) %then %do;
@@ -23,5 +21,5 @@
 
 %mend SAS_compatibility;
 
-/** End Macro Definition **/
+
 

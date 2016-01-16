@@ -12,8 +12,6 @@
  Modifications:
 **************************************************************************/
 
-/** Macro ConvertLibname - Start Definition **/
-
 %macro ConvertLibname( inlib, type );
 
   %local outlib prename insuffix outsuffix;
@@ -65,7 +63,7 @@
   
 %mend ConvertLibname;
 
-/** End Macro Definition **/
+
 
 
 /**********  UNCOMMENT TO TEST ****************

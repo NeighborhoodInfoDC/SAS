@@ -14,8 +14,6 @@
   08/28/12 PAT Corrected block to geo format name. 
 **************************************************************************/
 
-/** Macro Block00_to_anc12 - Start Definition **/
-
 %macro Block00_to_anc12( invar=geoblk2000, outvar=Anc2012, format=Y );
 
   length &outvar $ 2;
@@ -30,5 +28,5 @@
 
 %mend Block00_to_anc12;
 
-/** End Macro Definition **/
+
 

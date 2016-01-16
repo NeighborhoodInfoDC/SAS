@@ -11,8 +11,6 @@
  Voting Precincts (2012).
 **************************************************************************/
 
-/** Macro Block00_to_vp12 - Start Definition **/
-
 %macro Block00_to_vp12 ( invar=geoblk2000, outvar=VoterPre2012, format=Y );
 
   length &outvar $ 3;
@@ -27,5 +25,5 @@
 
 %mend Block00_to_vp12;
 
-/** End Macro Definition **/
+
 

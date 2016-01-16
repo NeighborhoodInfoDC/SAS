@@ -13,8 +13,6 @@
  Modifications:
 **************************************************************************/
 
-/** Macro Octo_Cluster2000 - Start Definition **/
-
 %macro Octo_Cluster2000( invar=Name, outvar=Cluster2000 );
 
   length &outvar $ 2;
@@ -29,5 +27,5 @@
     
 %mend Octo_Cluster2000;
 
-/** End Macro Definition **/
+
 

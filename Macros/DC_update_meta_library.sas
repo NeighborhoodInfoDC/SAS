@@ -13,8 +13,6 @@
 * Modifications:
 ************************************************************************/
 
-/** Macro DC_update_meta_library - Start Definition **/
-
 %macro DC_update_meta_library( 
          lib_name= ,
          lib_desc= ,
@@ -36,6 +34,6 @@
 
 %mend DC_update_meta_library;
 
-/** End Macro Definition **/
+
 
 

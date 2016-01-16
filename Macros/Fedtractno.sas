@@ -15,8 +15,6 @@
             Added invar= and outvar= parameters.
 **************************************************************************/
 
-/** Macro Fedtractno - Start Definition **/
-
 %macro Fedtractno( invar=Geo2000, outvar=Fedtractno );
 
   ** Var. for matching data with OCTO tract shape files **;
@@ -36,5 +34,5 @@
 
 %mend Fedtractno;
 
-/** End Macro Definition **/
+
 

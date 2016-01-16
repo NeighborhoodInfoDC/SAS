@@ -15,8 +15,6 @@
    11/02/13 PAT Revised for use with new SAS server setup.
  ************************************************************************/
 
-** Macro GetProgLib - Start Definition **;
-
 %macro GetProgLib( var );
 
   %global &var;
@@ -78,5 +76,4 @@
 
 %mend GetProgLib;
 
-** End Macro Definition **;
 

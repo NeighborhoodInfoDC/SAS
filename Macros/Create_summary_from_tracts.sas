@@ -19,8 +19,6 @@
   07/14/12 PAT Added TRACT_YR= parameter for specifying source tract year.
 **************************************************************************/
 
-/** Macro Create_summary_from_tracts - Start Definition **/
-
 %macro Create_summary_from_tracts( 
   geo=, 
   lib=,
@@ -119,5 +117,5 @@
 
 %mend Create_summary_from_tracts;
 
-/** End Macro Definition **/
+
 
