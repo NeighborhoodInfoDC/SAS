@@ -1,5 +1,5 @@
 /**************************************************************************
- Program:  Tr00_to_cnb03.sas
+ Macro:    Tr00_to_cnb03
  Library:  Macros
  Project:  NeighborhoodInfo DC
  Author:   P. Tatian

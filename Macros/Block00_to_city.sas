@@ -1,5 +1,5 @@
 /**************************************************************************
- Program:  Block00_to_city.sas
+ Macro:    Block00_to_city
  Library:  Macros
  Project:  NeighborhoodInfo DC
  Author:   P. Tatian

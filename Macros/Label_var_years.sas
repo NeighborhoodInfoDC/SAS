@@ -1,5 +1,5 @@
 /**************************************************************************
- Program:  Label_var_years.sas
+ Macro:    Label_var_years
  Library:  Macro library
  Project:  NeighborhoodInfo DC
  Author:   P. Tatian

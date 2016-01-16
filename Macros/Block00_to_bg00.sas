@@ -1,5 +1,5 @@
 /**************************************************************************
- Program:  Block00_to_bg00.sas
+ Macro:    Block00_to_bg00
  Library:  Macros
  Project:  NeighborhoodInfo DC
  Author:   P. Tatian

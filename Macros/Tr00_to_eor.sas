@@ -1,5 +1,5 @@
 /**************************************************************************
- Program:  Tr00_to_eor.sas
+ Macro:    Tr00_to_eor
  Library:  Macros
  Project:  NeighborhoodInfo DC
  Author:   P. Tatian

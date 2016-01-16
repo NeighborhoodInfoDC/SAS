@@ -1,5 +1,5 @@
 /**************************************************************************
- Program:  Block00_to_ward02.sas
+ Macro:    Block00_to_ward02
  Library:  
  Project:  NeighborhoodInfo DC
  Author:   P. Tatian

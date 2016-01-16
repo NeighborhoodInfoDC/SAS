@@ -1,5 +1,5 @@
 /**************************************************************************
- Program:  Octo_GeoBlk2000.sas
+ Macro:    Octo_GeoBlk2000
  Library:  Octo
  Project:  NeighborhoodInfo DC
  Author:   P. Tatian

@@ -1,5 +1,5 @@
 /**************************************************************************
- Program:  Set_mrecall.sas
+ Macro:    Set_mrecall
  Library:  Macro library
  Project:  NeighborhoodInfo DC
  Author:   P. Tatian

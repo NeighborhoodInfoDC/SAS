@@ -1,5 +1,5 @@
 /**************************************************************************
- Program:  Octo_Psa2012.sas
+ Macro:    Octo_Psa2012
  Library:  Octo
  Project:  NeighborhoodInfo DC
  Author:   P. Tatian

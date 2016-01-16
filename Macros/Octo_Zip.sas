@@ -1,5 +1,5 @@
 /**************************************************************************
- Program:  Octo_ZIP.sas
+ Macro:    Octo_ZIP
  Library:  Octo
  Project:  NeighborhoodInfo DC
  Author:   P. Tatian

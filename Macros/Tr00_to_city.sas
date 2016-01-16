@@ -1,5 +1,5 @@
 /**************************************************************************
- Program:  Tr00_to_city.sas
+ Macro:    Tr00_to_city
  Library:  Macros
  Project:  NeighborhoodInfo DC
  Author:   P. Tatian

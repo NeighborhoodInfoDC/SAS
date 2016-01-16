@@ -1,5 +1,5 @@
 /************************************************************************
-  Program:  GetProgLib.sas
+  Macro:    GetProgLib
   Project:  NeighborhoodInfo DC Macro Library
   Author:   P. Tatian
   Updated:  8/18/04

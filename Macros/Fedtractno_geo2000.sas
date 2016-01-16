@@ -1,5 +1,5 @@
 /**************************************************************************
- Program:  Fedtractno_geo2000.sas
+ Macro:    Fedtractno_geo2000
  Library:  OCTO
  Project:  NeighborhoodInfo DC
  Author:   P. Tatian
