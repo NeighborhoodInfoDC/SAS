@@ -312,6 +312,7 @@ call define(_col_,"STYLE",'STYLE=[hreftarget="Code" URL="&urltext"]');
 endcomp;
 run;
 title;
+footnote;
 ods html close;
 ods listing;
 %mend BuildIndex;
