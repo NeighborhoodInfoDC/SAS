@@ -12,6 +12,7 @@
 (path = /* path for directory with macro code */
 ,htmpath = /* path to write html files (copy of each sas program and index) */
 ,debug = 0 /* boolean, debug mode or not */
+,taglist=macro description use author approval approver version /**PT** List of header tags to process **/
 );
 /**********************************************************************
 Macro: CodeIndex
@@ -44,7 +45,7 @@ urltext
 )
 %*read in program and write a dataset __macinfo with data from program header;
 %ExtractHeaderInfo(path=&path,program=&program,out=__macinfo,
-taglist=macro description use author approval approver version)
+taglist=&taglist)
 %*build a dataset that has one record per macro, with data from program header;
 proc append base=__allmacinfo data=__macinfo;
 run;
@@ -308,6 +309,7 @@ options msglevel=n;
 %CodeIndex( 
 path=C:\DCData\GitHub\SAS\Macros,
 htmpath=C:\DCData\GitHub\SAS\Macros\Html,
+taglist=macro library project author created version environment description modifications,
 debug=1 )
 
 run;
