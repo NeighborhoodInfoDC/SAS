@@ -7,15 +7,13 @@
  Version:  SAS 8.2
  Environment:  Windows
  
- Description:  Autocall macro to add 2003 metropolitan/micropolitan 
+ Description: Add 2003 metropolitan/micropolitan 
  statistical area code (METRO03).
  
  Notes: Must have Cen2000 format library in FMTSEARCH.
 
  Modifications:
 **************************************************************************/
-
-/** Macro Metro03 - Start Definition **/
 
 %macro Metro03( ucountyv );
 
@@ -29,5 +27,5 @@
 
 %mend Metro03;
 
-/** End Macro Definition **/
+
 

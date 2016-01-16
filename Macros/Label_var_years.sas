@@ -7,13 +7,11 @@
  Version:  SAS 9.2
  Environment:  Windows
  
- Description:  Autocall macro to label a series of variables
+ Description: Label a series of variables
  across multiple years.
 
  Modifications:
 **************************************************************************/
-
-/** Macro Label_var_years - Start Definition **/
 
 %macro Label_var_years( var=, years=, from=, to=, label= );
 
@@ -65,7 +63,7 @@
   
 %mend Label_var_years;
 
-/** End Macro Definition **/
+
 
 
 /**************  UNCOMMENT TO TEST **************

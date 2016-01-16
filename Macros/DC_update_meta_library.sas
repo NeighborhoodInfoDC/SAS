@@ -7,13 +7,11 @@
 * Version:  SAS 8.2
 * Environment:  Alpha only
 * 
-* Description:  Autocall macro to update library entry in metadata
+* Description: Update library entry in metadata
 * system.
 *
 * Modifications:
 ************************************************************************/
-
-/** Macro DC_update_meta_library - Start Definition **/
 
 %macro DC_update_meta_library( 
          lib_name= ,
@@ -36,6 +34,6 @@
 
 %mend DC_update_meta_library;
 
-/** End Macro Definition **/
+
 
 

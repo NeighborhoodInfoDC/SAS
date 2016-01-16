@@ -7,8 +7,7 @@
  Version:  SAS 9.2
  Environment:  Windows
  
- Description:  Autocall macro to update file entry in metadata
- system.
+ Description: Update file entry in metadata system.
 
  Modifications:
   12/30/04  Allow specification of desc_stats= parameter.
@@ -28,8 +27,6 @@
   03/30/14  PAT Added creator= parameter to allow manual entry of
                 user id. 
 ************************************************************************/
-
-/** Macro DC_update_meta_file - Start Definition **/
 
 %macro DC_update_meta_file( 
          ds_lib= ,
@@ -107,5 +104,5 @@
 
 %mend DC_update_meta_file;
 
-/** End Macro Definition **/
+
 

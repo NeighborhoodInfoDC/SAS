@@ -1,0 +1,240 @@
+<!doctype html public "-//w3c//dtd html 4.0 final//en">
+<html>
+   <head>
+      <title>C:\DCData\GitHub\SAS\Macros\DCData_lib.sas</title>
+   </head>
+   <body>
+      <pre>
+/**************************************************************************
+ Macro:    DCData_lib
+ Project:  NeighborhoodInfo DC
+ Author:   P. Tatian
+ Updated:  11/2/04
+ Version:  SAS 9.2
+
+ Description:  Define NeighborhoodInfo DC SAS libraries for
+ local and remote sessions. Sets macro and format search paths.
+
+ Modifications:
+  11/09/04 PAT Corrected MPRINT option problem.
+  08/22/06 PAT Added ENV=, MACDEF= options.
+  11/02/13 PAT Revised for use with new SAS server setup.
+               Added opt. conf_drive= to support confidential drives. 
+  04/07/14 PAT Added local=Y/N and remote=Y/N parameters to control 
+               creation of local and remote library references, 
+               respectively, in local session.
+  11/30/15 PAT Change library order for local sessions with remote batch 
+               submit (R-&gt;C-&gt;L) vs local batch submit (C-&gt;L-&gt;R[read only]). 
+**************************************************************************/
+
+%macro DCData_lib( library, mprint=n, env=, macdef=, conf_drive=, local=y, remote=y, rreadonly= );
+
+  %local conf_path prename l_exist r_exist c_exist l_ref r_ref c_ref
+         l_libname r_libname c_libname;
+
+  %let mprint = %upcase( &amp;mprint );
+  %let env = %upcase( &amp;env );
+  %let local = %upcase( &amp;local);
+  %let remote = %upcase( &amp;remote ); 
+  %let rreadonly = %upcase( &amp;rreadonly );
+
+  %if &amp;mprint = N %then %do;
+    options nomprint;
+  %end;
+  
+  %** Create shortened library/filename prefix **;
+  
+  %if %length( &amp;library ) &gt; 6 %then %do;
+    %let prename = %substr( &amp;library, 1, 6 );
+  %end;
+  %else %do;
+    %let prename = &amp;library;
+  %end;
+  
+  %let l_ref = 0;
+  %let r_ref = 0;
+  %let c_ref = 0;
+  
+  %let l_libname = ;
+  %let r_libname = ;
+  %let c_libname = ;
+  
+  %if not &amp;_remote_session %then %do;
+  
+    %**** Set up libraries for LOCAL session (running on PC) ****;
+
+    %** Default list of base macro search locations **;
+    
+    %if &amp;macdef = %then %do;
+      %if &amp;_remote_batch_submit %then %let macdef = genera_r genera_l dcautos uiautos sasautos;
+      %else %let macdef = genera_l genera_r dcautos uiautos sasautos;
+    %end;
+  
+    %** Set up libraries for local session **;
+  
+    %** Confidential folder path (if drive specified) **;
+    
+    %if &amp;conf_drive ~= %then %do;
+      %let conf_path = %sysfunc( substr( &amp;conf_drive, 1, 1 ) ):\DCData\Libraries;
+      %let c_exist = %DirExist( &amp;conf_path\&amp;library );
+    %end;
+    %else %do;
+      %let conf_path = ;
+      %let c_exist = 0;
+    %end;
+
+    ** Create separate and concatenated libraries for data sets and format catalogs **;
+    
+    %let l_exist = %DirExist( &amp;_dcdata_l_path\&amp;library );
+    %let r_exist = %DirExist( &amp;_dcdata_r_path\&amp;library );
+    
+    %if &amp;l_exist = 0 and &amp;r_exist = 0 and &amp;c_exist = 0 %then %do;
+      %err_mput( macro=DCData_lib, 
+                 msg=The library %upcase(&amp;library) does not exist on any of the %str(local, remote, or confidential drives). )
+      %goto exit_macro;
+    %end;
+    
+    %if &amp;c_exist %then %do;
+      %let c_libname = &amp;prename._c;
+      libname &amp;c_libname "&amp;conf_path\&amp;library\Data";
+      %let c_ref = 1;
+    %end;
+    %else %if &amp;conf_drive ~= %then %do;
+      %note_mput( macro=DCData_lib, msg=The library %upcase(&amp;library) does not exist on %upcase(&amp;conf_path). )
+    %end;
+    
+    %if not( &amp;local = N or &amp;local = NO ) %then %do; 
+      %if &amp;l_exist %then %do;
+        %let l_libname = &amp;prename._l;
+        libname &amp;l_libname "&amp;_dcdata_l_path\&amp;library\Data";
+        %let l_ref = 1;
+      %end;
+      %else %do;
+        %note_mput( macro=DCData_lib, msg=The library %upcase(&amp;library) does not exist on %upcase(&amp;_dcdata_l_path). )
+      %end;
+    %end;
+        
+    %if not( &amp;remote = N or &amp;remote = NO ) %then %do; 
+      %if &amp;r_exist %then %do;
+        %let r_libname = &amp;prename._r;
+        %if ( &amp;_remote_batch_submit or &amp;rreadonly = N ) and &amp;rreadonly ~= Y %then %do;
+          libname &amp;r_libname "&amp;_dcdata_r_path\&amp;library\Data";
+        %end;
+        %else %do;
+          libname &amp;r_libname "&amp;_dcdata_r_path\&amp;library\Data" access=readonly;
+          %note_mput( macro=DCData_lib, msg=Access to remote library %upcase(&amp;r_libname) is read only. )
+        %end;
+        %let r_ref = 1;
+      %end;
+      %else %do;
+        %note_mput( macro=DCData_lib, msg=The library %upcase(&amp;library) does not exist on %upcase(&amp;_dcdata_r_path). )
+      %end;
+    %end;
+    
+    %if &amp;l_libname.&amp;r_libname.&amp;c_libname = %then %do;
+      %warn_mput( macro=DCData_lib, msg=No references for %upcase(&amp;library) have been created. )
+      %goto exit_macro;
+    %end;
+        
+    %if &amp;_remote_batch_submit %then %do;
+      %** Local session, remote batch submit **;
+      libname &amp;library ( &amp;r_libname &amp;c_libname &amp;l_libname );
+    %end;
+    %else %do;
+      %** Local session, local batch/interactive submit **;
+      libname &amp;library ( &amp;c_libname &amp;l_libname &amp;r_libname );
+    %end;
+    
+    ** Add concatenated library to format search **;
+    
+    %FmtSearch( cat=&amp;library, action=E )
+
+    ** Create filename references for autocall macro searching **;
+
+    %if &amp;_remote_batch_submit %then %do;
+      %** Local session, remote batch submit **;
+      %if &amp;r_exist and &amp;r_ref %then %do;
+        filename &amp;prename._r "&amp;_dcdata_r_path\&amp;library\Macros";
+        %MacroSearch( cat=&amp;prename._r, action=M, def=&amp;macdef )
+      %end;
+      %if &amp;c_exist and &amp;c_ref %then %do;
+        filename &amp;prename._c "&amp;conf_path\&amp;library\Macros";
+        %MacroSearch( cat=&amp;prename._c, action=M, def=&amp;macdef )
+      %end;
+      %if &amp;l_exist and &amp;l_ref %then %do;
+        filename &amp;prename._l "&amp;_dcdata_l_path\&amp;library\Macros";
+        %MacroSearch( cat=&amp;prename._l, action=M, def=&amp;macdef )
+      %end;
+    %end;
+    %else %do;
+      %** Local session, local batch/interactive submit **;
+      %if &amp;c_exist and &amp;c_ref %then %do;
+        filename &amp;prename._c "&amp;conf_path\&amp;library\Macros";
+        %MacroSearch( cat=&amp;prename._c, action=M, def=&amp;macdef )
+      %end;
+      %if &amp;l_exist and &amp;l_ref %then %do;
+        filename &amp;prename._l "&amp;_dcdata_l_path\&amp;library\Macros";
+        %MacroSearch( cat=&amp;prename._l, action=M, def=&amp;macdef )
+      %end;
+      %if &amp;r_exist and &amp;r_ref %then %do;
+        filename &amp;prename._r "&amp;_dcdata_r_path\&amp;library\Macros";
+        %MacroSearch( cat=&amp;prename._r, action=M, def=&amp;macdef )
+      %end;
+    %end;
+  %end;
+  %else %do;
+  
+    %**** Set up libraries for REMOTE session (running on SAS1) ****;
+    
+    %** Default list of base macro search locations **;
+    
+    %if &amp;macdef = %then %let macdef = general dcautos uiautos sasautos;
+  
+    ** Create library for data sets and format catalogs **;
+    
+    %let r_exist = %DirExist( &amp;_dcdata_r_path\&amp;library );
+    
+    %if &amp;r_exist = 0 %then %do;
+      %err_mput( macro=DCData_lib, 
+                 msg=The library %upcase(&amp;library) does not exist on remote drive. )
+      %goto exit_macro;
+    %end;
+    
+    %let r_libname = &amp;prename._r;
+    
+    %if ( &amp;_remote_batch_submit or &amp;rreadonly = N ) and &amp;rreadonly ~= Y %then %do;
+      %** Remote session, remote batch submit **;
+      libname &amp;r_libname "&amp;_dcdata_r_path\&amp;library\Data";
+    %end;
+    %else %do;
+      %** Remote session, interactive submit **;
+      libname &amp;r_libname "&amp;_dcdata_r_path\&amp;library\Data" access=readonly;
+      %note_mput( macro=DCData_lib, msg=Access to remote library %upcase(&amp;r_libname) is read only. )
+    %end;
+
+    libname &amp;library ( &amp;r_libname );
+    
+    ** Add library to format search **;
+    
+    %FmtSearch( cat=&amp;library, action=E )
+
+    ** Create filename references for autocall macro searching **;
+
+    filename &amp;library "&amp;_dcdata_r_path\&amp;library\Macros";
+    
+    %MacroSearch( cat=&amp;library, action=M, def=&amp;macdef )
+
+  %end;
+  
+  %exit_macro:
+
+  %if &amp;mprint = N %then %do;
+    options mprint;
+  %end;
+
+%mend DCData_lib;
+
+
+      </pre>
+   </body>
+</html>

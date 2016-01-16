@@ -1,0 +1,48 @@
+<!doctype html public "-//w3c//dtd html 4.0 final//en">
+<html>
+   <head>
+      <title>C:\DCData\GitHub\SAS\Macros\Concat_lib.sas</title>
+   </head>
+   <body>
+      <pre>
+/************************************************************************
+ * Macro:    Concat_lib
+ * Project:  UI SAS Macro Library
+ * Author:   P. Tatian
+ * Updated:  9/17/04
+ * Version:  SAS 8.12
+ * 
+ * Description:  Define a concatenated V8 &amp; V6 SAS library
+ *
+ * Modifications:
+ *  04/12/06  Remove LONGFILEEXT option from libname statement because
+ *            not supported in SAS V9.
+ ************************************************************************/
+
+%macro Concat_lib( libname, path );
+
+  %if %length( &amp;libname ) &gt; 6 %then %do;
+    %let prename = %substr( &amp;libname, 1, 6 );
+  %end;
+  %else %do;
+    %let prename = &amp;libname;
+  %end;
+
+  libname &amp;prename.v6 v6 "&amp;path";
+
+  %if &amp;SYSSCP = WIN %then %do;
+    libname &amp;prename.v8 v8 "&amp;path" /*longfileext*/;
+  %end;
+  %else %do;
+    libname &amp;prename.v8 v8 "&amp;path";
+  %end;
+  
+  libname &amp;libname (&amp;prename.v8 &amp;prename.v6);
+
+%mend Concat_lib;
+
+
+
+      </pre>
+   </body>
+</html>

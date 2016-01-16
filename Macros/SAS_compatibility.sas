@@ -7,13 +7,11 @@
  Version:  SAS 9.2
  Environment:  Local Windows session (desktop)
  
- Description:  Autocall macro sets backward compatibility system options 
+ Description:  Set backward compatibility system options 
  for later versions of SAS.
 
  Modifications:
 **************************************************************************/
-
-/** Macro SAS_compatibility - Start Definition **/
 
 %macro SAS_compatibility(  );
 
@@ -23,5 +21,5 @@
 
 %mend SAS_compatibility;
 
-/** End Macro Definition **/
+
 

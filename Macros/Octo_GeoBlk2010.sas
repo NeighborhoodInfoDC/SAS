@@ -7,7 +7,7 @@
  Version:  SAS 9.1
  Environment:  Windows
  
- Description:  Autocall macro to convert OCTO census block ID to
+ Description: Convert OCTO census block ID to
  NeighborhoodInfo DC standard var GeoBlk2010.
  
  Modifications:
@@ -16,8 +16,6 @@
                Block10Ply.shp created by R. Pitingolo.
                Restored INVAR= parameter.
 **************************************************************************/
-
-/** Macro Octo_GeoBlk2010 - Start Definition **/
 
 %macro Octo_GeoBlk2010( 
   outvar=GeoBlk2010, /** Output var name **/
@@ -42,5 +40,5 @@
 
 %mend Octo_GeoBlk2010;
 
-/** End Macro Definition **/
+
 

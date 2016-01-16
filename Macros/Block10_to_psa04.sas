@@ -7,13 +7,11 @@
  Version:  SAS 9.1
  Environment:  Windows
  
- Description:  Autocall macro to convert Census block IDs (2010) to
+ Description: Convert Census block IDs (2010) to
  DC PSAs (2004).
 
  Modifications:
 **************************************************************************/
-
-/** Macro Block10_to_psa04 - Start Definition **/
 
 %macro Block10_to_psa04( invar=geoblk2010, outvar=Psa2004, format=Y );
 
@@ -29,5 +27,5 @@
 
 %mend Block10_to_psa04;
 
-/** End Macro Definition **/
+
 

@@ -7,15 +7,13 @@
  Version:  SAS 8.2
  Environment:  Windows
  
- Description:  Autocall macro to create FEDTRACTNO variable for
+ Description: Create FEDTRACTNO variable for
  matching census tract data to OCTO tract shape file.
 
  Modifications:
   01/24/07  Corrected problem with tract 84.10.
             Added invar= and outvar= parameters.
 **************************************************************************/
-
-/** Macro Fedtractno - Start Definition **/
 
 %macro Fedtractno( invar=Geo2000, outvar=Fedtractno );
 
@@ -36,5 +34,5 @@
 
 %mend Fedtractno;
 
-/** End Macro Definition **/
+
 

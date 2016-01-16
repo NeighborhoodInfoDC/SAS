@@ -7,14 +7,12 @@
  Version:  SAS 9.2
  Environment:  Windows
  
- Description:  Autocall macro to convert Census block IDs (2000) to
+ Description: Convert Census block IDs (2000) to
  DC ANCs (2012).
 
  Modifications:
   08/28/12 PAT Corrected block to geo format name. 
 **************************************************************************/
-
-/** Macro Block00_to_anc12 - Start Definition **/
 
 %macro Block00_to_anc12( invar=geoblk2000, outvar=Anc2012, format=Y );
 
@@ -30,5 +28,5 @@
 
 %mend Block00_to_anc12;
 
-/** End Macro Definition **/
+
 

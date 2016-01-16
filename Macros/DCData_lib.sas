@@ -20,8 +20,6 @@
                submit (R->C->L) vs local batch submit (C->L->R[read only]). 
 **************************************************************************/
 
-/** Macro DCData_lib - Start Definition **/
-
 %macro DCData_lib( library, mprint=n, env=, macdef=, conf_drive=, local=y, remote=y, rreadonly= );
 
   %local conf_path prename l_exist r_exist c_exist l_ref r_ref c_ref
@@ -229,4 +227,4 @@
 
 %mend DCData_lib;
 
-/** End Macro Definition **/
+

@@ -7,13 +7,11 @@
  Version:  SAS 9.2
  Environment:  Windows
  
- Description:  Autocall macro to convert OCTO PSA ID to
+ Description: Convert OCTO PSA ID to
  NeighborhoodInfo DC standard var Psa2012.
 
  Modifications:
 **************************************************************************/
-
-/** Macro Octo_Psa2012 - Start Definition **/
 
 %macro Octo_Psa2012( 
   invar=Name,     /** Input var name **/
@@ -44,5 +42,5 @@
     
 %mend Octo_Psa2012;
 
-/** End Macro Definition **/
+
 

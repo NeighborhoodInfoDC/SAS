@@ -7,13 +7,11 @@
  Version:  SAS 8.2
  Environment:  Windows
  
- Description:  Autocall macro to convert tract ID to 
+ Description: Convert tract ID to 
  Casey Target Neighborhoods ID.
 
  Modifications:
 **************************************************************************/
-
-/** Macro Tr00_to_cnb03 - Start Definition **/
 
 %macro Tr00_to_cnb03( tract=Geo2000, cnb=Casey_nbr2003 );
 
@@ -27,5 +25,5 @@
 
 %mend Tr00_to_cnb03;
 
-/** End Macro Definition **/
+
 

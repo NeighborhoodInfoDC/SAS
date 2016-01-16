@@ -1,0 +1,105 @@
+<!doctype html public "-//w3c//dtd html 4.0 final//en">
+<html>
+   <head>
+      <title>C:\DCData\GitHub\SAS\Macros\Label_var_years.sas</title>
+   </head>
+   <body>
+      <pre>
+/**************************************************************************
+ Macro:    Label_var_years
+ Library:  Macro library
+ Project:  NeighborhoodInfo DC
+ Author:   P. Tatian
+ Created:  10/25/12
+ Version:  SAS 9.2
+ Environment:  Windows
+ 
+ Description: Label a series of variables
+ across multiple years.
+
+ Modifications:
+**************************************************************************/
+
+%macro Label_var_years( var=, years=, from=, to=, label= );
+
+  %local i y y_lbl;
+  
+  %if &amp;years ~= %then %do;
+  
+    %** List of years (nonsequential) **; 
+  
+    %let i = 1;
+    %let y = %scan( &amp;years, &amp;i );
+    
+    %do %while ( &amp;y ~= );
+
+      %let y_lbl = %sysfunc( translate( &amp;y, '-', '_' ) );
+      
+      %if %length( &amp;label ) ~= 0 %then %do;
+        label &amp;var._&amp;y = "&amp;label, &amp;y_lbl";
+      %end;
+      %else %do;
+        label &amp;var._&amp;y = "&amp;y_lbl";
+      %end;
+       
+      %let i = %eval( &amp;i + 1 );
+      %let y = %scan( &amp;years, &amp;i );
+
+    %end;
+  
+  %end;
+  %else %if &amp;from ~= and &amp;to ~= %then %do;
+  
+    %** Sequential years **;
+
+    %do y = &amp;from %to &amp;to;
+  
+      %if %length( &amp;label ) ~= 0 %then %do;
+        label &amp;var._&amp;y = "&amp;label, &amp;y";
+      %end;
+      %else %do;
+        label &amp;var._&amp;y = "&amp;y";
+      %end;
+
+    %end;
+
+  %end;  
+  %else %do;
+    %err_mput( macro=Label_var_years, msg=Must specify values for either YEARS= or FROM=/TO=. )
+  %end;
+  
+%mend Label_var_years;
+
+
+
+
+/**************  UNCOMMENT TO TEST **************
+
+options mprint symbolgen mlogic;
+
+** Locations of SAS autocall macro libraries **;
+
+filename uiautos  "K:\Metro\PTatian\UISUG\Uiautos";
+filename dcautos  "K:\Metro\PTatian\DCData\SAS\Macros";
+options sasautos=(dcautos uiautos sasautos);
+
+data A;
+
+  Num_2000 = 5;
+  Num_2001 = 6;
+  Num_2002 = 7;
+
+  Num_2005_09 = 10;
+
+  %Label_var_years( var=Num, years=2000 2001 2002 2005_09, from=, to=, label=Numerator )
+  
+run;
+
+proc contents data=A;
+
+run;
+
+/****************************************************/
+      </pre>
+   </body>
+</html>

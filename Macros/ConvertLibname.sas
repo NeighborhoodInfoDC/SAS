@@ -7,12 +7,10 @@
  Version:  SAS 9.1
  Environment:  Windows
  
- Description:  Autocall macro to return local library name.
+ Description: Return local library name.
 
  Modifications:
 **************************************************************************/
-
-/** Macro ConvertLibname - Start Definition **/
 
 %macro ConvertLibname( inlib, type );
 
@@ -65,7 +63,7 @@
   
 %mend ConvertLibname;
 
-/** End Macro Definition **/
+
 
 
 /**********  UNCOMMENT TO TEST ****************

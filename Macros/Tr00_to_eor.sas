@@ -7,12 +7,10 @@
  Version:  SAS 8.2
  Environment:  Windows
  
- Description:  Autocall macro to convert tract ID to EOR ID.
+ Description: Convert tract ID to EOR ID.
 
  Modifications:
 **************************************************************************/
-
-/** Macro Tr00_to_eor - Start Definition **/
 
 %macro Tr00_to_eor( tract=Geo2000, eor=Eor );
 
@@ -26,5 +24,5 @@
 
 %mend Tr00_to_eor;
 
-/** End Macro Definition **/
+
 

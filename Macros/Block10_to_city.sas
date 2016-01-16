@@ -7,14 +7,12 @@
  Version:  SAS 9.1
  Environment:  Windows
  
- Description:  Autocall macro to convert Census block IDs (2010) to
+ Description: Convert Census block IDs (2010) to
  Washington, D.C..
 
  Modifications:
   07/30/08  PAT  Changed var length to 1.
 **************************************************************************/
-
-/** Macro Block10_to_city - Start Definition **/
 
 %macro Block10_to_city( invar=geoblk2010, outvar=city, format=Y );
 
@@ -30,5 +28,5 @@
 
 %mend Block10_to_city;
 
-/** End Macro Definition **/
+
 

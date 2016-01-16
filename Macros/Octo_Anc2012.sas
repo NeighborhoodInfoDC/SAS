@@ -7,13 +7,11 @@
  Version:  SAS 9.2
  Environment:  Windows
  
- Description:  Autocall macro to convert OCTO ANC ID to
+ Description: Convert OCTO ANC ID to
  NeighborhoodInfo DC standard var Anc2012.
 
  Modifications:
 **************************************************************************/
-
-/** Macro Octo_Anc2012 - Start Definition **/
 
 %macro Octo_Anc2012( 
   invar=ANC_ID,   /** Input var name **/
@@ -44,5 +42,5 @@
     
 %mend Octo_Anc2012;
 
-/** End Macro Definition **/
+
 

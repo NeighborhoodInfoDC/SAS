@@ -7,13 +7,11 @@
  Version:  SAS 9.2
  Environment:  Local Windows session (desktop)
  
- Description:  Autocall macro returns 1 if current SAS session is a
+ Description:  Returns 1 if current SAS session is a
 remote batch submit, 0 if local batch or interactive.
 
  Modifications:
 **************************************************************************/
-
-/** Macro Is_remote_batch - Start Definition **/
 
 %macro Is_remote_batch( drive );
 
@@ -22,5 +20,5 @@ remote batch submit, 0 if local batch or interactive.
 
 %mend Is_remote_batch;
 
-/** End Macro Definition **/
+
 

@@ -5,7 +5,7 @@
   Updated:  8/18/04
   Version:  SAS 8.12 (Windows version)
   
-  Description:  Autocall macro to return the library of the currently 
+  Description: Return the library of the currently 
     submitted SAS program to the global macro variable given by VAR.  
     If running in interactive mode, macro returns an empty string.
 
@@ -14,8 +14,6 @@
    12/04/12 PAT Added check for DCData K: path. 
    11/02/13 PAT Revised for use with new SAS server setup.
  ************************************************************************/
-
-** Macro GetProgLib - Start Definition **;
 
 %macro GetProgLib( var );
 
@@ -78,5 +76,4 @@
 
 %mend GetProgLib;
 
-** End Macro Definition **;
 

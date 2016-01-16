@@ -12,8 +12,6 @@
  *            not supported in SAS V9.
  ************************************************************************/
 
-/** Macro Concat_lib - Start Definition **/
-
 %macro Concat_lib( libname, path );
 
   %if %length( &libname ) > 6 %then %do;
@@ -36,5 +34,5 @@
 
 %mend Concat_lib;
 
-/** End Macro Definition **/
+
 

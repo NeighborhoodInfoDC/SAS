@@ -7,13 +7,11 @@
  Version:  SAS 9.1
  Environment:  Windows
  
- Description:  Autocall macro to convert OCTO quadrant ID to
+ Description: Convert OCTO quadrant ID to
  NeighborhoodInfo DC standard var Quad.
 
  Modifications:
 **************************************************************************/
-
-/** Macro Octo_Quad - Start Definition **/
 
 %macro Octo_Quad( invar=Quadrant, outvar=Quad );
 
@@ -28,5 +26,5 @@
     
 %mend Octo_Quad;
 
-/** End Macro Definition **/
+
 

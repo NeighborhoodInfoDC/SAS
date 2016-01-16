@@ -17,8 +17,6 @@
  Modifications:
 **************************************************************************/
 
-/** Macro Concat_lr_lib - Start Definition **/
-
 %macro Concat_lr_lib( 
   libname=,  /** Name of concatenated library **/
   rpath=,    /** Remote session library path **/
@@ -66,4 +64,4 @@
 
 %mend Concat_lr_lib;
 
-/** End Macro Definition **/
+

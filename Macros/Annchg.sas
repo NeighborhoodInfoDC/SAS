@@ -7,8 +7,8 @@
  Version:  SAS 8.2
  Environment:  Windows & Alpha
  
- Description:  Autocall macro for calculating annual percentage
- change between two numbers, <start> and <end>.
+ Description: Calculate annual percentage change between two numbers, 
+ <start> and <end>.
 
  Modifications:
 **************************************************************************/

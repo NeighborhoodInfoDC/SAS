@@ -7,8 +7,8 @@
  Version:  SAS 8.2
  Environment:  Windows & Alpha
  
- Description:  Autocall macro for calculating percentage change
- between two numbers, <start> and <end>.
+ Description: Calculate percentage change between two numbers, 
+ <start> and <end>.
 
  Modifications:
 **************************************************************************/

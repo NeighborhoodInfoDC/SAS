@@ -7,14 +7,12 @@
  Version:  SAS 8.2
  Environment:  Windows
  
- Description:  Autocall macro to convert Census block IDs (2000) to
+ Description: Convert Census block IDs (2000) to
  DC ZIP code.
 
  Modifications:
   03/21/11 PT  Added ZIP format. 
 **************************************************************************/
-
-/** Macro Block00_to_zip - Start Definition **/
 
 %macro Block00_to_zip( invar=geoblk2000, outvar=Zip, format=Y );
 
@@ -30,5 +28,5 @@
 
 %mend Block00_to_zip;
 
-/** End Macro Definition **/
+
 

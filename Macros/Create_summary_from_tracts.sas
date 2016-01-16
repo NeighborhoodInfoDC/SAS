@@ -1,13 +1,13 @@
 /**************************************************************************
  Macro:    Create_summary_from_tracts
- Library:  General
+ Library:  Macros
  Project:  NeighborhoodInfo DC
  Author:   P. Tatian
  Created:  07/29/06
  Version:  SAS 8.2
  Environment:  Windows
  
- Description:  Autocall macro to create geographic summary data set
+ Description: Create geographic summary data set
  from a tract summary data set for the specified geography.
 
  Modifications:
@@ -18,8 +18,6 @@
   02/24/11 PAT Added declaration for local macro vars.
   07/14/12 PAT Added TRACT_YR= parameter for specifying source tract year.
 **************************************************************************/
-
-/** Macro Create_summary_from_tracts - Start Definition **/
 
 %macro Create_summary_from_tracts( 
   geo=, 
@@ -119,5 +117,5 @@
 
 %mend Create_summary_from_tracts;
 
-/** End Macro Definition **/
+
 

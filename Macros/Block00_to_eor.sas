@@ -7,14 +7,12 @@
  Version:  SAS 8.2
  Environment:  Windows
  
- Description:  Autocall macro to convert Census block IDs (2000) to
+ Description: Convert Census block IDs (2000) to
  East of the Anacostia River.
 
  Modifications:
   05/04/11 PAT Corrected variable length to 1.
 **************************************************************************/
-
-/** Macro Block00_to_eor - Start Definition **/
 
 %macro Block00_to_eor( invar=geoblk2000, outvar=eor, format=Y );
 
@@ -30,5 +28,5 @@
 
 %mend Block00_to_eor;
 
-/** End Macro Definition **/
+
 

@@ -1,0 +1,49 @@
+<!doctype html public "-//w3c//dtd html 4.0 final//en">
+<html>
+   <head>
+      <title>C:\DCData\GitHub\SAS\Macros\DC_update_meta_library.sas</title>
+   </head>
+   <body>
+      <pre>
+/************************************************************************
+* Macro:    DC_update_meta_library
+* Library:  Macros
+* Project:  NeighborhoodInfo DC
+* Author:   P. Tatian
+* Created:  11/02/04
+* Version:  SAS 8.2
+* Environment:  Alpha only
+* 
+* Description: Update library entry in metadata
+* system.
+*
+* Modifications:
+************************************************************************/
+
+%macro DC_update_meta_library( 
+         lib_name= ,
+         lib_desc= ,
+         quiet=N
+  );
+
+  %Update_metadata_library( 
+         lib_name=&amp;lib_name ,
+         lib_desc=&amp;lib_desc ,
+         meta_lib=_metadat,
+         meta_pre=meta,
+         quiet=&amp;quiet
+  )
+
+  ** Purge extra copies of metadata files **;
+
+  %exit:
+  %Note_mput( macro=DC_update_meta_library, msg=Exiting macro. )
+
+%mend DC_update_meta_library;
+
+
+
+
+      </pre>
+   </body>
+</html>

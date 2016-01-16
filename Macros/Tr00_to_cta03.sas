@@ -7,13 +7,11 @@
  Version:  SAS 8.2
  Environment:  Windows
  
- Description:  Autocall macro to convert tract ID to Casey Target
+ Description: Convert tract ID to Casey Target
  Area ID.
 
  Modifications:
 **************************************************************************/
-
-/** Macro Tr00_to_cta03 - Start Definition **/
 
 %macro Tr00_to_cta03( tract=Geo2000, cta=Casey_ta2003 );
 
@@ -27,5 +25,5 @@
 
 %mend Tr00_to_cta03;
 
-/** End Macro Definition **/
+
 

@@ -7,13 +7,11 @@
  Version:  SAS 9.2
  Environment:  Windows
  
- Description:  Autocall macro to convert OCTO Name var to
+ Description: Convert OCTO Name var to
  NeighborhoodInfo DC standard var VoterPre2012.
 
  Modifications:
 **************************************************************************/
-
-/** Macro Octo_VoterPre2012 - Start Definition **/
 
 %macro Octo_VoterPre2012( 
   invar=Name,   /** Input var name **/
@@ -43,4 +41,4 @@
     
 %mend Octo_VoterPre2012;
 
-/** End Macro Definition **/
+

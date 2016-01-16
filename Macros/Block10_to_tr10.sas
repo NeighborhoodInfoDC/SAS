@@ -7,13 +7,11 @@
  Version:  SAS 9.1
  Environment:  Windows
  
- Description:  Autocall macro to convert Census block IDs (2010) to
+ Description: Convert Census block IDs (2010) to
  Census tracts (2010).
 
  Modifications:
 **************************************************************************/
-
-/** Macro Block10_to_tr10 - Start Definition **/
 
 %macro Block10_to_tr10( invar=geoblk2010, outvar=Geo2010, format=Y );
 
@@ -29,5 +27,5 @@
 
 %mend Block10_to_tr10;
 
-/** End Macro Definition **/
+
 

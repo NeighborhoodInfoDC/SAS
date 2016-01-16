@@ -7,13 +7,11 @@
  Version:  SAS 9.1
  Environment:  Windows
  
- Description:  Autocall macro to convert Census block IDs (2010) to
+ Description: Convert Census block IDs (2010) to
  DC Neighborhood Clusters (tract-based, 2000).
 
  Modifications:
 **************************************************************************/
-
-/** Macro Block10_to_cluster_tr00 - Start Definition **/
 
 %macro Block10_to_cluster_tr00( invar=geoblk2010, outvar=Cluster_tr2000, format=Y );
 
@@ -29,5 +27,5 @@
 
 %mend Block10_to_cluster_tr00;
 
-/** End Macro Definition **/
+
 

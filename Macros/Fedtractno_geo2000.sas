@@ -7,7 +7,7 @@
  Version:  SAS 8.2
  Environment:  Windows
  
- Description:  Autocall macro to convert Fedtractno in OCTO tract
+ Description: Convert Fedtractno in OCTO tract
  shapefile to standard Geo2000 tract ID.
 
  Modifications:
@@ -16,8 +16,6 @@
   12/13/12 PAT Added validation test - only valid 2000 tracts are saved
                to outvar, otherwise output value is missing (blank).
 **************************************************************************/
-
-/** Macro Fedtractno_geo2000 - Start Definition **/
 
 %macro Fedtractno_geo2000( outvar=Geo2000, invar=Fedtractno );
 
@@ -36,5 +34,5 @@
 
 %mend Fedtractno_geo2000;
 
-/** End Macro Definition **/
+
 

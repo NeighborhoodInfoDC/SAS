@@ -7,7 +7,7 @@
  Version:  SAS 9.1
  Environment:  Windows
  
- Description:  Autocall macro to calculate percentages or rates
+ Description: Calculate percentages or rates
  across multiple years.
 
  Modifications:
@@ -20,8 +20,6 @@
   08/03/11 PAT Change "_" to "-" in years= for variable labels.
                Set mult= to 1 if missing.
 **************************************************************************/
-
-/** Macro Pct_calc - Start Definition **/
 
 %macro Pct_calc( var=, num=, den=, cons_den=, years=, from=, to=, mult=100, label=, year_only_lbl=N, round=, missval=.i );
 
@@ -101,7 +99,7 @@
   
 %mend Pct_calc;
 
-/** End Macro Definition **/
+
 
 
 /**************  UNCOMMENT TO TEST **************
