@@ -1,0 +1,28 @@
+<!doctype html public "-//w3c//dtd html 4.0 final//en">
+<html>
+   <head>
+      <title>C:\DCData\GitHub\SAS\Macros\Annchg.sas</title>
+   </head>
+   <body>
+      <pre>
+/**************************************************************************
+ Macro:    Annchg
+ Library:  Macros
+ Project:  NeighborhoodInfo DC
+ Author:   P. Tatian
+ Created:  01/10/05
+ Version:  SAS 8.2
+ Environment:  Windows &amp; Alpha
+ 
+ Description: Calculate annual percentage change between two numbers, 
+ &lt;start&gt; and &lt;end&gt;.
+
+ Modifications:
+**************************************************************************/
+
+%macro annchg( start, end, years );
+  ( ( (&amp;end) / (&amp;start) ) ** ( 1 / (&amp;years) ) - 1 )
+%mend annchg;
+      </pre>
+   </body>
+</html>

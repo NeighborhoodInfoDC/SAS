@@ -1,0 +1,143 @@
+<!doctype html public "-//w3c//dtd html 4.0 final//en">
+<html>
+   <head>
+      <title>C:\DCData\GitHub\SAS\Macros\Pct_calc.sas</title>
+   </head>
+   <body>
+      <pre>
+/**************************************************************************
+ Macro:    Pct_calc
+ Library:  Profiles
+ Project:  NeighborhoodInfo DC
+ Author:   P. Tatian
+ Created:  04/01/07
+ Version:  SAS 9.1
+ Environment:  Windows
+ 
+ Description: Calculate percentages or rates
+ across multiple years.
+
+ Modifications:
+  02/20/08 PAT Added round= parameter (specify rounding unit).
+               If denominator = 0, set percentage to .I.
+  05/08/08 PAT Added year_only_lbl= to specify year only label.
+  07/25/08 PAT Fixed problem with year_only_lbl= not working for
+               sequential years.
+  02/24/11 PAT Added declaration for local macro vars.
+  08/03/11 PAT Change "_" to "-" in years= for variable labels.
+               Set mult= to 1 if missing.
+**************************************************************************/
+
+%macro Pct_calc( var=, num=, den=, cons_den=, years=, from=, to=, mult=100, label=, year_only_lbl=N, round=, missval=.i );
+
+  %local i y y_lbl;
+  
+  %if &amp;mult = %then %let mult = 1;
+
+  %if &amp;years ~= %then %do;
+  
+    %** List of years (nonsequential) **; 
+  
+    %let i = 1;
+    %let y = %scan( &amp;years, &amp;i );
+    
+    %do %while ( &amp;y ~= );
+
+      %let y_lbl = %sysfunc( translate( &amp;y, '-', '_' ) );
+      
+      %if &amp;den ~= %then %do;
+        if &amp;den._&amp;y &gt; 0 then &amp;var._&amp;y = (&amp;mult) * ( &amp;num._&amp;y / &amp;den._&amp;y );
+        else &amp;var._&amp;y = &amp;missval;
+      %end;
+      %else %do;
+        if &amp;cons_den &gt; 0 then &amp;var._&amp;y = (&amp;mult) * ( &amp;num._&amp;y / &amp;cons_den );
+        else &amp;var._&amp;y = &amp;missval;
+      %end;
+      
+      %if &amp;round ~= %then %do;
+        &amp;var._&amp;y = round( &amp;var._&amp;y, &amp;round );
+      %end;
+      
+      %if %length( &amp;label ) ~= 0 %then %do;
+        label &amp;var._&amp;y = "&amp;label, &amp;y_lbl";
+      %end;
+      %else %if %upcase( &amp;year_only_lbl ) = Y %then %do;
+        label &amp;var._&amp;y = "&amp;y_lbl";
+      %end;
+       
+      %let i = %eval( &amp;i + 1 );
+      %let y = %scan( &amp;years, &amp;i );
+
+    %end;
+  
+  %end;
+  %else %if &amp;from ~= and &amp;to ~= %then %do;
+  
+    %** Sequential years **;
+
+    %do y = &amp;from %to &amp;to;
+  
+      %if &amp;den ~= %then %do;
+        if &amp;den._&amp;y &gt; 0 then &amp;var._&amp;y = (&amp;mult) * ( &amp;num._&amp;y / &amp;den._&amp;y );
+        else &amp;var._&amp;y = &amp;missval;
+      %end;
+      %else %do;
+        if &amp;cons_den &gt; 0 then &amp;var._&amp;y = (&amp;mult) * ( &amp;num._&amp;y / &amp;cons_den );
+        else &amp;var._&amp;y = &amp;missval;
+      %end;
+
+      %if &amp;round ~= %then %do;
+        &amp;var._&amp;y = round( &amp;var._&amp;y, &amp;round );
+      %end;
+      
+      %if %length( &amp;label ) ~= 0 %then %do;
+        label &amp;var._&amp;y = "&amp;label, &amp;y";
+      %end;
+      %else %if %upcase( &amp;year_only_lbl ) = Y %then %do;
+        label &amp;var._&amp;y = "&amp;y";
+      %end;
+
+    %end;
+
+  %end;  
+  %else %do;
+    %err_mput( macro=Pct_calc, msg=Must specify values for either YEARS= or FROM=/TO=. )
+  %end;
+  
+%mend Pct_calc;
+
+
+
+
+/**************  UNCOMMENT TO TEST **************
+
+options mprint symbolgen mlogic;
+
+** Locations of SAS autocall macro libraries **;
+
+filename uiautos  "K:\Metro\PTatian\UISUG\Uiautos";
+filename dcautos  "K:\Metro\PTatian\DCData\SAS\Macros";
+options sasautos=(dcautos uiautos sasautos);
+
+data A;
+
+  Num_2000 = 5;
+  Den_2000 = 100;
+
+  Num_2005_09 = 10;
+  Den_2005_09 = 100;
+
+  %Pct_calc( var=Pct, num=Num, den=Den, cons_den=, years=2000 2005_09, from=, to=, mult=, label=Percentage, year_only_lbl=N, round=, missval=.i )
+  
+run;
+
+proc contents data=A;
+
+proc print data=A;
+
+run;
+
+/****************************************************/
+      </pre>
+   </body>
+</html>

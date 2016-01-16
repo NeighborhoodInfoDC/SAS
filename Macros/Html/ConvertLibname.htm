@@ -1,0 +1,112 @@
+<!doctype html public "-//w3c//dtd html 4.0 final//en">
+<html>
+   <head>
+      <title>C:\DCData\GitHub\SAS\Macros\ConvertLibname.sas</title>
+   </head>
+   <body>
+      <pre>
+/**************************************************************************
+ Macro:    ConvertLibname
+ Library:  
+ Project:  NeighborhoodInfo DC
+ Author:   P. Tatian
+ Created:  11/09/13
+ Version:  SAS 9.1
+ Environment:  Windows
+ 
+ Description: Return local library name.
+
+ Modifications:
+**************************************************************************/
+
+%macro ConvertLibname( inlib, type );
+
+  %local outlib prename insuffix outsuffix;
+  
+  %** Check input parameter LIBRARY **;
+
+  %if %length( &amp;inlib ) &lt; 3 or %length( &amp;inlib ) &gt; 8 %then %do;
+    %err_mput( macro=ConvertLibname, msg=Must provide a valid library name (between 3-8 chars) as 1st macro parameter. INLIB=&amp;inlib.. )
+    %let outlib = ;
+    %goto exit_macro;
+  %end;
+  
+  %** Check input parameter TYPE **;
+
+  %if %length( &amp;type ) ~= 1 or %sysfunc( indexc( 'lrc', %lowcase( &amp;type ) ) ) = 0 %then %do;
+    %err_mput( macro=ConvertLibname, msg=Must provide a valid library type (L/R/C) as 2nd macro parameter. TYPE=&amp;type.. )
+    %let outlib = ;
+    %goto exit_macro;
+  %end;
+  
+  %let inlib = %lowcase( &amp;inlib );
+  %let outsuffix = _%lowcase( &amp;type );
+  
+  %let insuffix = %sysfunc( reverse( %substr( %sysfunc( reverse( &amp;inlib ) ), 1, 2 ) ) );
+  
+  %if &amp;insuffix = &amp;outsuffix %then %do;
+    %let outlib = &amp;inlib;
+  %end;
+  %else %if &amp;insuffix = _l or &amp;insuffix = _r or &amp;insuffix = _c %then %do;
+    %let outlib = %substr( &amp;inlib, 1, %length( &amp;inlib ) - 2 )&amp;outsuffix;
+  %end;
+  %else %do;
+  
+    %** Create shortened library/filename prefix **;
+    
+    %if %length( &amp;inlib ) &gt; 6 %then %do;
+      %let prename = %substr( &amp;inlib, 1, 6 );
+    %end;
+    %else %do;
+      %let prename = &amp;inlib;
+    %end;
+    
+    %let outlib = &amp;prename&amp;outsuffix;
+    
+  %end;
+  
+  %exit_macro:
+  &amp;outlib
+  
+%mend ConvertLibname;
+
+
+
+
+/**********  UNCOMMENT TO TEST ****************
+
+** Locations of SAS autocall macro libraries **;
+
+filename uiautos  "K:\Metro\PTatian\UISUG\Uiautos";
+options sasautos=(uiautos sasautos);
+
+options mprint symbolgen mlogic;
+
+%let r = %ConvertLibname( General, r );
+%let l = %ConvertLibname( General, l );
+%let c = %ConvertLibname( General, c );
+%put General = &amp;r &amp;l &amp;c;
+
+%let r = %ConvertLibname( Genera_r, r );
+%let l = %ConvertLibname( Genera_c, l );
+%let c = %ConvertLibname( Genera_l, c );
+%put Genera_r = &amp;r &amp;l &amp;c;
+
+%let r = %ConvertLibname( HomeSavr, r );
+%let l = %ConvertLibname( HomeSavr, l );
+%let c = %ConvertLibname( HomeSavr, c );
+%put HomeSavr = &amp;r &amp;l &amp;c;
+
+%** Errors **;
+
+%let r = %ConvertLibname( Ge, r );
+%let r = %ConvertLibname( Generalissimo, r );
+%let r = %ConvertLibname( General, f );
+%let r = %ConvertLibname( General, remote );
+
+%put _user_;
+
+/***********************************************/
+      </pre>
+   </body>
+</html>

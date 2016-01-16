@@ -1,0 +1,77 @@
+<!doctype html public "-//w3c//dtd html 4.0 final//en">
+<html>
+   <head>
+      <title>C:\DCData\GitHub\SAS\Macros\Concat_lr_lib.sas</title>
+   </head>
+   <body>
+      <pre>
+/**************************************************************************
+ Macro:    Concat_lr_lib
+ Library:  UI SAS Macro Library
+ Project:  NeighborhoodInfo DC
+ Author:   P. Tatian
+ Created:  11/02/13
+ Version:  SAS 9.1
+ Environment:  Windows
+ 
+ Description:  Define concatenated local/remote/confidential SAS library.
+ 
+ Note: 
+   Local and remote library base names must be shortened to 6 chars to 
+   allow _r and _l suffixes. Can't define two different libraries that
+   have same first 6 chars in name. 
+
+ Modifications:
+**************************************************************************/
+
+%macro Concat_lr_lib( 
+  libname=,  /** Name of concatenated library **/
+  rpath=,    /** Remote session library path **/
+  lpath=,    /** Local session library path **/
+  cpath=,    /** Confidential library path (opt.) **/
+  first=l,   /** Local/Remote library first [Conf library always first] (L/R) **/
+  engine=    /** SAS data engine (opt.) **/
+  );
+
+  %local prename;
+
+  %if %length( &amp;libname ) &gt; 6 %then %do;
+    %let prename = %substr( &amp;libname, 1, 6 );
+  %end;
+  %else %do;
+    %let prename = &amp;libname;
+  %end;
+
+  libname &amp;prename._l &amp;engine "&amp;lpath";
+
+  libname &amp;prename._r &amp;engine "&amp;rpath";
+  
+  %if &amp;cpath ~= %then %do;
+
+    libname &amp;prename._c &amp;engine "&amp;cpath";
+    
+    %if %upcase( &amp;first ) = R %then %do;
+      libname &amp;libname (&amp;prename._c &amp;prename._r &amp;prename._l);
+    %end;
+    %else %do;
+      libname &amp;libname (&amp;prename._c &amp;prename._l &amp;prename._r);
+    %end;
+    
+  %end;
+  %else %do;
+    
+    %if %upcase( &amp;first ) = R %then %do;
+      libname &amp;libname (&amp;prename._r &amp;prename._l);
+    %end;
+    %else %do;
+      libname &amp;libname (&amp;prename._l &amp;prename._r);
+    %end;
+    
+  %end;
+
+%mend Concat_lr_lib;
+
+
+      </pre>
+   </body>
+</html>

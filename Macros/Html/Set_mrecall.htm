@@ -1,0 +1,38 @@
+<!doctype html public "-//w3c//dtd html 4.0 final//en">
+<html>
+   <head>
+      <title>C:\DCData\GitHub\SAS\Macros\Set_mrecall.sas</title>
+   </head>
+   <body>
+      <pre>
+/**************************************************************************
+ Macro:    Set_mrecall
+ Library:  Macro library
+ Project:  NeighborhoodInfo DC
+ Author:   P. Tatian
+ Created:  09/07/05
+ Version:  SAS 8.2
+ Environment:  Windows
+ 
+ Description: Set MRECALL option based on value of
+ _PROGRAM macro var.
+
+ Modifications:
+**************************************************************************/
+
+%macro Set_mrecall;
+
+  %if &amp;_program = {Interactive} %then %do;
+    options mrecall;
+  %end;
+  %else %do;
+    options nomrecall;
+  %end;
+
+%mend Set_mrecall;
+
+
+
+      </pre>
+   </body>
+</html>
