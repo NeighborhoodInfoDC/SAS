@@ -326,8 +326,8 @@ options mprint nosymbolgen nomlogic;
 options msglevel=n;
 
 %CodeIndex( 
-path=C:\DCData\GitHub\SAS\Macros,
-htmpath=C:\DCData\GitHub\SAS\Macros\Html,
+path=L:\SAS\Macros,
+htmpath=L:\SAS\Macros\Html,
 htmtitle="NeighborhoodInfo DC Macro Library",
 htmstyle=Solutions,
 taglist=macro library project author created version environment description modifications,
