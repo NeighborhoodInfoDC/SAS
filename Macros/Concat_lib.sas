@@ -1,8 +1,9 @@
 /************************************************************************
  * Macro:    Concat_lib
- * Project:  UI SAS Macro Library
+ * Library:  Macros
+ * Project:  NeighborhoodInfo DC
  * Author:   P. Tatian
- * Updated:  9/17/04
+ * Created:  9/17/04
  * Version:  SAS 8.12
  * 
  * Description:  Define a concatenated V8 & V6 SAS library

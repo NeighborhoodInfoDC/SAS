@@ -1,8 +1,9 @@
 /************************************************************************
   Macro:    GetProgLib
-  Project:  NeighborhoodInfo DC Macro Library
+  Library:  Macros
+  Project:  NeighborhoodInfo DC
   Author:   P. Tatian
-  Updated:  8/18/04
+  Created:  8/18/04
   Version:  SAS 8.12 (Windows version)
   
   Description: Return the library of the currently 

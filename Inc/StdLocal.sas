@@ -10,6 +10,7 @@
 **************************************************************************/
 
 %global _dcdata_l_drive _dcdata_r_drive _dcdata_l_path _dcdata_r_path 
+        _dcdata_path _dcdata_default_path 
         _remote_session _remote_batch_submit _userid;
 
 %let _dcdata_l_drive = D;
@@ -33,6 +34,7 @@ options sasautos=(dcautos uiautos sasautos);
 %GetProgDrive( _pdrive )
 
 %let _remote_batch_submit = %is_remote_batch( &_pdrive );
+%let _dcdata_default_path = %mif_select( &_remote_batch_submit, &_dcdata_r_path, &_dcdata_l_path );
 
 ** Metadata library **;
 

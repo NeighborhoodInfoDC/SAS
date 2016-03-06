@@ -1,8 +1,9 @@
 /**************************************************************************
  Macro:    DCData_lib
+ Library:  Macros
  Project:  NeighborhoodInfo DC
  Author:   P. Tatian
- Updated:  11/2/04
+ Created:  11/2/04
  Version:  SAS 9.2
 
  Description:  Define NeighborhoodInfo DC SAS libraries for
