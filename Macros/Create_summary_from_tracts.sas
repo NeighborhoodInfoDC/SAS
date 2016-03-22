@@ -22,6 +22,7 @@
 %macro Create_summary_from_tracts( 
   geo=, 
   lib=,
+  outlib=,
   data_pre=,
   data_label=,
   count_vars=, 
@@ -84,7 +85,7 @@
       wgt_id_vars=,
       wgt_count_var=popwt,
       wgt_prop_var=popwt_prop,
-      out_ds_name=&lib..&data_pre.&geosuf,
+      out_ds_name=&outlib..&data_pre.&geosuf,
       out_ds_label=%quote(&data_label, &geodlbl),
       calc_vars=&calc_vars,
       calc_vars_labels=&calc_vars_labels,
@@ -95,17 +96,17 @@
       mprint=&mprint
     )
   
-  proc datasets library=&lib memtype=(data) nolist;
+  proc datasets library=&outlib memtype=(data) nolist;
     modify &data_pre.&geosuf (sortedby=&geo);
   quit;
 
-  %File_info( data=&lib..&data_pre.&geosuf, printobs=0 )
+  %File_info( data=&outlib..&data_pre.&geosuf, printobs=0 )
   
   %** Register metadata **;
   
-  %if &register = Y %then %do;
+  %if %mparam_is_yes( &register ) %then %do;
     %Dc_update_meta_file(
-      ds_lib=&lib,
+      ds_lib=&outlib,
       ds_name=&data_pre.&geosuf,
       creator_process=&creator_process,
       restrictions=&restrictions,
