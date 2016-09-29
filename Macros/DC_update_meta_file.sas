@@ -42,6 +42,14 @@
   );
 
   %local restrict_param ds_lib_r;
+  
+  %** Check whether running remote batch submit **;
+  
+  %if not &_remote_batch_submit %then %do;
+       %warn_mput( macro=DC_update_meta_file, 
+                   msg=%str(Not a remote batch submit session. Metadata will not be updated.) )
+       %goto exit;
+  %end; 
 
   %** Get name of remote library **;
   
@@ -69,13 +77,6 @@
 
   %Note_mput( macro=DC_update_meta_file, msg=_userid=&_userid )
 
-  /**** FUNCTION DISABLED *****
-  %if %lowcase( &_userid ) = ptatian %then
-    %let update_notify = ptatian@urban.org;
-  %else
-    %let update_notify = &_userid@urban.org ptatian@urban.org;
-  **********************************/
-  
   %** Default creator is current user **;
   %if &creator = %then %let creator = &_userid;
   %else %let creator = %sysfunc( putc( %lowcase(&creator), $longusr. ) );
@@ -103,6 +104,4 @@
   %Note_mput( macro=DC_update_meta_file, msg=Exiting macro. )
 
 %mend DC_update_meta_file;
-
-
 
