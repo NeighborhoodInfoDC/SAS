@@ -121,6 +121,12 @@
     prop_vars=&prop_vars, calc_vars=&calc_vars, calc_vars_labels=&calc_vars_labels,
     tract_yr=&tract_yr, register=&finalize, creator_process=&creator_process,
     restrictions=&restrictions, revisions=&revisions, mprint=&mprint )
+    
+  %Create_summary_from_tracts( geo=bridgepk, 
+    lib=&lib, outlib=&outlib, data_pre=&data_pre, data_label=&data_label, count_vars=&count_vars,
+    prop_vars=&prop_vars, calc_vars=&calc_vars, calc_vars_labels=&calc_vars_labels,
+    tract_yr=&tract_yr, register=&finalize, creator_process=&creator_process,
+    restrictions=&restrictions, revisions=&revisions, mprint=&mprint )
 
   %if &tract_yr = 2000 %then %do;
     %Create_summary_from_tracts( geo=geo2010, 
