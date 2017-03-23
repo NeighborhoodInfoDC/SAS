@@ -85,7 +85,7 @@
       wgt_id_vars=,
       wgt_count_var=popwt,
       wgt_prop_var=popwt_prop,
-      out_ds_name=&outlib..&data_pre.&geosuf,
+      out_ds_name=&data_pre.&geosuf,
       out_ds_label=%quote(&data_label, &geodlbl),
       calc_vars=&calc_vars,
       calc_vars_labels=&calc_vars_labels,
@@ -96,6 +96,20 @@
       mprint=&mprint
     )
   
+    %Finalize_data_set(
+    data=&data_pre.&geosuf,
+    out=&data_pre.&geosuf,
+    outlib=NCDB,
+    label="NCDB summary, DC, &geodlbl",
+    sortby=&geo,
+    /** Metadata parameters **/
+    revisions=%str(&revisions),
+    /** File info parameters **/
+    printobs=0,
+    freqvars=&geo
+  )
+
+  /*
   proc datasets library=&outlib memtype=(data) nolist;
     modify &data_pre.&geosuf (sortedby=&geo);
   quit;
@@ -113,6 +127,7 @@
       revisions=%quote(&revisions)
     )
   %end;
+  */
   
   %exit_macro:
 
