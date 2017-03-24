@@ -80,20 +80,22 @@
     %goto exit;
   %end;
   
-  %** Check for existance of input and output data sets **;
+  %** Check for existance of input data set **;
   
   %if not( %Dataset_exists( &data ) ) %then %do;
     %err_mput( macro=Finalize_data_set, msg=Input data set %str(%upcase(&data)) does not exist. )
     %goto exit;
   %end;
   
-  %if %Dataset_exists( &outlib..&out ) %then %do;
-    %warn_mput( macro=Finalize_data_set, msg=Existing data set %str(%upcase(&outlib..&out)) will be replaced on remote batch submit. )
-  %end;
-  
   %** Finalize data set **;
   
   %if &_remote_batch_submit %then %do;
+  
+    %note_mput( macro=Finalize_data_set, msg=Remote batch submit. Data set will be finalized. )
+
+    %if %Dataset_exists( &outlib..&out ) %then %do;
+      %warn_mput( macro=Finalize_data_set, msg=Existing data set %str(%upcase(&outlib..&out)) will be replaced. )
+    %end;
   
     ** Sort to final data set **;
     
@@ -139,6 +141,10 @@
   %else %do;
   
     %note_mput( macro=Finalize_data_set, msg=Not remote batch submit. Data set will not be finalized. )
+
+    %if %Dataset_exists( &outlib..&out ) %then %do;
+      %warn_mput( macro=Finalize_data_set, msg=Existing data set %str(%upcase(&outlib..&out)) will be replaced on remote batch submit. )
+    %end;
 
     %File_info(
       data=&data,
