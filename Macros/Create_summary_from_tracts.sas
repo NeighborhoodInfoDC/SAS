@@ -109,26 +109,6 @@
     freqvars=&geo
   )
 
-  /*
-  proc datasets library=&outlib memtype=(data) nolist;
-    modify &data_pre.&geosuf (sortedby=&geo);
-  quit;
-
-  %File_info( data=&outlib..&data_pre.&geosuf, printobs=0 )
-  
-  %** Register metadata **;
-  
-  %if %mparam_is_yes( &register ) %then %do;
-    %Dc_update_meta_file(
-      ds_lib=&outlib,
-      ds_name=&data_pre.&geosuf,
-      creator_process=&creator_process,
-      restrictions=&restrictions,
-      revisions=%quote(&revisions)
-    )
-  %end;
-  */
-  
   %exit_macro:
 
 %mend Create_summary_from_tracts;
