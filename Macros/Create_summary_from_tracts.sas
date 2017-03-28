@@ -85,7 +85,7 @@
       wgt_id_vars=,
       wgt_count_var=popwt,
       wgt_prop_var=popwt_prop,
-      out_ds_name=&outlib..&data_pre.&geosuf,
+      out_ds_name=&data_pre.&geosuf,
       out_ds_label=%quote(&data_label, &geodlbl),
       calc_vars=&calc_vars,
       calc_vars_labels=&calc_vars_labels,
@@ -96,24 +96,19 @@
       mprint=&mprint
     )
   
-  proc datasets library=&outlib memtype=(data) nolist;
-    modify &data_pre.&geosuf (sortedby=&geo);
-  quit;
+    %Finalize_data_set(
+    data=&data_pre.&geosuf,
+    out=&data_pre.&geosuf,
+    outlib=NCDB,
+    label="NCDB summary, DC, &geodlbl",
+    sortby=&geo,
+    /** Metadata parameters **/
+    revisions=%str(&revisions),
+    /** File info parameters **/
+    printobs=0,
+    freqvars=&geo
+  )
 
-  %File_info( data=&outlib..&data_pre.&geosuf, printobs=0 )
-  
-  %** Register metadata **;
-  
-  %if %mparam_is_yes( &register ) %then %do;
-    %Dc_update_meta_file(
-      ds_lib=&outlib,
-      ds_name=&data_pre.&geosuf,
-      creator_process=&creator_process,
-      restrictions=&restrictions,
-      revisions=%quote(&revisions)
-    )
-  %end;
-  
   %exit_macro:
 
 %mend Create_summary_from_tracts;
