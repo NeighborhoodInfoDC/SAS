@@ -97,7 +97,7 @@
       %warn_mput( macro=Finalize_data_set, msg=Existing data set %str(%upcase(&outlib..&out)) will be replaced. )
     %end;
   
-    ** Sort to final data set **;
+    ** Sort to final data set and label **;
     
     proc sort data=&data out=&outlib..&out (label=&label);
       by &sortby;
@@ -146,6 +146,12 @@
       %warn_mput( macro=Finalize_data_set, msg=Existing data set %str(%upcase(&outlib..&out)) will be replaced on remote batch submit. )
     %end;
 
+    ** Sort and label temporary data set **;
+    
+    proc sort data=&data (label=&label);
+      by &sortby;
+    run;
+    
     %File_info(
       data=&data,
       contents=&contents,
