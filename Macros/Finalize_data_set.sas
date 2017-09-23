@@ -133,7 +133,7 @@
       ds_lib=&outlib,
       ds_name=&out,
       creator_process=&creator_process,
-      restrictions=None,
+      restrictions=&restrictions,
       revisions=%str(&revisions)
     )
     
