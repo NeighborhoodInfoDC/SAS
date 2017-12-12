@@ -24,6 +24,7 @@
   archive=N,  /** Add output data set to archive (Y/N) **/
   archive_name=,  /** Name of data set archive (default is batch submit program name) **/
   /** Metadata parameters **/
+  register_metadata=Y,        /** Register file with metadata system (Y/N) **/
   creator_process=&_program,  /** Metadata creator process (default is batch submit program name) **/
   restrictions=None,          /** Metadata file restrictions **/
   revisions=,                 /** Metadata file revisions (required) **/
@@ -127,15 +128,19 @@
 
     %end;
     
-    ** Add to metadata **;
+    %if %mparam_is_yes( &register_metadata ) %then %do;
     
-    %Dc_update_meta_file(
-      ds_lib=&outlib,
-      ds_name=&out,
-      creator_process=&creator_process,
-      restrictions=&restrictions,
-      revisions=%str(&revisions)
-    )
+      ** Add to metadata **;
+      
+      %Dc_update_meta_file(
+        ds_lib=&outlib,
+        ds_name=&out,
+        creator_process=&creator_process,
+        restrictions=&restrictions,
+        revisions=%str(&revisions)
+      )
+    
+    %end;
     
   %end;
   %else %do;
