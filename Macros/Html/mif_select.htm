@@ -1,0 +1,60 @@
+<!doctype html public "-//w3c//dtd html 4.0 final//en">
+<html>
+   <head>
+      <title>C:\DCData\SAS\Macros\mif_select.sas</title>
+   </head>
+   <body>
+      <pre>
+/**************************************************************************
+ Macro:  mif_select.sas
+ Library:  Macros
+ Project:  NeighborhoodInfo DC
+ Author:   P. Tatian
+ Created:  03/05/16
+ Version:  SAS 9.2
+ Environment:  Local Windows session (desktop)
+ 
+ Description:  Returns &lt;a&gt; if &lt;condition&gt; is true, &lt;b&gt; if false.
+
+ Modifications:
+**************************************************************************/
+
+%macro mif_select( 
+  condition,      /** Macro value or expression that resolves to a logical condition. Conditions containing = must be enclosed in parentheses, ex, (a=a). **/
+  a,              /** Return value if condition is true **/
+  b               /** Return value if condition is false **/
+  );
+
+  %if %eval(&amp;condition) %then %do;
+    &amp;a
+  %end;
+  %else %do;
+    &amp;b
+  %end;
+
+%mend mif_select;
+
+/************************ UNCOMMENT TO TEST ***************************
+
+%let ret = %mif_select( 1, TRUE, FALSE );
+%put RET=&amp;RET;
+
+%let ret = %mif_select( 0, TRUE, FALSE );
+%put RET=&amp;RET;
+
+%let ret = %mif_select( (a=a), TRUE, FALSE );
+%put RET=&amp;RET;
+
+%let ret = %mif_select( (a=b), TRUE, FALSE );
+%put RET=&amp;RET;
+
+%let ret = %mif_select( (2+2=4), TRUE, FALSE );
+%put RET=&amp;RET;
+
+%let ret = %mif_select( (2+2=5), TRUE, FALSE );
+%put RET=&amp;RET;
+
+/**********************************************************************/
+      </pre>
+   </body>
+</html>

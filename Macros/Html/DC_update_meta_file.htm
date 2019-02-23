@@ -1,7 +1,7 @@
 <!doctype html public "-//w3c//dtd html 4.0 final//en">
 <html>
    <head>
-      <title>C:\DCData\GitHub\SAS\Macros\DC_update_meta_file.sas</title>
+      <title>C:\DCData\SAS\Macros\DC_update_meta_file.sas</title>
    </head>
    <body>
       <pre>
@@ -49,6 +49,14 @@
   );
 
   %local restrict_param ds_lib_r;
+  
+  %** Check whether running remote batch submit **;
+  
+  %if not &amp;_remote_batch_submit %then %do;
+       %warn_mput( macro=DC_update_meta_file, 
+                   msg=%str(Not a remote batch submit session. Metadata will not be updated.) )
+       %goto exit;
+  %end; 
 
   %** Get name of remote library **;
   
@@ -76,13 +84,6 @@
 
   %Note_mput( macro=DC_update_meta_file, msg=_userid=&amp;_userid )
 
-  /**** FUNCTION DISABLED *****
-  %if %lowcase( &amp;_userid ) = ptatian %then
-    %let update_notify = ptatian@urban.org;
-  %else
-    %let update_notify = &amp;_userid@urban.org ptatian@urban.org;
-  **********************************/
-  
   %** Default creator is current user **;
   %if &amp;creator = %then %let creator = &amp;_userid;
   %else %let creator = %sysfunc( putc( %lowcase(&amp;creator), $longusr. ) );
@@ -110,8 +111,6 @@
   %Note_mput( macro=DC_update_meta_file, msg=Exiting macro. )
 
 %mend DC_update_meta_file;
-
-
 
       </pre>
    </body>

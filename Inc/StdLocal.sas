@@ -1,9 +1,9 @@
 /**************************************************************************
  Program:  StdLocal.sas
- Project:  NeighborhoodInfo DC
+ Project:  Urban-Greater DC
  Author:   P. Tatian
  Updated:  11/2/13
- Version:  SAS 9.2
+ Version:  SAS 9.4
  
  Description:  Standard header file for local Windows session.
 
@@ -51,7 +51,7 @@ options ls=124 ps=48;    ** Landscape **;
 
 ** Output title **;
 
-title "&_library/&_program:  NeighborhoodInfo DC";
+title "&_library/&_program: Urban-Greater DC";
 
 ** Define General library for local session only **;
 

@@ -1,3 +1,10 @@
+<!doctype html public "-//w3c//dtd html 4.0 final//en">
+<html>
+   <head>
+      <title>C:\DCData\SAS\Macros\Finalize_data_set.sas</title>
+   </head>
+   <body>
+      <pre>
 /**************************************************************************
  Macro:  Finalize_data_set.sas
  Library:  Macros
@@ -25,7 +32,7 @@
   archive_name=,  /** Name of data set archive (default is batch submit program name) **/
   /** Metadata parameters **/
   register_metadata=Y,        /** Register file with metadata system (Y/N) **/
-  creator_process=&_program,  /** Metadata creator process (default is batch submit program name) **/
+  creator_process=&amp;_program,  /** Metadata creator process (default is batch submit program name) **/
   restrictions=None,          /** Metadata file restrictions **/
   revisions=,                 /** Metadata file revisions (required) **/
   /** File info parameters **/
@@ -41,103 +48,103 @@
 
   %** Check parameters **;
   
-  %if %length( &data ) = 0 %then %do;
+  %if %length( &amp;data ) = 0 %then %do;
     %err_mput( macro=Finalize_data_set, msg=Input data set not specified (data=). )
     %goto exit;
   %end;
   
-  %if %length( &out ) = 0 %then %do;
+  %if %length( &amp;out ) = 0 %then %do;
     %err_mput( macro=Finalize_data_set, msg=Output data set not specified (out=). )
     %goto exit;
   %end;
 
-  %if %length( &outlib ) = 0 %then %do;
+  %if %length( &amp;outlib ) = 0 %then %do;
     %err_mput( macro=Finalize_data_set, msg=Output library not specified (outlib=). )
     %goto exit;
   %end;
   
-  %if %length( &label ) = 0 %then %do;
+  %if %length( &amp;label ) = 0 %then %do;
     %err_mput( macro=Finalize_data_set, msg=Output data set label not specified (label="..."). )
     %goto exit;
   %end;
   
-  %if %length( &sortby ) = 0 %then %do;
+  %if %length( &amp;sortby ) = 0 %then %do;
     %err_mput( macro=Finalize_data_set, msg=Sort by variables not specified (sortby=). )
     %goto exit;
   %end;
   
-  %if not( %mparam_is_yes( &archive ) or %mparam_is_no( &archive ) ) %then %do;
-    %err_mput( macro=Finalize_data_set, msg=Archive= must be specified as Y/N. (archive=%str(&archive)). )
+  %if not( %mparam_is_yes( &amp;archive ) or %mparam_is_no( &amp;archive ) ) %then %do;
+    %err_mput( macro=Finalize_data_set, msg=Archive= must be specified as Y/N. (archive=%str(&amp;archive)). )
     %goto exit;
   %end;
   
-  %if %length( &creator_process ) = 0 %then %do;
+  %if %length( &amp;creator_process ) = 0 %then %do;
     %err_mput( macro=Finalize_data_set, msg=Creator process not specified (creator_process=). )
     %goto exit;
   %end;
   
-  %if %length( &revisions ) = 0 %then %do;
+  %if %length( &amp;revisions ) = 0 %then %do;
     %err_mput( macro=Finalize_data_set, msg=Revisions not specified (revisions=). )
     %goto exit;
   %end;
   
   %** Check for existance of input data set **;
   
-  %if not( %Dataset_exists( &data ) ) %then %do;
-    %err_mput( macro=Finalize_data_set, msg=Input data set %str(%upcase(&data)) does not exist. )
+  %if not( %Dataset_exists( &amp;data ) ) %then %do;
+    %err_mput( macro=Finalize_data_set, msg=Input data set %str(%upcase(&amp;data)) does not exist. )
     %goto exit;
   %end;
   
   %** Finalize data set **;
   
-  %if &_remote_batch_submit %then %do;
+  %if &amp;_remote_batch_submit %then %do;
   
     %note_mput( macro=Finalize_data_set, msg=Remote batch submit. Data set will be finalized. )
 
-    %if %Dataset_exists( &outlib..&out ) %then %do;
-      %warn_mput( macro=Finalize_data_set, msg=Existing data set %str(%upcase(&outlib..&out)) will be replaced. )
+    %if %Dataset_exists( &amp;outlib..&amp;out ) %then %do;
+      %warn_mput( macro=Finalize_data_set, msg=Existing data set %str(%upcase(&amp;outlib..&amp;out)) will be replaced. )
     %end;
   
     ** Sort to final data set and label **;
     
-    proc sort data=&data out=&outlib..&out (label=&label);
-      by &sortby;
+    proc sort data=&amp;data out=&amp;outlib..&amp;out (label=&amp;label);
+      by &amp;sortby;
     run;
     
     ** Print file info **;
     
     %File_info(
-      data=&outlib..&out,
-      contents=&contents,
-      printobs=&printobs,
-      printchar=&printchar,
-      printvars=&printvars,
-      freqvars=&freqvars,
-      stats=&stats
+      data=&amp;outlib..&amp;out,
+      contents=&amp;contents,
+      printobs=&amp;printobs,
+      printchar=&amp;printchar,
+      printvars=&amp;printvars,
+      freqvars=&amp;freqvars,
+      stats=&amp;stats
     )
   
     %** Archive data set **;
     
-    %if %mparam_is_yes( &archive ) %then %do;
+    %if %mparam_is_yes( &amp;archive ) %then %do;
     
-      %if %length( &archive_name ) = 0 %then %let archive_name = %scan( &_program, 1, . );
+      %if %length( &amp;archive_name ) = 0 %then %let archive_name = %scan( &amp;_program, 1, . );
 
-      %note_mput( macro=Finalize_data_set, msg=Final data set will be added to %str(%upcase(&archive_name)) archive. )
+      %note_mput( macro=Finalize_data_set, msg=Final data set will be added to %str(%upcase(&amp;archive_name)) archive. )
 
-      %Archive_data_sets( data=&out, lib=&outlib, zip_pre=&archive_name, zip_suf=, overwrite=y, quiet=y )      
+      %Archive_data_sets( data=&amp;out, lib=&amp;outlib, zip_pre=&amp;archive_name, zip_suf=, overwrite=y, quiet=y )      
 
     %end;
     
-    %if %mparam_is_yes( &register_metadata ) %then %do;
+    %if %mparam_is_yes( &amp;register_metadata ) %then %do;
     
       ** Add to metadata **;
       
       %Dc_update_meta_file(
-        ds_lib=&outlib,
-        ds_name=&out,
-        creator_process=&creator_process,
-        restrictions=&restrictions,
-        revisions=%str(&revisions)
+        ds_lib=&amp;outlib,
+        ds_name=&amp;out,
+        creator_process=&amp;creator_process,
+        restrictions=&amp;restrictions,
+        revisions=%str(&amp;revisions)
       )
     
     %end;
@@ -147,24 +154,24 @@
   
     %note_mput( macro=Finalize_data_set, msg=Not remote batch submit. Data set will not be finalized. )
 
-    %if %Dataset_exists( &outlib..&out ) %then %do;
-      %warn_mput( macro=Finalize_data_set, msg=Existing data set %str(%upcase(&outlib..&out)) will be replaced on remote batch submit. )
+    %if %Dataset_exists( &amp;outlib..&amp;out ) %then %do;
+      %warn_mput( macro=Finalize_data_set, msg=Existing data set %str(%upcase(&amp;outlib..&amp;out)) will be replaced on remote batch submit. )
     %end;
 
     ** Sort and label temporary data set **;
     
-    proc sort data=&data (label=&label);
-      by &sortby;
+    proc sort data=&amp;data (label=&amp;label);
+      by &amp;sortby;
     run;
     
     %File_info(
-      data=&data,
-      contents=&contents,
-      printobs=&printobs,
-      printchar=&printchar,
-      printvars=&printvars,
-      freqvars=&freqvars,
-      stats=&stats
+      data=&amp;data,
+      contents=&amp;contents,
+      printobs=&amp;printobs,
+      printchar=&amp;printchar,
+      printvars=&amp;printvars,
+      freqvars=&amp;freqvars,
+      stats=&amp;stats
     )
   
   %end;
@@ -177,3 +184,6 @@
 
 /** End Macro Definition **/
 
+      </pre>
+   </body>
+</html>
