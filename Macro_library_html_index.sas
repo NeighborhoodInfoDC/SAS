@@ -1,18 +1,25 @@
-/******************* URBAN INSTITUTE MACRO LIBRARY *********************
- 
- Program: Macro_library_html_index
-
+/**************************************************************************
+ Program:  Macro_library_html_index.sas
+ Library:  SAS resources
+ Project:  Urban-Greater DC
+ Author:   P Tatian (adapted from code by Quentin McMullen)
+ Created:  3/5/2016
+ Version:  SAS 9.4
+ Environment:  Local Windows session (desktop)
+ GitHub issue:  
+  
  Description: Generate HTML list of macros in library.
- 
- Author: Peter Tatian (adapted from code by Quentin McMullen)
- 
-***********************************************************************/
+
+ Modifications:
+**************************************************************************/
+
+%include "L:\SAS\Inc\StdLocal.sas";
 
 %macro CodeIndex
 (path = /* path for directory with macro code */
 ,htmpath = /* path to write html files (copy of each sas program and index) */
 ,htmtitle = /**PT** title for HTML pages (character value) **/
-,htmstyle = Minimal /**PT** ODS style for HTML pages **/
+,htmstyle = Normal /**PT** ODS style for HTML pages **/
 ,debug = 0 /* boolean, debug mode or not */
 ,taglist=macro description use author approval approver version /**PT** List of header tags to process **/
 );
@@ -97,12 +104,12 @@ return
 /*assign fileref MYDIR to directory, no & needed for filename function!*/
 %let rc=%sysfunc(filename(filrf,&path));
 %if &rc ne 0 %then %do;
-%put ERROR: USER rc=&rc bad directory name exiting macro;
+%put ERROR: USER rc=&rc bad directory name &path exiting macro;
 %goto mEXIT;
 %end;
 %let did=%sysfunc(dopen(&filrf)); /*id number for directory*/
 %if &did eq 0 %then %do;
-%put ER%str()ROR: USER did=&did bad directory name exiting macro;
+%put ER%str()ROR: USER did=&did bad directory name &path exiting macro;
 %goto mEXIT;
 %end;
 %let memcount=%sysfunc(dnum(&did)); /*number of files in directory*/
@@ -325,9 +332,11 @@ ods listing;
 options mprint nosymbolgen nomlogic;
 options msglevel=n;
 
+%let _macro_library_path = %mif_select( &_remote_batch_submit, &_dcdata_r_drive:\SAS\Macros, &_dcdata_l_drive:\DCData\SAS\Macros );
+
 %CodeIndex( 
-path=L:\SAS\Macros,
-htmpath=L:\SAS\Macros\Html,
+path=&_macro_library_path,
+htmpath=&_macro_library_path\Html,
 htmtitle="Urban-Greater DC Macro Library",
 htmstyle=Solutions,
 taglist=macro library project author created version environment description modifications,

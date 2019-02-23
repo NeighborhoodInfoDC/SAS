@@ -1,3 +1,10 @@
+<!doctype html public "-//w3c//dtd html 4.0 final//en">
+<html>
+   <head>
+      <title>C:\DCData\SAS\Macros\Archive_data_sets.sas</title>
+   </head>
+   <body>
+      <pre>
 /**************************************************************************
  Macro:  Archive_data_sets.sas
  Library:  PresCat
@@ -22,9 +29,9 @@
   lib=,      /** Data set library (required) **/
   zip_suf=,  /** Suffix for ZIP file name **/
   zip_pre=,  /** Prefix for ZIP file name (if missing current datetime is used) **/
-  path=&_dcdata_r_path,   /** Library path **/
+  path=&amp;_dcdata_r_path,   /** Library path **/
   overwrite=n,  /** Overwrite older files in archive **/
-  zip_program= %str(""&_dcdata_r_drive:\Tools\7-zip\7z"")  /** Location of 7z program **/,
+  zip_program= %str(""&amp;_dcdata_r_drive:\Tools\7-zip\7z"")  /** Location of 7z program **/,
   quiet=n  /** Suppress messages **/
   );
 
@@ -32,53 +39,53 @@
   
   %** Check parameters **;
   
-  %if %length( &data ) = 0 %then %do;
+  %if %length( &amp;data ) = 0 %then %do;
     %err_mput( macro=Archive_data_sets, msg=Data set list not specified (data=). )
     %goto exit;
   %end;
 
-  %if %length( &lib ) = 0 %then %do;
+  %if %length( &amp;lib ) = 0 %then %do;
     %err_mput( macro=Archive_data_sets, msg=Library not specified (lib=). )
     %goto exit;
   %end;
   
-  %if not %DirExist( &path\&lib ) %then %do;
-    %err_mput( macro=Archive_data_sets, msg=Library specified does not exist (lib=%upcase(&lib)). )
+  %if not %DirExist( &amp;path\&amp;lib ) %then %do;
+    %err_mput( macro=Archive_data_sets, msg=Library specified does not exist (lib=%upcase(&amp;lib)). )
     %goto exit;
   %end;
   
-  %if %mparam_is_yes( &overwrite ) %then %do;
+  %if %mparam_is_yes( &amp;overwrite ) %then %do;
     %let update_switches = ;
-    %if not %mparam_is_yes( &quiet ) %then %do;
+    %if not %mparam_is_yes( &amp;quiet ) %then %do;
       %note_mput( macro=Archive_data_sets, 
-                  msg=%str(Overwrite=%upcase( &overwrite ) specified, older files in existing archive WILL be replaced.) )
+                  msg=%str(Overwrite=%upcase( &amp;overwrite ) specified, older files in existing archive WILL be replaced.) )
     %end;
   %end;
   %else %do;
     %let update_switches = -uy1z1;  %** Copy previously saved older files to new archive **;
-    %if not %mparam_is_yes( &quiet ) %then %do;
+    %if not %mparam_is_yes( &amp;quiet ) %then %do;
       %note_mput( macro=Archive_data_sets, 
-                  msg=%str(Overwrite=%upcase( &overwrite ) specified, older files in existing archive will NOT be replaced.) )
+                  msg=%str(Overwrite=%upcase( &amp;overwrite ) specified, older files in existing archive will NOT be replaced.) )
     %end;
   %end;
   
-  %if &zip_pre = %then 
+  %if &amp;zip_pre = %then 
     %let zip_pre = %sysfunc( putn( %sysfunc( datetime() ), b8601dt19.0 ) );
     
   %let i = 1;
-  %let v = %scan( &data, &i, %str( ) );
+  %let v = %scan( &amp;data, &amp;i, %str( ) );
 
-  %do %until ( &v = );
+  %do %until ( &amp;v = );
 
-    %if %Dataset_exists( %ConvertLibname(&lib,r).&v ) %then %do;
-      x "&zip_program a &update_switches -tzip &path\&lib\Data\Archive\&zip_pre.&zip_suf &path\&lib\Data\&v..sas7bdat";
+    %if %Dataset_exists( %ConvertLibname(&amp;lib,r).&amp;v ) %then %do;
+      x "&amp;zip_program a &amp;update_switches -tzip &amp;path\&amp;lib\Data\Archive\&amp;zip_pre.&amp;zip_suf &amp;path\&amp;lib\Data\&amp;v..sas7bdat";
     %end;
     %else %do;
-      %warn_mput( macro=Archive_data_sets, msg=Data set %str(%upcase(&lib..&v)) does not exist. )
+      %warn_mput( macro=Archive_data_sets, msg=Data set %str(%upcase(&amp;lib..&amp;v)) does not exist. )
     %end;
 
-    %let i = %eval( &i + 1 );
-    %let v = %scan( &data, &i, %str( ) );
+    %let i = %eval( &amp;i + 1 );
+    %let v = %scan( &amp;data, &amp;i, %str( ) );
 
   %end;
 
@@ -116,3 +123,6 @@
 run;
 
 /******************** END TESTING *********************************************/
+      </pre>
+   </body>
+</html>
