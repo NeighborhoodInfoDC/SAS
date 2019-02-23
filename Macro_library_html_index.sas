@@ -328,7 +328,7 @@ options msglevel=n;
 %CodeIndex( 
 path=L:\SAS\Macros,
 htmpath=L:\SAS\Macros\Html,
-htmtitle="NeighborhoodInfo DC Macro Library",
+htmtitle="Urban-Greater DC Macro Library",
 htmstyle=Solutions,
 taglist=macro library project author created version environment description modifications,
 debug=1 )
