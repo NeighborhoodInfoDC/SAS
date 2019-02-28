@@ -1,0 +1,692 @@
+## Urban-Greater DC SAS Guide
+
+### Programming Style
+
+*   [Basic Principles](#Basic)
+
+*   [What Makes a Good Program?](#Good)
+*   [The Program Should Be Correct](#Correct)
+*   [The Program Should Be Clear](#Clear)
+*   [The Program Should Be Efficient](#Efficient)
+
+*   [Elements of Programming Style](#Style)
+
+*   [Organizing Programming Tasks](#Tasks)
+*   [Documenting Programs](#Programs)
+
+*   [Comment Styles](#Comment)
+*   [Program Header](#Header)
+*   [Inline Documentation](#Inline)
+*   [External Documentation](#External)
+
+*   [Indenting and Spacing](#Indenting)
+*   [Naming and Labeling Data Sets](#DataSets)
+*   [Naming and Labeling Variables](#Variables)
+*   [Labeling Output](#Output)
+
+* * *
+
+Most of this guidebook has focused on teaching you the basic rules and procedures for writing programs in the SAS System. But good programming, like good painting or writing, is more than just learning rules and procedures. It requires a certain style, a certain sense of what is right and what is not. While these are skills that can be acquired with experience, there are basic principles and practices which will help guide you in developing good programming style.
+
+<a name="Basic">
+
+### Basic Principles
+
+</a>
+
+As was discussed in the chapter on [SAS for Windows](chapter6.html), SAS programs can be run in both interactive and batch modes on the PC. While it is often expedient to use interactive mode for doing some exploratory data analysis or for developing a longer program, it is best to always create, save, and run a final version of your complete program in batch mode. Why? Because a saved program serves as a record of exactly what steps you followed to transform one or more data sets, to create a table or chart, or to perform certain analyses.
+
+When using interactive mode, you may try out different approaches to solving a problem or examining your data. You may repeat the same step using various techniques or you may need to start over from scratch one or more times to get things right. While this permits you a lot of flexibility to think up new ways to work with your data, you may not in the end be able to recall exactly what steps you followed to get the final result. Rerunning a complete program in batch mode allows you to verify that the sequence of statements in your program produces the output data set, table, chart, or analysis that you desire.
+
+A complete, saved program, therefore, serves the important functions of **_documenting_** your work and ensuring the **_replicability_** of your research results. Documentation is vital to being able to remember what steps you followed to produce a particular data set or piece of analysis. It will not only help you recall how you approached a particular problem, but also will allow others to see what you did as well. Furthermore, a well-documented program will tell you not only what you steps you followed but why you did things a certain way. For example, it will explain any assumptions you have made about your data or any special methods you are using.
+
+Having a written program also helps ensure the replicability of your results. The principle of replicability is vital to the credibility and accuracy of research. The term "replicability" can have a variety of meanings, depending on the context. For our purposes, we will define replicability as follows:
+
+<dl>
+
+<dd>Given the same basic input data sets (such as responses from a survey questionnaire or data from a secondary source like the U.S. Census) and the same set of programs, you or someone else should be able to reproduce exactly the results and analyses that you obtained for a research report or paper.</dd>
+
+</dl>
+
+Replicability is important to maintaining the quality and credibility of research. As [Gary King](http://gking.harvard.edu/vitae/node7.html), a researcher at Harvard and an advocate of replicability standards, has put it, "the only way to understand and evaluate an empirical analysis fully is to know the exact process by which the data were generated and analysis produced." If you cannot reproduce the results you reported in a book or article, then they will not have much value. You may need to revisit analysis you have done in the past, perhaps making refinements to it. This will be very difficult if you cannot duplicate your original findings. Having a complete set of programs and data sets that will allow you replicate your research will therefore allow you to build on past work, making it more valuable both to you and to other researchers.
+
+<a name="Good">
+
+### What Makes a Good Program?
+
+</a>
+
+We can see that writing good programs is very important in quantitative research. But what makes a good program? Here are three attributes of a good program, listed in descending order of importance:
+
+1.  The program should be **_correct_**.
+2.  The program should be **_clear_**.
+3.  The program should be **_efficient_**.
+
+Each of these attributes will be discussed further in the rest of this section.
+
+<a name="Correct">
+
+#### The Program Should Be Correct
+
+</a>
+
+Correctness is the most important goal in programming. If the program is not correct, it does not matter how clever, well-documented, or efficient it is. Correctness means that the program runs without producing errors and that it properly implements whatever algorithm or sequence of steps you have chosen to use for your analysis. Ideally, the program should also be resistant to any inconsistent or invalid input data and allow the user to identify such problems easily.
+
+Thorough checking for program correctness is an essential part of good programming practices. You should be able to convince yourself (and others) that your program will do exactly what you intend it to do. The chapter on [Debugging Programs](chapter9.html) discussed the different ways you can check whether your program works correctly. It explained the different types of errors (syntax, runtime, and logical errors) and described ways to detect each type. You should review this chapter for more information on this topic.
+
+<a name="Clear">
+
+#### The Program Should Be Clear
+
+</a>
+
+Clarity is the second most important attribute of a good program. Ideally, you want to write programs that are easy for someone else (or yourself) to follow and understand. A clear program should be well-written, using the most direct commands and functions for producing the desired results. It should also be formatted in a manner that makes the structure of the program easy to see and follow. Finally, it should contain sufficient documentation to allow someone to understand what the program does, how it works, what input data it requires, and what output it produces.
+
+Although we have said the correctness is more important than clarity, in actual practice the two attributes are closely related. Clarity helps ensure correctness, because it will be much easier to find errors or problems in a clear program than in an unclear one. A clearly formatted program (proper spacing and indentation) simplifies locating syntax and runtime errors. With proper documentation, you can quickly see what each part of the program does, which can help you to find logical errors. So, by striving to make your programs clear you will be going a long way towards making them correct.
+
+Clarity in program design is achieved through good programming style. The elements of programming style will be discussed in the next section of this chapter.
+
+<a name="Efficient">
+
+#### The Program Should Be Efficient
+
+</a>
+
+Efficiency is the third most important attribute of a good program, after correctness and clarity. Efficient programs are those that use the minimum necessary resources, both computer and human, to accomplish their tasks. While efficiency is important, it should never be achieved at the expense of correctness or clarity. An incorrect program cannot be called "efficient," because any time spent writing and running it is wasted if the results are worthless. Similarly, a program written in an unclear manner will require more time to debug and later modify, which will probably negate any "efficiency" gains.
+
+Efficiency can actually refer to various aspects of program design and execution. One can write a program with an eye towards minimizing the amount of computer time required for it to run (CPU time), the amount of disk storage space used, the amount of computer memory needed, or the amount of programmer time it takes to write and revise the program. Generally, there are trade-offs involved in achieving any one of these goals. For example, reducing the amount of CPU time needed to run a program may require sacrifices of increased memory use and more programmer time. Therefore, when discussing making programs more efficient it is important to be clear about what type of efficiency is meant.
+
+When programmers talk about efficiency, they usually are referring to reducing the amount of CPU time needed to run a program. For most Urban Institute projects, however, this type of efficiency is not always a great concern. First of all, from a project cost perspective, there is no additional charge for using more CPU time on either the PC or the Alpha, so reducing the running time of a program does not result in any computing cost savings. Second, it is rare that one can make more than very marginal increases in program efficiency. For that reason, unless you are working with a very large data set or need to run your program over and over again many times, the total time savings will be minimal.
+
+A more important aspect of efficiency for most Urban Institute projects is saving programmer time (that is, your time). Personnel costs are by far the largest component of almost all Institute project budgets, so you want to be efficient in how you use your time. This brings us back to the first two attributes of good programming - correctness and clarity. By writing programs that are correct and clear, you will save yourself lots of time looking for errors and making corrections. Furthermore, programs written in a clear and direct manner will likely also be very efficient in terms of using computing resources.
+
+<table align="center" bgcolor="#DFFFFF" border="0" cellspacing="4" cellpadding="4" width="90%">
+
+<tbody>
+
+<tr>
+
+<td align="left" valign="top" width="30">![](../../images/info.gif)</td>
+
+<td align="left" valign="top">Of course, there may be situations where it is necessary to take special steps to make a program more efficient. The reader should consult the SAS publication, _SAS Programming Tips: A Guide to Efficient SAS Processing_, for more information on improving different aspects of program efficiency.</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<a name="Style">
+
+### Elements of Programming Style
+
+</a>
+
+The remainder of this chapter will discuss the elements of good programming style. This touches upon all aspects of program design -- from writing clear code to naming variables, from documenting programs to labeling output. Having a good programming style affects all of the attributes of good programming described above - correctness, clarity, and efficiency.
+
+The reader should take the information provided here as suggestions only, not as hard and fast rules. You should use your best judgement in deciding what practices you will follow for particular assignments. In certain situations, there may be perfectly good reasons for violating one or more of the recommendations in this guide. Nevertheless, the ideas presented in this section are based on proven experience of Urban Institute researchers as to what are recommended programming practices. These guidelines should provide a solid basis for developing a good programming style.
+
+<a name="Tasks">
+
+#### Organizing Programming Tasks
+
+</a>
+
+When working on a large programming project, an important consideration is how to divide the tasks up into one or more programs. For example, should all of the job be done in one, enormous program or by a series of smaller programs? How much work should a single program do?
+
+Good programmers think in terms of modularity of program design. That is, each part, or module, of a program does one specific task in the entire job. In highly structured programming languages (such as Basic, C++, or Pascal), this is accomplished by writing separate subroutines that each have a particular function. The advantage of this approach is that it is possible to think about and design the program in terms of these functional pieces. Each subroutine can be written and debugged independently, and then combined together into the final program.
+
+In SAS, we do not have the ability to create subroutines as in these other programming languages. Nevertheless, we can still use the principle of modular design by using separate SAS programs (.SAS files) as different modules of a larger programming job. The idea, then, is that each program should do one step of the entire process. These individual programs can be written and debugged separately, and then run in sequence to implement the entire project.
+
+We said that each program should accomplish one "step" in the larger job, but how much work should constitute a step? A good rule of thumb is that each program should be responsible for creating one distinct output - such as one permanent data set, one table or chart, or one regression model. This separates the programming tasks into discrete pieces that can be worked on and analyzed independently.
+
+As an example, let us imagine you have an ASCII data file containing responses from a household survey. You wish to create a SAS data set from this ASCII file, compute some new summary variables, perform descriptive statistics on the survey data to check for possible invalid responses, merge the survey data with an existing file containing secondary data from the US Census, and estimate two regression models on the combined data set. Following the modular design approach, these tasks could be implemented as a series of six SAS programs (modules):
+
+1.  Read in ASCII data and create permanent SAS data set
+2.  Calculate new variables and save as a new data set
+3.  Run descriptive statistics on revised survey data
+4.  Merge survey data Census data and save as new data set
+5.  Estimate regression model #1
+6.  Estimate regression model #2
+
+Note that each of these six programs produces some particular piece of output, either a new SAS data set or a set of printed output.
+
+Of course, it is possible to create one very large program that will do all six of the steps listed above, but there are several advantages to breaking this job into separate programs. First, it is possible for you to work on this program in discrete pieces rather than trying to do the whole task at once. This allows you to write and check each individual program before moving on to the next one. Second, separating the program into modules makes it easier to see the steps of the entire process. If you try to write this all as one program, you might allow parts of different steps to overlap, making the program harder to follow and understand. Having separate modules also facilitates tracking down logical errors, as you can more quickly locate where in the process an error might be occurring. Finally, using separate programs makes it easier to rerun parts of the process if there are some changes. If, for example, some revisions are made to the Census data merged with the survey responses, you only need to rerun programs 4, 5, and 6 to update your analysis.
+
+Once you have decided on an organizational structure for your programs, the next step is to decide on names for each program. This may sound like a trivial matter, but by choosing meaningful names for your programs you will make it easier to remember what each program does. For example, one might be tempted to select names like, "PROG1.SAS", "PROG2.SAS", etc. for the six programs. This certainly makes it easier to see the order of the programs, but it does not tell us much more. The first part of the name, "PROG", tells us that the file is a program, but since it ends with a ".SAS" extension we know that already. It would be better if the name could give us some hint as to what the program actually does.
+
+If you are writing your programs exclusively for use with SAS for Windows, you can take advantage of the long file names available in Windows 95 and create very descriptive names, such as "Read ASCII.SAS" and "Merge Census.SAS". If you will be running your programs directly on the Alpha, you can use long file names for your programs, too. But, you cannot have blank spaces in the program name; you must use the underscore character instead: "THIS_IS_MY_PROGRAM.SAS".
+
+On possible naming convention is, for programs that produce a new SAS data set, to give the program the same name as the data set it creates. This allows you to easily see which program was used to generate a particular data set. For our six programs, one possible set of names could be:
+
+1.  **SURVEY.SAS**: Read in ASCII data and create permanent SAS data set
+2.  **NEWSRVY.SAS**: Calculate new variables and save as a new data set
+3.  **DESCR.SAS**: Run descriptive statistics on revised survey data
+4.  **CENSRVY.SAS**: Merge survey with Census data and save as new data set
+5.  **REG1.SAS**: Estimate regression model #1
+6.  **REG2.SAS**: Estimate regression model #2
+
+The program "SURVEY.SAS" creates the SAS data set "survey" from the ASCII file. The program "NEWSRVY.SAS" creates a new SAS data set, "newsrvy", from the file "survey". The program "CENSRVY.SAS" creates the data set "censrvy" by merging "newsrvy" with a data set containing US Census data. The other programs do not produce data sets, but their output files (".LIS" files) will be given the same base name as the creating program by SAS automatically.
+
+As a final note, it is possible to create a single "master" program that will run each of the six separate programs in the proper order but can be submitted as a single SAS batch job. This is done using the **%include** statement. The master program would contain the following commands:
+
+      options source2;
+
+      %include "d:\sasprog\survey.sas";
+      %include "d:\sasprog\newsrvy.sas";
+      %include "d:\sasprog\descr.sas";
+      %include "d:\sasprog\censrvy.sas";
+      %include "d:\sasprog\reg1.sas";
+      %include "d:\sasprog\reg2.sas";
+
+The **options** statement with the _source2_ option is needed so that SAS will echo the statements contained in the included files in the SAS Log. If you use create a master program like this one, it is advisable to include a **run** statement at the end of the individual programs to avoid the possibility of statements running over into the next program. A master program like this should only be run after each of the individual program components have been run and checked separately.
+
+<a name="Programs">
+
+#### Documenting Programs
+
+</a>
+
+Documentation is written descriptive information about a program that can either be within the program itself (internal documentation) or in a separate file (external documentation). While the best documentation of what a program does is cleanly structured, well-written SAS statements, having good internal and external documentation can greatly facilitate understanding of a program. This makes it much easier to recall important details about the program's structure and will improve the ability to modify and reuse the program later, if needed.
+
+When writing documentation for a program, you should ask yourself the following question, "Could someone not familiar with this program be able to understand, with a minimal amount of time and effort, exactly what the program does and how it works?" You should always write documentation with this unknown "someone" in mind, because someday that someone might be you! It is not uncommon to have to return to a program you have written weeks, months, or even years ago and be asked to make changes to it. You will find it much easier to remember how a program works if you included good documentation.
+
+<a name="Comment">
+
+##### Comment Styles
+
+</a>
+
+Comments are text that are ignored by the SAS processor when it runs your program. They allow you to insert any descriptive information you would like along with the SAS commands. You must use special symbols to distinguish comments from executable SAS statements. SAS provides two different styles of comments for adding documentation to your programs. The first is the *-statement style comments. These comments must be written as separate SAS statements; they cannot be used within another SAS statement. The syntax is as follows:
+
+<dl>
+
+<dd>* comment-text ;</dd>
+
+</dl>
+
+Everything between the first "*" and the ";" is considered to be a comment and is ignored by the SAS processor. Note that you cannot use a semicolon character inside your comment text (see below). Comments, like other statements, do not have to be on a single line. For example, the following is a valid comment statement, starting with the first "*" on the first line and ending with the ";" on the third line:
+
+      *--------------------------------------------*
+      *  This is all one comment statement.        *
+      *--------------------------------------------*;
+
+A second style of comments have the following syntax:
+
+<dl>
+
+<dd>/* comment-text */</dd>
+
+</dl>
+
+Everything between the "/*" and the "*/" symbols is a comment that will be ignored by the SAS processor. Unlike the *-statement comments, these comments are not statements and can be used anywhere that a blank space may appear in the program, even within a SAS statement. For example, the following is a valid use of this style of comment within a single **input** statement:
+
+      input @1   name $20\.   /* last name */
+            @50  age    3\.   /* customer age */
+            @200 test   8\.   /* score test */
+      ;
+
+Note that you cannot nest two comments of the same style within each other. For example, if you try to nest two *-statement comments you will get an error:
+
+      * This is the first comment
+
+            * This is the second comment ;
+
+        ERROR!!! This text is not a part of either comment!
+
+      ----------------------------------------------------------*;
+
+The semicolon for the "second comment" actually ends the first comment statement, so the third and fourth lines are no longer part of the comment and the SAS processor will attempt to interpret them. There is a similar problem with /*-style comments:
+
+      /* This is the first comment
+
+            /* This is the second comment */
+
+        ERROR!!! This text is not a part of either comment!
+
+      ----------------------------------------------------------*/
+
+As in the previous example, the first "*/" symbol in the second line ends both the first and second comments.
+
+One advantage of the /*-style comments over the *-statement style comments is that the /*-style comments can be used to "comment-out" a portion of your program and prevent it from being executed. This can be very useful if you have some temporary sections of your program that you use for debugging purposes but later wish to skip once the program has been checked. For example:
+
+      data srvydat;
+        set sasdata.survey;
+      run;
+
+      /**** SKIP ****
+
+      ** Print out list of HH IDs (for debugging only) **;
+      proc freq data=survydat;
+        tables id;
+        title2 "HH IDs from SRVYDAT";
+
+      **** END SKIP ****/
+
+      proc sort srvydat;
+        by id;
+
+Because you cannot nest comments, you cannot use the /*-style comments for this purpose if you have other /*-style comments within the program as documentation. Therefore, one strategy would be to use only *-statement comments for documentation and /*-style comments only for "commenting-out" temporary parts of the program, as shown in the example above.
+
+<a name="Header">
+
+##### Program Header
+
+</a>
+
+Every program should start with a "header" section that provides basic information about the program and what it does. The purpose of this header is to allow you to get important facts about the program without having to decipher lines of SAS statements. The information included in the program header is up to personal choice, but typically includes the following items:
+
+The name of the program. The program author and the date on which the program was created A description of what the program does A list of related programs and data sets Any modifications and the dates on which these were made
+
+If you are working on a project as part of a team of programmers, you may want to agree on a standard header format for all of your programs.
+
+Here is one example of a program header:
+
+      *******************************************************************
+      * Program name:  Survey.sas
+      * Author:        C.Y. Wilson
+      * Created on:    1/15/04
+      * Project:       SAS User Training (#00000-000-00)
+      * 
+      * Read survey data responses from ASCII file SURVEY.DAT and 
+      * create permanent SAS data set SURVEY.  Run PROC CONTENTS
+      * on output data set.
+      *
+      * Input:         D:\PROJECT\SURVEY.DAT (ASCII, comma-delimited)
+      * Output:        DATA.SURVEY
+      *
+      * Modifications:
+      *   1/16/04:     Added label statement for variables (CYW)
+      *******************************************************************;
+
+While the header format should contain the essential information about a program, you should be careful not to use a header that asks for too much detail. Headers that contain "everything" about a program are more time-consuming to maintain and are less likely to be updated when a change is made to the program. Therefore, it is better to stick to a simple header that you will always keep up to date, rather than use a more complicated format that will not be maintained.
+
+Note that we have not closed the right-hand side of the example header by putting a column of asterisks similar to the one down the left-hand side. While enclosing the header in a complete box may be "prettier", it makes the header more difficult to maintain as you would have to keep readjusting the right-hand border whenever you made changes to the header's contents. You want to make the header easy to modify so that you will be more likely to change it when necessary.
+
+<a name="Inline">
+
+##### Inline Documentation
+
+</a>
+
+In addition to a header, your program should also contain comments throughout the code that explain the function of different sections of the program and highlight any special information that would be useful for someone trying to understand or modify the program. We will refer to this as inline documentation, because it is inserted in between the lines of SAS code.
+
+As was mentioned earlier, the best documentation is a cleanly written, well-formatted program itself. Why? Because the program code is an exact record of what a program does and any documentation will be only an imperfect, less precise description of the program. Furthermore, there is a possibility that the documentation, if it is not well-maintained, may be incorrect and not accurately describe what the program is doing.
+
+Therefore, documentation should serve to supplement and provide additional information to the program code itself. You should avoid trying to comment every line in your program or adding comments that only echo the SAS statements. For example, the following comments are not particularly helpful:
+
+      ** See if X is greater than Y **;
+      if x > y then do;
+
+      ** Do PROC PRINT on the file DATA.SURVEY **;
+      proc print data=data.survey;
+
+      ** Check if X mod 2 = 0 **;
+      if mod( x, 2 ) = 0 then do;
+
+Such comments only clutter the program, making it harder to read, and provide little or no additional information. Instead of comments like these, you should write comments that provide **_further explanation_** to the reader and generally describe the functions of the program at a level higher than individual SAS statements. The documentation should complement the program code, not merely repeat it in a different form. For example, the comment for the last statement could be rewritten:
+
+      ** Perform these steps if X is odd **;
+      if mod( x, 2 ) = 0 then do;
+
+This comment provides more understanding of what the next group of statements are for. Note, however, that in this example, the comment is wrong. The statement checks whether the value of X is even, not odd. So, in this case, the comment can help us locate a logical error in the program.
+
+This brings us to the question of when to write documentation. Some programmers write all of their code first, and then go back and add documentation later. Others insert comments as they write the code. Still others (probably the rarest) write the documentation first before they start coding.
+
+Our advice on documentation is: **_the sooner, the better!_** The longer you wait to start documenting, the more likely it is that you will omit important details. Or, you may just keep putting it off and forget to do it entirely. Time for documenting should be included as part of the time it takes to prepare a program.
+
+In fact, you can start writing documentation before you even write a line of code. One approach to writing programs is to first write out a series of basic steps that your program will follow in plain English. For example, in a program designed to read in an ASCII data set we could have the following steps:
+
+1.  Define library and file names
+2.  Read data from ASCII file into SAS data set DATA.SURVEY
+3.  Display variables in output data set
+
+If you type these three steps into a text file, you can then add the SAS commands beneath each item. These descriptions then can be turned into comments in your program:
+
+      ** Define library and file names **;
+
+      libname data "d:\project\sasdata";
+      filename srvydat "d:\project\survey.dat";
+
+      ** Read data from ASCII file into SAS data set DATA.SURVEY **;
+
+      data data.survey;
+        infile srvydat dsd;
+        input hhid q1 q2 q3 q4 q5;
+      run;
+
+      ** Display variables in output data set **;
+
+      proc contents data=data.survey;
+
+This method not only encourages you to insert documentation in your program, but also gets you to think through the basic structure of the program before you worry about how to implement it in the SAS language. This should save you time and help you to write more correct programs.
+
+<a name="External">
+
+##### External Documentation
+
+</a>
+
+In addition to having a well-documented program, you may also want to create some external documentation the provides summary information about a collection of programs. Such documentation should explain how a program fits into an overall set of analyses. Below is one such format for the set of programs in our hypothetical survey example:
+
+<table align="center" border="2" cellspacing="2" cellpadding="2" width="90%">
+
+<tbody>
+
+<tr>
+
+<th align="left" valign="top">Program</th>
+
+<th align="left" valign="top">Input files</th>
+
+<th align="left" valign="top">Output files</th>
+
+<th align="left" valign="top">Description</th>
+
+</tr>
+
+<tr>
+
+<td align="left" valign="top">Survey.sas</td>
+
+<td align="left" valign="top">Survey.Dat</td>
+
+<td align="left" valign="top">Survey.sd2</td>
+
+<td align="left" valign="top">Read in ASCII data and create permanent SAS data set.</td>
+
+</tr>
+
+<tr>
+
+<td align="left" valign="top">Newsrvy.sas</td>
+
+<td align="left" valign="top">Survey.sd2</td>
+
+<td align="left" valign="top">Newsrvy.sd2</td>
+
+<td align="left" valign="top">Calculate new variables and save as a new data set.</td>
+
+</tr>
+
+<tr>
+
+<td align="left" valign="top">Descr.sas</td>
+
+<td align="left" valign="top">Newsrvy.sd2</td>
+
+<td align="left" valign="top">-none-</td>
+
+<td align="left" valign="top">Run descriptive statistics on revised survey data.</td>
+
+</tr>
+
+<tr>
+
+<td align="left" valign="top">Censrvy.sas</td>
+
+<td align="left" valign="top">Newsrvy.sd2  
+Census.sd2</td>
+
+<td align="left" valign="top">Censrvy.sd2</td>
+
+<td align="left" valign="top">Merge survey with Census data and save as new data set.</td>
+
+</tr>
+
+<tr>
+
+<td align="left" valign="top">Reg1.sas</td>
+
+<td align="left" valign="top">Censrvy.sd2</td>
+
+<td align="left" valign="top">-none-</td>
+
+<td align="left" valign="top">Estimate regression model #1.</td>
+
+</tr>
+
+<tr>
+
+<td align="left" valign="top">Reg2.sas</td>
+
+<td align="left" valign="top">Censrvy.sd2</td>
+
+<td align="left" valign="top">-none-</td>
+
+<td align="left" valign="top">Estimate regression model #2.</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+This summary allows you to quickly see what each program does, what the outputs and inputs are of each, and in what order they need to be run.
+
+<a name="Indenting">
+
+#### Indenting and Spacing
+
+</a>
+
+As was pointed out earlier, the best way to make a programs understandable is to format it clearly. Using proper indenting and spacing is one way to improve a program's readability. Because SAS does not care how much blank space you use between parts of a statement or between statements, you can format your programs in a way that will show their structure. For example, the following is a completely valid SAS program:
+
+      libname data "d:\data"; data data.newfile; set 
+      data.file; if min(a,b,c)>0 then do; total=a+b+c; 
+      pcta=100*a/total; pctb=100*b/total; pctc=100*c
+      /total; end; else do; total=0; pcta=0; pctb=0; 
+      pctc=0; end; proc means data=data.newfile; var 
+      total pcta pctb pctc; run;
+
+It is much easier to see what is going on if you simply reformat the statements to make the program structure clear:
+
+      libname data "d:\data"; 
+
+      data data.newfile; 
+
+        set data.file; 
+
+        if min( a, b, c ) > 0 then do; 
+          total = a + b + c; 
+          pcta = 100 * a / total; 
+          pctb = 100 * b / total; 
+          pctc = 100 * c / total; 
+        end;
+        else do;
+          total = 0; 
+          pcta = 0; 
+          pctb = 0; 
+          pctc = 0; 
+        end;
+
+      proc means data=data.newfile; 
+        var total pcta pctb pctc; 
+
+      run;
+
+Here are some simple guidelines for formatting your programs more clearly:
+
+*   Start each statement on a new line. Since the semicolon character marks the end of a statement, it is possible to put more than one statement on a single line in a program, but doing so makes the program harder to read and can make finding errors more difficult.  
+
+*   Use blank lines to separate groups of related statements. Use blank lines to separate procedures and data steps from each other. You can also separate groups of related statements within a data step (such as the if-then/else block in the example above).  
+
+*   Indent statements under a data or proc statement. Data, proc, options, libname, filename, and run statements need not be indented. Statements under data and proc statements should be indented to show that they belong to a procedure or data step (see example above).  
+
+*   Indent statements under an if-then, else, or do statement. Statements within a do/end block should be indented, as in the if-then statement above. This also applies to a do loop, such as:
+
+          do j = 1 to 50;
+            a{ j } = j;
+            b{ j } = 2 * j;
+            c{ j } = ( 3 * j ) - 1;
+          end;
+
+*   Put blank spaces between numeric and logical operators. Numerical and logical expressions are much easier to read if there is spacing between operators. For example:
+
+          pcta=100*a/total;
+
+    is less clear than:
+
+          pcta = 100 * a / total;
+
+*   Use parentheses to make numeric and logical expressions clear. SAS evaluates numeric and logical expressions according to a precedence order of operators. For example, multiplication and division are done before addition and subtraction. Nevertheless, it is better to use parentheses in your expressions to make the order of operations clear and to be sure that they are being evaluated as you intend them. So, instead of writing:
+
+          x = a * b + c / d;
+
+    you should write:
+
+          x = ( a * b ) + ( c / d );
+
+    This is very clear to anyone reading the program and you can be certain that SAS is doing what you want.
+
+<table align="center" bgcolor="#DFFFFF" border="0" cellspacing="4" cellpadding="4" width="90%">
+
+<tbody>
+
+<tr>
+
+<td align="left" valign="top" width="30">![](../../images/info.gif)</td>
+
+<td align="left" valign="top">
+
+For more information on operator precedence, go to:  
+  [SAS OnlineDoc](file:///V:/WINAPPS/SASOnlineDocV8/sasdoc/sashtml/onldoc.html)  
+    - Base SAS Software  
+      - SAS Language Reference: Dictionary  
+        - Appendices  
+          - SAS Operators  
+            - Order of Evaluation of SAS Operators
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<a name="DataSets">
+
+#### Naming and Labeling Data Sets
+
+</a>
+
+Just as you want to choose program names that are meaningful, so too should your data set, file, and library names have some meaning. This can greatly improve the readability of your program by helping you remember what different data sets are. SAS data set and file names are limited to 32 characters, while library names may only be eight characters, so making meaningful names requires some thought. In general, you should avoid data set names such as "file", "data", or "temp", as they do not tell you much about the data set's contents. More useful are names such as "sumstate", "febsrvy", or "hhresp", which suggest something about what they might contain.
+
+If you have multiple data sets that are related to each other but differ in some way, then the naming scheme should allow you to see this fact easily. For example, suppose that you have separate data sets for monthly rounds of surveys conducted during a single year. You could choose names such as: "srvyjan", "srvyfeb", "srvymar", etc. Or, you could use the numeric identifiers for months, such as: "srvy01", "srvy02", "srvy03", etc. Be careful of names that are too similar, however, as it is easier to make typing mistakes.
+
+To further help you identify different data sets, SAS also allows you add a descriptive label of up to 256 characters to a data set. This is done using the _label=_ data set option when the data set is being created. For example, you can add a label to a data set created with a **data** statement as follows:
+
+      data data.survey (label="Household survey data");
+
+This label will appear in the output when you do a proc contents on the data file.
+
+Finally, you should always use data set names explicitly in your program, even when SAS allows you to leave out the name. SAS procedures and some SAS data step statements (like **set**), assume that you want to use the most recent data set created if you do not include a data set name. For example, the following is valid SAS code:
+
+      data impdata;
+        set sasdata.survey;
+        if state = 15; 
+
+      proc means;
+        var income;
+
+Since there is no _data=_ option included in the **proc means** statement, the means procedure will use the data set created in the previous data step ("impdata") as its input. This example is rather clear, but in a longer, more complicated program it may become difficult to keep track of which data sets are being used if they are not named explicitly. Furthermore, there is the possibility of introducing an error to the program if you insert some command that creates a data set into the program. For instance, the following will change the results of the **means** procedure:
+
+    data impdata;
+        set sasdata.survey;
+        if state = 15; 
+
+      proc summary;
+        var income;
+        by hhid;
+        output out=hhinc sum=;
+
+      proc means;          /*** Wrong data set will be used here! ***/
+        var income;
+
+The intervening **summary** procedure creates a new data set, "hhinc". Since this is now the most recent data set created, it is "hhinc" and not "impdata" will be used by the **means** procedure. By naming the data set "impdata" explicitly using a _data=_ option this error would be avoided.
+
+<a name="Variables">
+
+#### Naming and Labeling Variables
+
+</a>
+
+As with data set names, variable names in SAS are limited to at most 32 characters. You should try to create variable names that are meaningful in some way. Avoid variable names such as X, Y, TEMP, or V1\. These do not help someone reading your program understand what information is contained in these variables. Variable names like HHINC, NUMPERS, and AVGWAGE are much more informative.
+
+Try to avoid variable names that can be easily confused, as this can lead to typing errors in your program. For example, these names could be dangerous in a program:
+
+      n = k;
+      nn = k**2;
+      nnn = k**3;
+
+It would be too easy to mistype one of these names by adding or leaving out an "n". This is an error that would be difficult to detect, as the mistake might be a valid variable name. A better choice of names might be:
+
+      n = k;
+      nsq = k**2;
+      ncube = k**3;
+
+But no matter how well you choose your variable names, the limitation of 32 characters makes it impossible to have names that convey sufficient information about a variable. Fortunately, SAS allows you to add descriptive labels to your data set variables with the label statement. A **label** statement in the data step can be used to associate text of up to 256 characters with a variable. The syntax is:
+
+<dl>
+
+<dd>label variable-1 = "variable-label-1" variable-2 = "variable-label-2" ... ;</dd>
+
+</dl>
+
+The equals sign and the quotes around the variable label (single or double) are required. If the **label** statement is used in a data step that creates a permanent data set, then the variable labels will be saved as part of that data set.
+
+It highly recommended to label all of the variables in your data sets. Variable labels appear in the **proc contents** output and so provide a means of documenting your data. Variable labels also appear in many different types of procedure output, either with or instead of the actual variable name. You can also use a **label** statement as part of a procedure to either override an existing variable label or to assign a label for a variable that does not have one already:
+
+      proc means data=sasdata.survey;
+        var income rent gas heat;
+        label
+          income = "Total HH income, 1997"
+          rent = "Monthly gross rent, 1997"
+          gas = "Monthly gas costs, 1997"
+          heat = "Monthly heating costs, 1997";
+
+It is important to note that, in this case, these variable labels only exist for this procedure. They are not saved with the data set "sasdata.survey".
+
+<a name="Output">
+
+#### Labeling Output
+
+</a>
+
+In addition to documenting your programs and data sets, you want to make sure that the output generated by your SAS programs is well-documented, too. A similar principle applies as with programs: Someone should be able to pick up output from one of your programs and have a fairly good chance of figuring out where it came from and what it is all about.
+
+As discussed above, using variable labels can help make your output clearer because many procedures will include these more descriptive labels in the output they produce. In addition, you can use the SAS **title** and **footnote** statements to add descriptive messages to the SAS procedure output. Here is an example using titles and footnotes to label output:
+
+      proc contents data=sasdata.survey;
+        title1 "Program SURVEY.SAS";
+        title2 "Contents of file SASDATA.SURVEY";
+        footnote1 "Prepared by Jill Sasuser";
+
+      proc print data=sasdata.survey (obs=100);
+        title3 "First 100 observations only";
+
+      proc means data=sasdata.survey;
+        title2 "Descriptive statistics for file SASDATA.SURVEY";
+
+The syntax for title and footnote statements was presented in the [Procedures chapter](chapter4.html#TitleFtntStmts).
+
+The output for the **contents** procedure will have the title lines "Program SURVEY.SAS" and "Contents of file SASDATA.SURVEY" as well as the footnote "Prepared by Jill Sasuser". The output for the **print** procedure will have these same titles and footnote, plus a third title line that says "First 100 observations only". The output for the **means** procedure specifies a new title line 2, "Descriptive statistics for file SASDATA.SURVEY". This replaces the old title for line 2 and causes title line 3 from the previous procedure to be discontinued. The first title and footnote lines specified in the **contents** procedure will continue to be displayed for the means procedure output.
+
+When you start a SAS session, SAS sets a default title, "The SAS System", for all procedure output. This title is not very useful, however, as it is probably easy to tell that the output was generated by SAS. Furthermore, all of your output will have exactly the same title, which will not help you determine where it came from.
+
+Rather than using the default title, it is much better to replace it with one of your own that is more informative. In the example above, the first title line gave the name of the program that generated the output. If you were to pick up this output a few weeks later, you would instantly know which of your programs created it. An alternative to the style used above is to simply have the name of your program be the first part of title line 1 and the rest to be more information about the program:
+
+      title1 "SURVEY:  Create SAS data set from ASCII data";
+
+The first word in the title, "SURVEY", gives the name of the program. (The .SAS extension is understood and would just take up space.) The next part of the title gives more information about what the program does. The advantage of this style is that you do not use an entire line for just the program name.
+
+By default, SAS also includes the date when the output was generated and the page number on the first title line. While it is possible for you to suppress this information by using the **options** statement, you should only do so if you have a good reason. The page number and date are important information about your output that could be very useful to you later. For example, if you have printed output from several versions of the same program, you can use the date stamped on the output to know which was created by the most recent version of your program.
+
+Here are some suggestions for other information that can be included in titles and footnotes:
+
+*   The Alpha or PC directory where the program is located
+*   The name and number of the UI project
+*   The name of the programmer
+*   The name of the input data set used by the procedure
+*   Any where conditions used to subset the data (ex., "NOPERS > 2")
