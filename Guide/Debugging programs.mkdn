@@ -1,0 +1,671 @@
+## Urban-Greater DC SAS Guide
+
+### Debugging Programs
+
+*   [Syntax Errors](#Syntax)
+*   [Missing Semicolon](#Semicolon)
+*   [Misspelled Procedure Name](#Misspelled)
+*   [Unbalanced Quotation Marks](#Quotation)
+*   [Runtime Errors](#Runtime)
+*   [Invalid Mathematical Operations](#InvalidMath)
+*   [Missing Values](#Missing)
+*   [Uninitialized Variables](#Uninitialized)
+*   [Unsorted Data Sets In Merge](#Unsorted)
+*   [System Errors](#System)
+*   [Logical Errors](#Logical)
+*   [Checking Input Data](#Input)
+*   [Working Through Cases By Hand](#ByHand)
+*   [Examining Intermediate Results](#Intermediate)
+*   [Reading Notes in the SAS Log](#Notes)
+*   [Cross-Checking Data and Output](#CrossCheck)
+
+* * *
+
+Now that you have written your program, it should work perfectly, right? Unfortunately, that probably will not happen the first few times you run your program. Unless it is a very simple program, there will almost always be a few errors (or "bugs", in computer lingo) that you will have to find and correct. The process of locating and removing errors from a program is called "debugging". In this chapter, we will discuss various methods for debugging your SAS programs.
+
+Computer programmers often divide programming errors into three types:
+
+1.  **_Syntax errors_** - Errors involving mistakes in writing programming instructions.
+2.  **_Runtime errors_** - Errors that emerge when the program is running.
+3.  **_Logical errors_** - Errors in programming logic that affect the results of the program, causing them to be incorrect.
+
+Different methods are used to detect each of these three types of errors. Each type will be discussed in the three sections of this chapter.
+
+<a name="Syntax">
+
+### Syntax Errors
+
+</a>
+
+Syntax errors are the most common type of programming error, and are usually the easiest to find and correct. A syntax error occurs when you write invalid instructions in your program-something that SAS cannot understand or interpret. Examples of syntax errors include forgetting a semicolon at the end of a statement, misspelling a procedure, statement, or function name, omitting an operator from a mathematical or logical expression, and leaving out one of a pair of parentheses or quotation marks.
+
+Syntax errors are generally easy to find because SAS will alert you to their presence by generating an error message in the SAS log. Recall that whenever you submit your program, SAS generates a log that repeats all of statements in the program, identifying the line number for each one:
+
+      1          * DEBUG1.SAS - SAS log example
+      2          *
+      3          *  01/20/00  Peter A. Tatian
+      4          ****************************************************;
+      5          
+      6          title "DEBUG1:  SAS Log Example";
+      7          
+      8          libname sasdat "D:\Peter\UISUG\Training";
+      NOTE: Libref SASDAT was successfully assigned as follows: 
+            Engine:        V612 
+            Physical Name: D:\Peter\UISUG\Training
+      9          
+      10         proc print data=sasdat.manual;
+      11           var race;
+      12           title2 "Values of RACE for data set SASDAT.MANUAL";
+      13         
+      14         run;
+
+      NOTE: The PROCEDURE PRINT printed pages 1-2.
+      NOTE: The PROCEDURE PRINT used 0.1 seconds.
+
+In addition to just echoing these statements, SAS also inserts different types of messages that give you information about what the SAS processor did when it encountered these statements. There are three types of messages that SAS includes in the log:
+
+*   **_Note_** - These are informative messages that usually tell you the results of normal processing of a set of statements. In some cases, however, they may also alert you to problems.  
+
+*   **_Warning_** - These messages alert you to potential problems with your program. They might indicate real errors, or they may just be situations that SAS feels you should pay attention to.  
+
+*   **_Error_** - These messages indicate errors that SAS found when trying to process statements in your program. Normally, this will cause SAS to fail to execute the statements in question. It may also result in SAS not executing subsequent statements in the rest of the program.
+
+The first word of each message indicates the type (note, warning, or error), followed by the message itself:
+
+      NOTE: The PROCEDURE PRINT used 0.05 seconds.
+
+      WARNING: The current word or quoted string has become more than 
+      200 characters long.  You may have unbalanced quotation marks.
+
+      ERROR 202-322: The option or parameter is not recognized.
+
+When running SAS for Windows in interactive mode, the different message types will appear in different colors in the LOG window: notes in <font color="#0000FF">blue</font>, warnings in <font color="#008000">green</font>, and errors in <font color="#FF0000">red</font>.
+
+The SAS log, therefore, contains a lot of important information about your program and whether it ran successfully. **_You should always examine the SAS log after running a program._**
+
+Syntax errors will usually appear as "Errors" in the SAS log. SAS will often try to help you by indicating where the error occurred, but, as we shall see in the examples below, this information is sometimes misleading.
+
+If your program uses large data sets and takes a long time to run, it may be very time-consuming to try to find all the syntax errors by submitting the program, correcting it, resubmitting it, and so on. You can speed up the debugging process by inserting the following statement at the beginning of your program:
+
+      options obs=0;
+
+This statement sets the system option obs= to zero, telling SAS not to process any data set observations. By setting this option, you can submit your program and SAS will quickly scan through it to find syntax errors without processing any data. Once you have removed all of the errors, you can resubmit the program with the number of observations set to maximum so that all of the data will get processed. If you are submitting your program in batch mode, you need only delete or "comment out" the options statement and SAS will process all data set observations. If you are running your program in interactive mode, however, you will have to submit the statement:
+
+      options obs=max;
+
+to tell SAS to process all data set observations.
+
+The remainder of this section will give some examples of common syntax errors and show how SAS identifies them in the log.
+
+<a name="Semicolon">
+
+#### Missing Semicolon
+
+</a>
+
+The missing semicolon is one of the most common SAS syntax errors. Remember that every SAS statement must end with a semicolon. If you forget to include the semicolon, SAS will not know where the first statement ends and the next one begins.
+
+For example, consider the following section of a SAS program:
+
+      proc print data=sasdat.manual
+        var race;
+
+      run;
+
+This very simple code is supposed to print out a list of the values for the variable RACE from the data set "sasdat.manual". When we submit the program, however, and examine the SAS log, we see the following:
+
+      12   proc print data=sasdat.manual
+      13     var race;
+             --- ----
+             202 202
+      14
+      15   run;
+
+      ERROR 202-322: The option or parameter is not recognized.
+
+      NOTE: The SAS System stopped processing this step because of errors.
+      NOTE: The PROCEDURE PRINT used 0.05 seconds.
+
+Can you see what the problem is? We left off the semicolon at the end of the **proc** statement. With this semicolon missing, SAS interprets the **var** statement on the next line as being a continuation of the **proc** statement. Since neither "var" nor "race" are valid options for the **print** procedure, SAS prints an error message saying the options are not recognized and underlines these two words. The actual error occurred before the **var** statement, however.
+
+This is typical of how SAS reports a missing semicolon error. The error is not identified directly, but through some other error message at a later point in the program. If your program is producing an error message and you cannot see why, you should examine the previous statements for missing semicolons.
+
+<a name="Misspelled">
+
+#### Misspelled Procedure Name
+
+</a>
+
+Another common syntax error is misspelling the name of a SAS procedure, a statement keyword or option, or a function name. For example, in the following SAS code the name of the print procedure is misspelled:
+
+      proc princ data=sasdat.manual;
+        var race;
+
+      run;
+
+This produces the following in the SAS log:
+
+      16   proc princ data=sasdat.manual
+                -----
+                181
+      17     var race;
+      18
+      19   run;
+
+      ERROR 181-322: Procedure name misspelled.
+
+      NOTE: The SAS System stopped processing this step because of errors.
+      NOTE: The PROCEDURE PRINC used 0.05 seconds.
+
+The procedure name "print" was misspelled as "princ". As a result, SAS does not know what procedure to invoke. In this case, the error message is quite helpful. The process stops and SAS prints an error message indicating that the procedure name is misspelled.
+
+<a name="Quotation">
+
+#### Unbalanced Quotation Marks
+
+</a>
+
+A third example of a syntax error occurs when you forget to close a pair of quotes in a title, footnote, or label. In this case, SAS may react to the error differently depending on whether you are in interactive or batch mode. For example, in the following code we have left out the closing single quote on the **title** statement for the first **print** procedure.
+
+      proc print data=sasdat.manual;
+        var race;
+        title2 "Values of RACE for data set SASDAT.MANUAL;
+
+      run;
+
+      proc print data=sasdat.manual;
+        var age;
+        title2 "Values of AGE for data set SASDAT.MANUAL";
+
+      run;
+
+If we submit this code in **_interactive mode_** in SAS for Windows, we get the following messages in the LOG window:
+
+      16   proc print data=sasdat.manual;
+      17     var race;
+      18     title2 "Values of RACE for data set SASDAT.MANUAL;
+      19
+      WARNING: The current word or quoted string has become more than 
+      200 characters long.  You may have unbalanced quotation marks.
+      NOTE: A double quote (") will terminate this quoted string.
+      20   run;
+      21
+      22   proc print data=sasdat.manual;
+      23     var age;
+      24     title2 "Values of AGE for data set SASDAT.MANUAL";
+      25
+      WARNING: The current word or quoted string has become more than 
+      200 characters long.  You may have unbalanced quotation marks.
+      NOTE: A double quote (") will terminate this quoted string.
+      26   run;
+
+Notice that SAS reports the unbalanced quote problem with a **_warning_** message, not an error message. If we then examine the contents of the OUTPUT window, the window itself appears to be blank. The title bar of the window, however, displays the message: "PROC PRINT running". This is because the missing quote causes SAS to think that everything following the first **title2** keyword is part of a title.
+
+Once you realize the error, you can correct the program by adding the missing quotation mark to the title statement. In interactive mode, however, you cannot simply resubmit the program at this point, as the SAS processor is still looking for the missing quote from the previous submission. If you resubmit the corrected commands, you will continue to get the same warning message about the unbalanced quotation marks.
+
+To correct this problem in interactive mode you have two choices. You can save your program, exit SAS completely, and start a new interactive SAS session. This is the safest course of action, as you can sure to be restarting SAS in a pristine state. The second option is to submit the following, rather strange looking statements:
+
+      *'; *"; */;
+
+Submitting these statements should clear any unbalanced single or double quotes or comments, and, if there are none, the statement does nothing. You can then resubmit your corrected program.
+
+What happens if we submit the same program in **_batch mode_**? We get the following in the SAS log:
+
+      17         proc print data=sasdat.manual;
+      18           var race;
+      19           title2 "Values of RACE for data set SASDAT.MANUAL;
+      20         
+      21         run;
+      22         
+      23         proc print data=sasdat.manual;
+      24           var age;
+      25           title2 "Values of AGE for data set SASDAT.MANUAL";
+      26         
+      27         run;
+      28         
+      NOTE: The PROCEDURE PRINT printed pages 1-2.
+      NOTE: The PROCEDURE PRINT used 0.11 seconds.
+
+At first glance, everything seems to run perfectly fine! There are no error or warning messages to alert us to a problem. On the other hand, if you look closely you notice that there is no note reporting the results of the first **print** procedure, only the second. If you examine the procedure output, you find that only the first **print** procedure actually ran. The second one was ignored by SAS. Furthermore the title on the procedure output is:
+
+      Values of RACE for data set SASDAT.MANUAL;run;proc print 
+      data=sasdat.manual;  var age;  title2 Va
+
+What happens in this case is that SAS assumes everything after the first quote on line 19 is part of the title of the first **print** procedure, including the second **proc print** statement. Therefore, it never recognizes the second **print** procedure as a valid command. This illustrates why it is important to examine both the log and the procedure output carefully!
+
+<a name="Runtime">
+
+### Runtime Errors
+
+</a>
+
+A second type of programming errors is called "runtime errors". These are errors that appear only when the program is run with actual data; you cannot necessarily tell they are errors before you submit the program. For example, there is nothing syntactically wrong with the following SAS code:
+
+      data mergedat;
+
+        merge sasdat.hhlds sasdat.persons;
+          by persid;
+
+      run;
+
+The statements above are perfectly valid SAS code. Yet while there may be no syntax errors, this code could contain several runtime errors. For instance, the data set names "sasdat.hhlds" or "sasdat.persons" may be misspelled. Or one of the data sets being merged may not be sorted by the variable PERSID. Or the variable PERSID may not exist in one or both of these data sets. Or there may not be enough disk space to save the new temporary data set. Runtime errors, therefore, depend on conditions outside the program code itself, such as the actual variables and observations that are in the data sets used by the program.
+
+As with syntax errors, examining the SAS log can help you identify and correct most types of runtime errors. Some of these are identified as actual errors, while others are signaled by warning or note messages. Unlike syntax errors, for runtime errors to appear in the log you generally must be working with real data. You cannot identify most runtime errors by running the program with the option obs=0\. In the rest of this section, we will give examples of the most common runtime errors and explain how to detect and fix them.
+
+<a name="InvalidMath">
+
+#### Invalid Mathematical Operations
+
+</a>
+
+Various types of mathematical operations can produce runtime errors. For example, attempting to divide a number by zero will result in SAS reporting an error:
+
+      data one;
+
+        set sasdat.manual (keep=id age nhoop);
+
+        if age ne -99;
+
+        total = age / nhoop;
+
+      run;
+
+When run, this program produces the following results in the SAS log:
+
+      17         data one;
+      18         
+      19           set sasdat.manual (keep=id age nhoop);
+      20         
+      21           if age ne -99;
+      22         
+      23           total = age / nhoop;
+      24         
+      25         run;
+
+      NOTE: Division by zero detected at line 23 column 15.
+      AGE=28 ID=1 NHOOP=0 TOTAL=. _ERROR_=1 _N_=1
+      NOTE: Division by zero detected at line 23 column 15.
+      AGE=29 ID=3 NHOOP=0 TOTAL=. _ERROR_=1 _N_=3
+      NOTE: Division by zero detected at line 23 column 15.
+      AGE=36 ID=4 NHOOP=0 TOTAL=. _ERROR_=1 _N_=4
+      .
+      .
+      .
+      ERROR: Limit set by ERRORS= option reached.  Further errors of this type will not be printed.
+      AGE=27 ID=23 NHOOP=0 TOTAL=. _ERROR_=1 _N_=23
+      NOTE: Mathematical operations could not be performed at the
+            following places. The results of the operations have been
+            set to missing values.
+            Each place is given by: (Number of times) at
+            (Line):(Column).
+            91 at 23:15   
+
+When SAS encounters an observation in the data step where NHOOP equals zero, it generates a message indicating that the program attempted to divide by zero, an invalid mathematical operation. The note (not an "error" message) identifies the line number and column position of the program code where the error occurred. It then prints the values of all the variables in the current observation, along with the values of the system variables _ERROR_ and _N_ from the program data vector (PDV). The value of _ERROR_ equals 1, indicating that an error occurred, while the value of _N_ is the number of the observation being processed by the data step.
+
+SAS will continue to list observations where division by zero was attempted until it reaches a limit for such messages set in the _errors=_ system option. It will then not print any more messages about division by zero errors for that data step. At the end of the list of messages, the final note reports the total number times that the division by zero error was encountered. In this case, it happened 91 times for the entire execution of the data step. The values of the new variable, TOTAL, were set to the system missing value for these observations.
+
+This division by zero problem might indicate that there is something wrong with your data. Perhaps NHOOP should never be equal to zero. You would then need to check your data and attempt to determine where these zero values came from. On the other hand, a value of zero for NHOOP may be perfectly valid. In that case, you may want the value of TOTAL to be set to missing whenever NHOOP is zero. If so, then it is not necessary for you to correct the division by zero "error."
+
+Even if the division by zero error is not really a problem, the large number of messages generated by this error may cause you to miss other messages in the SAS log that might indicate more serious problems. Therefore, it is probably better to rewrite the program so that these division by zero messages do not occur. You can do this by adding an if statement to the program that only divides AGE by NHOOP if NHOOP is not zero:
+
+      data one;
+
+        set sasdat.manual (keep=id age nhoop);
+
+        if age ne -99;
+
+        if nhoop ne 0 then total = age / nhoop;
+
+      run;
+
+The result in the data step "one" will be the same as before-TOTAL will be missing whenever NHOOP is zero. This time, however, the division by zero messages will not appear in the SAS log.
+
+SAS will generate similar error messages for any type of invalid mathematical operation, such as attempting to take the square root or logarithm of a negative number.
+
+<a name="Missing">
+
+#### Missing Values
+
+</a>
+
+A similar problem occurs when you attempt to do calculations with numeric variables that have missing values. Recall that whenever you have an ordinary numeric expression and one or more of the values is missing, the entire expression will evaluate to missing. For example, the following program uses the variables BBCRDS87 and NBBAL to calculate the average amount spent per baseball card:
+
+      data percard;
+        set sasdat.manual (keep=id bbcrds87 nbbal);
+        percard = bbcrds87 / nbbal;
+      run;
+
+The variable BBCRDS87, however, contains missing values for several observations. For these observations, a missing value will be assigned to the variable PERCARD. This is reported in the SAS log:
+
+      17         data percard;
+      18         
+      19           set sasdat.manual (keep=id bbcrds87 nbbal);
+      20         
+      21           percard = bbcrds87 / nbbal;
+      22         
+      23         run;
+
+      NOTE: Missing values were generated as a result of performing an
+            operation on missing values.
+            Each place is given by: 
+            (Number of times) at (Line):(Column).
+            95 at 21:22   
+
+The note in the SAS log tells you that a numeric expression resulted in missing values. This occurred for 95 observations and was a result of the expression in program line 21 at column position 22\. (Unlike with invalid mathematical operations, SAS does not print out the observations where missing values were generated.) You should evaluate messages such as this to see if the number of missing values seems reasonable for your data. If it does, and if you want missing values to be assigned to these cases, then you probably will not need to make any changes to your program. Otherwise, you may need to examine your data or program more closely to identify the problem.
+
+<a name="Uninitialized">
+
+#### Uninitialized Variables
+
+</a>
+
+Another common runtime error is an uninitialized variable. This occurs when you refer to a variable in a data step that is not part of an input data set and has not been previously assigned a value. The variable has not been given an "initial" value, and therefore its value is technically undefined.
+
+For example, the following SAS code attempts to use the variable NBBML in an assignment statement, but NBBML does not exist in the data set "sasdat.manual" and has not been assigned a value previously in the data step:
+
+      data total;
+        set sasdat.manual;
+        totbbal = nbbal + nbbml;
+      run;
+
+The produces the following "note" message in the SAS log:
+
+      NOTE: Variable NBBML is uninitialized.
+
+What is the value of NBBML in the assignment statement? It is not clear from just looking at the program statements. It turns out, however, that uninitialized numeric variables are given a value of system missing by SAS. Therefore, the assignment statement above will set the value of TOTBBAL to missing for all observations. (Uninitialized character variables are set to blank.)
+
+Uninitialized variables often are a result of a misspelled variable name. In this case, the programmer might have written NBBML instead of NBBNL, which is in the data set "sasdat.manual". It is possible, however, that the programmer meant to create a new variable NBBML that should have been set to some initial value, such as zero, before being used. This can be corrected by adding an initial assignment statement to the data step:
+
+      data total;
+        set sasdat.manual;
+        ** Initialize NNBML to 0 **;
+        nbbml = 0; 
+        totbbal = nbbal + nbbml;
+      run;
+
+Having uninitialized variables in your program is considered bad programming practice because you cannot be certain what value an uninitialized variable may be given. It is better make sure that all your variables are properly initialized.
+
+<a name="Unsorted">
+
+#### Unsorted Data Sets In Merge
+
+</a>
+
+When you are merging two or more data sets, all of the data sets must be sorted by the by statement variables. If they are not, the merge will fail and you will get an error message in the SAS log.
+
+To illustrate, the following code attempts to merge two household data files by an identification number (ID):
+
+      data mrgdata;
+        merge hhsrtd hhunsrtd;
+          by id;
+      run;
+
+The SAS log contains the following messages:
+
+      ERROR: BY variables are not properly sorted on 
+             data set WORK.HHUNSRTD.
+       ID=5 A=0 B=0 C=0 D=0 E=0 F=0 FIRST.ID=1 LAST.ID=1 _ERROR_=1 _N_=5
+      NOTE: The SAS System stopped processing this step because of errors.
+      NOTE: SAS set option OBS=0 and will continue to check statements. 
+            This may cause NOTE: No observations in data set.
+      WARNING: The data set WORK.MRGDATA may be incomplete.  
+      When this step was stopped there were 4 observations and 7 variables.
+
+The first error message tells you that one of the data sets, "hhunsrtd", was not sorted by ID. It also prints out the value of the variables in the program data vector (PDV) when SAS attempted to read in the unsorted observation from the data set. The final warning message tells you that the resulting data set, "mrgdata", may not be complete since execution of the data step was halted because of the error.
+
+The solution to this problem is, of course, to sort the data set "hhunsrtd" by ID before trying to merge it with "hhsrtd".
+
+<a name="System">
+
+#### System Errors
+
+</a>
+
+A final category of runtime errors include errors that are generated by the operating system (Windows or Alpha OpenVMS) while attempting to run your program. Examples of system errors include running out of disk space when attempting to save a data set or having a program run beyond the time limit set by an Alpha queue.
+
+If you are running a program on SAS for Windows in either batch or interactive modes and attempt to save a data set to a disk where there is insufficient space, a message box will appear telling you that you have insufficient space.
+
+The message will give you several options for dealing with this problem. Choosing "Execute X command" will take you to a DOS prompt, where you can use DOS commands to delete or move files to make enough space. "Be prompted to delete files from SAS libraries" presents you with a rather unhelpful box asking you to type the names of SAS data sets that you would like to delete. "Do nothing" quite simply tells the program to carry on as best it can, but there will be an error message in the log telling you that the data set is "damaged." "Clean up everything" …. "Halt data step/proc" stops the execution of the program at this point, allowing you to go back, make necessary corrections, and resubmit the program. There will also be an "damaged file" error message in the SAS log.
+
+If the same problem occurs when you are running a program in batch mode on the Alpha, the program will exit with an error status and will have messages such as the following in the log:
+
+      ERROR: File FLOPPY.TOOBIG.DATA is damaged. I/O processing 
+             did not complete.
+      ERROR: Write to FLOPPY.TOOBIG.DATA failed. File is full and 
+             may be damaged.
+      NOTE: The SAS System stopped processing this step because of
+            errors.
+      NOTE: SAS set option OBS=0 and will continue to check statements. 
+            This may cause NOTE: No observations in data set.
+      WARNING: The data set FLOPPY.TOOBIG may be incomplete.  
+      When this step was stopped there were 3238 observations and 39 variables.
+
+The problem may be that your Alpha project directory has run out of space in its disk quota. You can check how much space you are using by typing "QUOTA" at the "$" prompt. If you have insufficient space to save your data set, you should first see if you can free up enough space in your project directory by deleting unneeded files, using the "PURGE" command to remove old versions of data sets, compressing raw data files with the "GZIP" command, and archiving any large files that you do not need currently to tape. (See the [SAS for Alpha/VMS](chapter7.html) chapter for more details on these Alpha procedures.)
+
+If you have removed as much as you can from your project directory but still do not have enough space, you will need to request an increase in your project directory quota. For information on how to do this, see the "Alpha/VMS" page on the Information Technology intranet web site or contact the Help Desk for assistance.
+
+If the problem is insufficient space on the Alpha scratch disk (i.e., the "work" library), then run the "CLEANUP" command to remove any old files. If you still have a problem, contact Information Technology for assistance.
+
+<a name="Logical">
+
+### Logical Errors
+
+</a>
+
+The final category of errors, logical errors, are the most difficult to identify as they generally do not produce any error or warning messages at all. A program has logical errors if it does not do what you wanted it to do. This could be because you are using a faulty or inappropriate algorithm to solve your problem. Or, maybe you have a correct algorithm but you have not implemented it properly in the SAS language. Or, perhaps your program works properly given a particular set of input data, but may fail if the data are changed in some way.
+
+<table align="center" bgcolor="#DFFFFF" border="0" cellspacing="4" cellpadding="4" width="90%">
+
+<tbody>
+
+<tr>
+
+<td align="left" valign="top" width="30">![](../../images/info.gif)</td>
+
+<td align="left" valign="top">An "algorithm" is a sequence of well-defined steps that can be used to solve a problem. For example, an algorithm could specify how to put a series of numbers in ascending order, or it could tell you how to calculate the standard deviation for a set of observations.</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+Taking the time to try to find logical errors is a crucial part of debugging your program. Just because your program is free of syntax and runtime errors does not guarantee that it is correct. You must be able to convince yourself (and others) that the program really does what it is supposed to do.
+
+Of course, it is better to prevent logical errors from getting into your program to begin with, rather than trying to find them later. By laying out a plan for your program beforehand, with the steps it should be implementing, you will reduce the likelihood that logical errors will creep into your code. By following good programming style and techniques, you will also reduce the chance of introducing errors, which will not only help you write correct programs but will save you lots of time debugging later.
+
+Nevertheless, no matter how careful you may be the possibility exists that you may have logical errors hiding somewhere in your program. In the rest of this section, we will present some techniques to help you identify and correct logical errors.
+
+<a name="Input">
+
+#### Checking Input Data
+
+</a>
+
+Most programs assume certain properties regarding the data they are using, such as a limited set of values for particular variables or a specific arrangement between different observations (no more than two parents per family, for instance). If the input data violate any of these assumptions, it can wreak havoc on your results. As the saying goes, "Garbage in, garbage out."
+
+As a result, it is very important to check your input data carefully and to look for variable values or observations that could cause problem for your programs. You need to think about what assumptions your program is making about the data. For example, consider the following code assign values to a new variable:
+
+      if hhtype in ( 1, 3, 5 ) then
+        family = 1;
+      else if hhtype in ( 2, 4, 6 ) then
+        family = 2;
+
+This code assumes that HHTYPE is a variable which can only have the values 1, 2, 3, 4, 5, or 6\. What happens if HHTYPE is not one of these values? FAMILY will have a missing value. This may have unintended consequences later in the program if FAMILY is supposed to be only 1 or 2\.
+
+Any assumptions about the input data should be documented so that you will not forget them and so that others using your program will be aware of them. Keep in mind that you or someone else may someday adapt this program for use with a different set of data. You will want to be sure that the new data do not cause any problems.
+
+Another way to avoid problems with invalid input data is to "program defensively" so that your program warns you if any important assumptions are violated. In the example above, we could add another **else** clause that will use a **put** statement to print an error message in the SAS log if HHTYPE falls outside the expected range of values:
+
+      if hhtype in ( 1, 3, 5 ) then
+        family = 1;
+      else if hhtype in ( 2, 4, 6 ) then
+        family = 2;
+      else
+        put "ER" "ROR:  Variable HHTYPE is out of range " _n_= hhtype=;
+
+When a value outside of the range is encountered, a message similar to this one will appear in the log:
+
+      ERROR:  Variable HHTYPE is out of range _N_=19 HHTYPE=7
+
+A few notes about this **put** statement. First, the word "ERROR" has been split in two in the **put** statement specification, but still prints as a single word whenever the error messages is actually printed in the log. This is done so that a search for the word "ERROR" in the SAS log will not find the **put** statement itself. Second, along with the message the values of _N_ (the number of the current observation) and HHTYPE are printed as well. The equals sign after the variable name causes the name of the variable to be printed along with its value in the log.
+
+<a name="ByHand">
+
+#### Working Through Cases By Hand
+
+</a>
+
+It is always a good idea to validate your results by comparing them to an alternative source. One way to do this is to work through several cases by hand and compare the outcome with output from your program. For example, the following program calculates the share of the total numbers of baseball, football, and basketball trading cards owned by each person in the data set "sasdat.manual":
+
+      ** Calculate total number of cards for entire group, by type **;
+
+      proc summary data=sasdat.manual;
+        var nbbal nbbnl nfoot nhoop;
+        output out=sumcards sum=totbbal totbbnl totfoot tothoop;
+
+      ** Merge disaggregated data with totals and calculate pct shares 
+      ** for each type of card;
+
+      data pctcards;
+
+        set sasdat.manual;
+
+        if _n_ = 1 then set sumcards;
+
+        pctbbal = 100 * nbbal / totbbal;
+        pctbbnl = 100 * nbbnl / totbbnl;
+        pctfoot = 100 * nfoot / totfoot;
+        pcthoop = 100 * nhoop / tothoop;
+
+      run;
+
+This is not a terribly complicated program, but it is still possible that there is a mistake somewhere. You can check the logic by calculating the shares for one or two types of trading cards by hand and comparing that to the results from the program. If there are a lot of cases in the data set, you can create a test data set that has only 10 to 20 observations and compare hand calculations with the results of the program on that file. Once you are convinced that the program is correct, you can rerun it with the full data set.
+
+<a name="Intermediate">
+
+#### Examining Intermediate Results
+
+</a>
+
+Another useful technique for locating logic errors is to examine intermediate results from your program-usually in the form of intermediate data sets. For example, if the previous example were part of a larger program, you could examine the results from just this section to make sure that they correspond to what you would expect to get. If each step in the program seems to be working properly, then it is more likely that the entire program is correct.
+
+It is easy to examine intermediate results by inserting a **print** procedure at key points in the program. For example, you can examine the first five observations in the intermediate data set "pctcards" with the following procedure:
+
+      proc print data=pctcards (obs=5);
+        var id nbbal totbbal pctbbal nbbnl totbbnl pctbbnl;
+        title2 "File = PCTCARDS [first 5 obs]";
+
+This will print out the following:
+
+      File = PCTCARDS [first 5 obs]
+
+      OBS   ID   NBBAL   TOTBBAL   PCTBBAL   NBBNL   TOTBBNL   PCTBBNL
+
+        1    1      0     17831    0.00000      0     19950    0.00000
+        2    2    792     17831    4.44170    792     19950    3.96992
+        3    3      0     17831    0.00000      0     19950    0.00000
+        4    4      0     17831    0.00000      0     19950    0.00000
+        5    5      0     17831    0.00000      0     19950    0.00000
+
+Note that we have printed out only variables of interest in this section (others have been omitted to save space for this example), including the ID variable which will allow us to identify individual observations. Furthermore, we have grouped the variables by type of trading card, which allows us to check easily the calculation of the percentages.
+
+Printing out the first few observations of a data set may not always be the most sensible approach, however. In this example, many of the observations are zero so it would actually be more helpful to see the nonzero cases:
+
+      proc print data=pctcards (where=(nbbal>0 or nbbnl>0));
+        var id nbbal totbbal pctbbal nbbnl totbbnl pctbbnl;
+        title2 "File = PCTCARDS [where NBBAL>0 or NBBNL>0]";
+
+Which produces:
+
+      File = PCTCARDS [where NBBAL>0 or NBBNL>0]
+
+      OBS   ID   NBBAL   TOTBBAL   PCTBBAL   NBBNL   TOTBBNL   PCTBBNL
+
+        1    2     792    17831     4.4417     792    19950     3.9699
+        2   20   10000    17831    56.0821   15000    19950    75.1880
+        3   37    2500    17831    14.0205    2600    19950    13.0326
+        4   53    3975    17831    22.2926    1000    19950     5.0125
+        5   69     392    17831     2.1984     400    19950     2.0050
+        6   90     120    17831     0.6730     120    19950     0.6015
+        7   98      52    17831     0.2916      38    19950     0.1905
+
+Unfortunately, SAS does not allow you to combine the _where=_ data set option or **where** statement with the _obs=_ option (except when the number of observations is set to zero). This is not really a problem here, since there are only seven nonmissing observations. For larger data sets, however, you might only want to see the first few observations that meet a certain _where=_ criteria. You can do this by using a separate data step to select observations first and then limiting the number of observations in the **print** procedure:
+
+      data test1;
+        set pctcards (where=(nbbal>0 or nbbnl>0));
+
+      proc print data=test1 (obs=5);
+        var id nbbal totbbal pctbbal nbbnl totbbnl pctbbnl;
+        title2 "File = PCTCARDS [first 5 obs where NBBAL>0 or NBBNL>0]";
+
+This brings us to the importance of examining situations where there are extreme or unusual values in the data. These so called "boundary cases" are significant because they can cause problems for your program. For example, what happens if all of the values for an observation are zero? Or if all of the observations for a particular variable are zero? What if certain data are missing? Does the program still work properly, or does it produce nonsensical results?
+
+The **univariate** procedure can help you identify extreme values for particular variables, since it lists outlier cases. You should examine these observations closely to see if they are unusual in any other way. Try to anticipate what might go wrong in your program and then test it to make sure it can handle even exceptional cases.
+
+<a name="Notes">
+
+#### Reading Notes in the SAS Log
+
+</a>
+
+In addition to error and warning messages, the SAS log includes different types of "notes" that can provide important information on your program. Examining these notes carefully can tip you off to possible problems with the logic of your program.
+
+For instance, whenever SAS creates a new data set, it generates a note that tells you how many observations and variables that data set contains:
+
+        NOTE: The data set WORK.PCTCARDS has 100 observations and 22 
+            variables.
+
+Does the number of observations and variables for this data set seem correct? This data set was created as a result of a one-to-many merge with the data set "sasdat.manual", which has 100 observations. We would not expect the number of observations to change as a result of this merge, so the result seems OK. The original data set also had 12 variables. We merged it with a file with six variables and then created four new variables in the data step. This equals the total of 22 variables reported in the log.
+
+You can also request that SAS include "info" notes in the log, which will give you more information especially for merging. This is done by setting the _msglevel=_ option to "i":
+
+      options msglevel=i;
+
+      data merged;
+        merge sasdat.manual sasdat.manual3;
+          by id;
+      run;
+
+When this option is set, SAS will tell you if the different data sets you are merging contain variables with the same name. The values of a common variable in the first data set will be replaced by the values in the second data set when this happens (even if the values in the second data set are missing). To warn you about this, SAS will generate messages like these:
+
+      INFO: The variable AGE on data set SASDAT.MANUAL will be
+            overwritten by data set SASDAT.MANUAL3.
+      INFO: The variable RACE on data set SASDAT.MANUAL will be
+            overwritten by data set SASDAT.MANUAL3.
+
+Note that these messages are prefixed with the word "INFO". For any overlapping variables, you should evaluate whether you want the values to be replaced as shown or if you would rather rename or drop variables in one of the merged data sets.
+
+These warnings only appear if you set the _msglevel=i_ option. Otherwise, SAS will not report anything if you have common variables in merged data sets.
+
+<a name="CrossCheck">
+
+#### Cross-Checking Data and Output
+
+</a>
+
+Finally, you should try to cross-check data and output to make sure that your results are consistent. Such checks can be incorporated directly in the program, by using a **put** statement to generate an error message as shown earlier, or they can be done visually by examining program output.
+
+For instance, in the example program used to calculate the shares of trading cards owned by each person in the data set "sasdat.manual", you can check whether the total of the percentages for each type of card sum to 100 percent. This can be done by adding a **means** procedure to the program:
+
+      proc means data=pctcards n sum min max;
+        var pctbbal pctbbnl pctfoot pcthoop;
+        title2 "File = PCTCARDS [variables should sum to 100]";
+      run;
+
+This procedure will produce the sum of the percentage variables, as well as the minimum, maximum, and number of nonmissing observations:
+
+      File = PCTCARDS [variables should sum to 100]
+
+      Variable    N           Sum       Minimum       Maximum
+      -------------------------------------------------------
+      PCTBBAL   100   100.0000000             0    56.0821042
+      PCTBBNL   100   100.0000000             0    75.1879699
+      PCTFOOT   100   100.0000000             0    52.4109015
+      PCTHOOP   100   100.0000000             0    41.0677618
+      -------------------------------------------------------
+
+From this output, you can see that the percentages do indeed sum to 100\. You can also verify that none of the percentage variables have missing values (N equals 100) and examine the range of values for these variables.
+
+When creating output tables from SAS, it is a good idea to include redundant information like this that would allow you to cross-check your results. Simple things like checking that your columns or rows add up to the right totals can help you find errors in your programs.
+
