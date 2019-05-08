@@ -9,12 +9,10 @@
 
 **************************************************************************/
 
-%global _dcdata_l_drive _dcdata_r_drive _dcdata_l_path _dcdata_r_path 
+%global _dcdata_l_path _dcdata_r_path 
         _dcdata_path _dcdata_default_path 
         _remote_session _remote_batch_submit _userid;
 
-%let _dcdata_l_drive = D;
-%let _dcdata_r_drive = L;
 %let _dcdata_l_path = &_dcdata_l_drive:\DCData\Libraries;
 %let _dcdata_r_path = &_dcdata_r_drive:\Libraries;
 %let _dcdata_path = &_dcdata_r_path;
