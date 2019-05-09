@@ -13,8 +13,19 @@
         _dcdata_path _dcdata_default_path 
         _remote_session _remote_batch_submit _userid;
 
-%let _dcdata_l_drive = D;
-%let _dcdata_r_drive = L;
+** Check to see if drive letters are assigned in Autoexec, otherwise, default to D and L **;
+%macro checkdrives ();
+%if %length(&_dcdata_l_drive)=0 %then %do;
+	%let _dcdata_l_drive = D;
+%end;
+
+%if %length(&_dcdata_r_drive)=0 %then %do;
+	%let _dcdata_r_drive = L;
+%end;
+%mend checkdrives;
+%checkdrives;
+
+** Define DC Data paths **;
 %let _dcdata_l_path = &_dcdata_l_drive:\DCData\Libraries;
 %let _dcdata_r_path = &_dcdata_r_drive:\Libraries;
 %let _dcdata_path = &_dcdata_r_path;
