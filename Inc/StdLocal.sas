@@ -16,26 +16,26 @@
 ** Check to see if drive letters are assigned in Autoexec, otherwise, default to D and L **;
 %macro checkdrives ();
 %if %length(&_dcdata_l_drive)=0 %then %do;
-	%let _dcdata_l_drive = D;
+	%let _dcdata_l_drive = D:;
 %end;
 
 %if %length(&_dcdata_r_drive)=0 %then %do;
-	%let _dcdata_r_drive = L;
+	%let _dcdata_r_drive = \\sas1;
 %end;
 %mend checkdrives;
 %checkdrives;
 
 ** Define DC Data paths **;
-%let _dcdata_l_path = &_dcdata_l_drive:\DCData\Libraries;
-%let _dcdata_r_path = &_dcdata_r_drive:\Libraries;
+%let _dcdata_l_path = &_dcdata_l_drive\DCData\Libraries;
+%let _dcdata_r_path = &_dcdata_r_drive\DCData\Libraries;
 %let _dcdata_path = &_dcdata_r_path;
 
 %let _remote_session = 0;
 
 ** Locations of SAS autocall macro libraries **;
 
-filename uiautos  "L:\Uiautos"; 
-filename dcautos  "&_dcdata_r_drive:\SAS\Macros";
+filename uiautos  "&_dcdata_r_drive\DCData\Uiautos"; 
+filename dcautos  "&_dcdata_r_drive\DCData\SAS\Macros";
 options sasautos=(dcautos uiautos sasautos);
 
 ** Program name & library **;
