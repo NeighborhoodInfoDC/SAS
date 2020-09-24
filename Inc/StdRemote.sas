@@ -42,7 +42,7 @@ libname _metadat "&_dcdata_r_path\Metadata\Data";
 
 ** System options **;
 
-options compress=yes msglevel=i nocenter mprint nofmterr source2 
+options compress=yes msglevel=i nocenter mprint nofmterr source2 minoperator mindelimiter=','
         mergenoby=warn formchar="|----|+|---+=|-/\<>*";
 
 options ls=124 ps=48;    ** Landscape **;
