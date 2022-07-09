@@ -13,7 +13,7 @@
  Modifications:
 **************************************************************************/
 
-%include "L:\SAS\Inc\StdLocal.sas";
+%include "\\sas1\DCdata\SAS\Inc\StdLocal.sas";
 
 %macro CodeIndex
 (path = /* path for directory with macro code */

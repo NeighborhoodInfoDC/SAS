@@ -91,7 +91,7 @@
 
 /******************** UNCOMMENT FOR TESTING ***********************************
 
-%include "L:\SAS\Inc\StdLocal.sas";
+%include "\\sas1\DCdata\SAS\Inc\StdLocal.sas";
 
 ** Define libraries **;
 %DCData_lib( Test )
