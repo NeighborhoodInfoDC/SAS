@@ -20,7 +20,7 @@
   out=,       /** Ouput data set name (required) **/
   outlib=,    /** Output data set library (required) **/
   label=,     /** Output data set label, in quotes (required) **/
-  sortby=,    /** Output data set sorting variables (optional) **/
+  sortby=,    /** Output data set sorting variables (required) **/
   archive=N,  /** Add output data set to archive (Y/N) **/
   archive_name=,  /** Name of data set archive (default is batch submit program name) **/
   /** Metadata parameters **/
@@ -60,7 +60,12 @@
     %err_mput( macro=Finalize_data_set, msg=Output data set label not specified (label="..."). )
     %goto exit;
   %end;
-    
+  
+  %if %length( &sortby ) = 0 %then %do;
+    %err_mput( macro=Finalize_data_set, msg=Sort by variables not specified (sortby=). )
+    %goto exit;
+  %end;
+  
   %if not( %mparam_is_yes( &archive ) or %mparam_is_no( &archive ) ) %then %do;
     %err_mput( macro=Finalize_data_set, msg=Archive= must be specified as Y/N. (archive=%str(&archive)). )
     %goto exit;
@@ -93,25 +98,12 @@
       %warn_mput( macro=Finalize_data_set, msg=Existing data set %str(%upcase(&outlib..&out)) will be replaced. )
     %end;
   
-    %if %length( &sortby ) > 0 %then %do;
+    ** Sort to final data set and label **;
     
-      ** Sort to final data set and label **;
-      
-      proc sort data=&data out=&outlib..&out (label=&label);
-        by &sortby;
-      run;
-      
-    %end;
-    %else %do;
+    proc sort data=&data out=&outlib..&out (label=&label);
+      by &sortby;
+    run;
     
-      ** Copy and label data set **;
-      
-      data &outlib..&out (label=&label);
-        set &data;
-      run;
-      
-    %end;
-
     ** Print file info **;
     
     %File_info(
@@ -159,23 +151,12 @@
       %warn_mput( macro=Finalize_data_set, msg=Existing data set %str(%upcase(&outlib..&out)) will be replaced on remote batch submit. )
     %end;
 
-    %if %length( &sortby ) > 0 %then %do;
+    ** Sort and label temporary data set **;
     
-      ** Sort and label temporary data set **;
-      
-      proc sort data=&data (label=&label);
-        by &sortby;
-      run;
-      
-    %end;
-    %else %do;
+    proc sort data=&data (label=&label);
+      by &sortby;
+    run;
     
-      data &data (label=&label);
-        set &data;
-      run;
-      
-    %end;
-      
     %File_info(
       data=&data,
       contents=&contents,
