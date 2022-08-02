@@ -1,1351 +1,1358 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta name="Generator" content="SAS Software Version 9.2, see www.sas.com">
+<meta name="Generator" content="SAS Software Version 9.4, see www.sas.com">
 <meta http-equiv="Content-type" content="text/html; charset=windows-1252">
 <title>Urban-Greater DC Macro Library</title>
 <style type="text/css">
 <!--
-.AfterCaption
+.aftercaption
 {
+  background-color: #F1EACB;
+  border-spacing: 0px;
+  color: #000000;
   font-family: Verdana, Arial, Helvetica, sans-serif;
   font-size: 11pt;
-  font-weight: bold;
   font-style: normal;
-  color: #000000;
-  background-color: #F1EACB;
-  padding: 0px;
-  border-spacing: 0px;
+  font-weight: bold;
+  padding-top: 4pt;
 }
-.Batch
+.batch
 {
+  background-color: #F1EACB;
+  border: 1px solid #CCCCCC;
+  border-collapse: separate;
+  border-spacing: 1px;
+  color: #000000;
   font-family: 'SAS Monospace', 'Courier New', Courier, monospace;
   font-size: 10pt;
-  font-weight: normal;
   font-style: normal;
-  color: #000000;
-  background-color: #F1EACB;
+  font-weight: normal;
   padding: 7px;
-  border-collapse: separate;
-  border-spacing: 1px;
-  border: 1px solid #CCCCCC;
 }
-.BeforeCaption
+.beforecaption
 {
+  background-color: #F1EACB;
+  border-spacing: 0px;
+  color: #000000;
   font-family: Verdana, Arial, Helvetica, sans-serif;
   font-size: 11pt;
-  font-weight: bold;
   font-style: normal;
-  color: #000000;
-  background-color: #F1EACB;
-  padding: 0px;
-  border-spacing: 0px;
+  font-weight: bold;
 }
-.Body
+.body
 {
+  background-color: #FFFFFF;
+  color: #000000;
   font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
   font-size: 11pt;
-  font-weight: normal;
   font-style: normal;
-  color: #000000;
-  background-color: #FFFFFF;
+  font-weight: normal;
   margin-left: 8px;
   margin-right: 8px;
 }
-.BodyDate
+.bodydate
 {
+  background-color: #FFFFFF;
+  border-spacing: 0px;
+  color: #000000;
   font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
   font-size: 11pt;
-  font-weight: normal;
   font-style: normal;
-  color: #000000;
-  background-color: #FFFFFF;
-  padding: 0px;
-  border-spacing: 0px;
-  width: 100%;
+  font-weight: normal;
   text-align: right;
   vertical-align: top;
-}
-.ByContentFolder
-{
-  font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
-  font-size: 11pt;
-  font-weight: normal;
-  font-style: normal;
-  color: #000000;
-  margin-left: 6pt;
-  list-style-type: none;
-}
-.Byline
-{
-  font-family: Verdana, Arial, Helvetica, sans-serif;
-  font-size: 11pt;
-  font-weight: bold;
-  font-style: normal;
-  color: #000000;
-  padding: 0px;
-  border-spacing: 0px;
-}
-.BylineContainer
-{
-  font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
-  font-size: 11pt;
-  font-weight: normal;
-  font-style: normal;
-  color: #000000;
-  background-color: #FFFFFF;
-  padding: 1px;
-  border-spacing: 1px;
-  border: 0px solid #000000;
   width: 100%;
 }
-.Caption
+.bycontentfolder
 {
+  color: #000000;
+  font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
+  font-size: 11pt;
+  font-style: normal;
+  font-weight: normal;
+  list-style-type: none;
+  margin-left: 6pt;
+}
+.byline
+{
+  border-spacing: 0px;
+  color: #000000;
   font-family: Verdana, Arial, Helvetica, sans-serif;
   font-size: 11pt;
+  font-style: normal;
   font-weight: bold;
-  font-style: normal;
+}
+.bylinecontainer
+{
+  background-color: #FFFFFF;
+  border: 0px solid #000000;
+  border-spacing: 1px;
   color: #000000;
+  font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
+  font-size: 11pt;
+  font-style: normal;
+  font-weight: normal;
+  width: 100%;
+}
+.caption
+{
   background-color: #F1EACB;
-  padding: 0px;
   border-spacing: 0px;
-}
-.Cell
-{
-  font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
-  font-size: 11pt;
-  font-weight: normal;
-  font-style: normal;
   color: #000000;
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 11pt;
+  font-style: normal;
+  font-weight: bold;
+}
+.cell
+{
   background-color: #FFFFFF;
-}
-.Container
-{
+  color: #000000;
   font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
   font-size: 11pt;
-  font-weight: normal;
   font-style: normal;
-  color: #000000;
+  font-weight: normal;
+}
+.container
+{
   background-color: #FFFFFF;
-}
-.ContentFolder
-{
+  color: #000000;
   font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
   font-size: 11pt;
-  font-weight: normal;
   font-style: normal;
+  font-weight: normal;
+}
+.contentfolder
+{
   color: #000000;
-  margin-left: 6pt;
+  font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
+  font-size: 11pt;
+  font-style: normal;
+  font-weight: normal;
   list-style-type: none;
-}
-.ContentItem
-{
-  font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
-  font-size: 11pt;
-  font-weight: normal;
-  font-style: normal;
-  color: #000000;
   margin-left: 6pt;
-  list-style-type: none;
 }
-.ContentProcLabel
+.contentitem
 {
+  color: #000000;
   font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
   font-size: 11pt;
-  font-weight: normal;
   font-style: normal;
+  font-weight: normal;
+  list-style-type: none;
+  margin-left: 6pt;
+}
+.contentproclabel
+{
   color: #000000;
+  font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
+  font-size: 11pt;
+  font-style: normal;
+  font-weight: normal;
   list-style-type: decimal;
 }
-.ContentProcName
+.contentprocname
 {
+  color: #000000;
   font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
   font-size: 11pt;
-  font-weight: normal;
   font-style: normal;
-  color: #000000;
+  font-weight: normal;
   list-style-type: decimal;
 }
-.Contents
+.contents
 {
-  font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
-  font-size: 11pt;
-  font-weight: normal;
-  font-style: normal;
-  color: #000000;
   background-color: #F1EACB;
+  color: #000000;
+  font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
+  font-size: 11pt;
+  font-style: normal;
+  font-weight: normal;
+  list-style-type: decimal;
   margin-left: 8px;
   margin-right: 8px;
-  list-style-type: decimal;
 }
-.ContentsDate
+.contentsdate
 {
+  background-color: #F1EACB;
+  color: #000000;
   font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
   font-size: 11pt;
-  font-weight: normal;
   font-style: normal;
-  color: #000000;
-  background-color: #F1EACB;
+  font-weight: normal;
   width: 100%;
 }
-.ContentTitle
+.contenttitle
 {
+  color: #000000;
   font-family: Verdana, Arial, Helvetica, sans-serif;
   font-size: 10pt;
-  font-weight: normal;
   font-style: italic;
-  color: #000000;
+  font-weight: normal;
 }
-.Continued
+.continued
 {
-  font-family: Verdana, Arial, Helvetica, sans-serif;
-  font-size: 11pt;
-  font-weight: bold;
-  font-style: normal;
-  color: #000000;
-  padding: 0px;
   border-spacing: 0px;
+  color: #000000;
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 11pt;
+  font-style: normal;
+  font-weight: bold;
   width: 100%;
-  text-align: left;
 }
-.Data
+.data
 {
+  background-color: #FFFFFF;
+  color: #000000;
   font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
   font-size: 11pt;
-  font-weight: normal;
   font-style: normal;
-  color: #000000;
-  background-color: #FFFFFF;
+  font-weight: normal;
 }
-.DataEmphasis
+.dataemphasis
 {
+  background-color: #FFFFFF;
+  color: #000000;
   font-family: Verdana, Arial, Helvetica, sans-serif;
   font-size: 10pt;
-  font-weight: normal;
   font-style: italic;
-  color: #000000;
-  background-color: #FFFFFF;
+  font-weight: normal;
 }
-.DataEmphasisFixed
+.dataemphasisfixed
 {
+  background-color: #FFFFFF;
+  color: #000000;
   font-family: 'Courier New', Courier, monospace;
   font-size: 10pt;
-  font-weight: normal;
   font-style: italic;
-  color: #000000;
-  background-color: #FFFFFF;
+  font-weight: normal;
 }
-.DataEmpty
+.dataempty
 {
+  background-color: #FFFFFF;
+  color: #000000;
   font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
   font-size: 11pt;
-  font-weight: normal;
   font-style: normal;
-  color: #000000;
-  background-color: #FFFFFF;
+  font-weight: normal;
 }
-.DataFixed
+.datafixed
 {
+  background-color: #FFFFFF;
+  color: #000000;
   font-family: 'Courier New', Courier, monospace;
   font-size: 10pt;
-  font-weight: normal;
   font-style: normal;
-  color: #000000;
-  background-color: #FFFFFF;
+  font-weight: normal;
 }
-.DataStrong
+.datastrong
 {
+  background-color: #FFFFFF;
+  color: #000000;
   font-family: Verdana, Arial, Helvetica, sans-serif;
   font-size: 11pt;
-  font-weight: bold;
   font-style: normal;
-  color: #000000;
-  background-color: #FFFFFF;
+  font-weight: bold;
 }
-.DataStrongFixed
+.datastrongfixed
 {
+  background-color: #FFFFFF;
+  color: #000000;
   font-family: 'Courier New', Courier, monospace;
   font-size: 10pt;
+  font-style: normal;
   font-weight: bold;
-  font-style: normal;
-  color: #000000;
-  background-color: #FFFFFF;
 }
-.Date
+.date
 {
-  font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
-  font-size: 11pt;
-  font-weight: normal;
-  font-style: normal;
-  color: #000000;
   background-color: #F1EACB;
-  width: 100%;
-}
-.Document
-{
+  color: #000000;
   font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
   font-size: 11pt;
-  font-weight: normal;
   font-style: normal;
-  color: #000000;
+  font-weight: normal;
+  width: 100%;
+}
+.document
+{
   background-color: #FFFFFF;
+  color: #000000;
+  font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
+  font-size: 11pt;
+  font-style: normal;
+  font-weight: normal;
 }
 a:link {
-color:#800080
+color:#0000CC
 }
 a:visited {
-color:#0000CC
+color:#800080
 }
 a:active {
-color:#0000CC
+color:#800080
 }
-.ErrorBanner
+.errorbanner
 {
+  background-color: #FFFFFF;
+  color: #000000;
   font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
   font-size: 11pt;
+  font-style: normal;
   font-weight: bold;
-  font-style: normal;
-  color: #000000;
-  background-color: #FFFFFF;
 }
-.ErrorContent
+.errorcontent
 {
+  background-color: #FFFFFF;
+  color: #000000;
   font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
   font-size: 11pt;
-  font-weight: normal;
   font-style: normal;
-  color: #000000;
-  background-color: #FFFFFF;
+  font-weight: normal;
 }
-.ErrorContentFixed
+.errorcontentfixed
 {
+  background-color: #FFFFFF;
+  color: #000000;
   font-family: 'Courier New', Courier, monospace;
   font-size: 10pt;
-  font-weight: normal;
   font-style: normal;
-  color: #000000;
-  background-color: #FFFFFF;
+  font-weight: normal;
 }
-.ExtendedPage
+.extendedpage
 {
+  border: 1pt solid #000000;
+  color: #000000;
   font-family: Verdana, Arial, Helvetica, sans-serif;
   font-size: 10pt;
-  font-weight: normal;
   font-style: italic;
-  color: #000000;
-  padding: 2pt;
-  border: 1pt solid #000000;
+  font-weight: normal;
   text-align: center;
 }
-.FatalBanner
+.fatalbanner
 {
+  background-color: #FFFFFF;
+  color: #000000;
   font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
   font-size: 11pt;
+  font-style: normal;
   font-weight: bold;
-  font-style: normal;
-  color: #000000;
-  background-color: #FFFFFF;
 }
-.FatalContent
+.fatalcontent
 {
+  background-color: #FFFFFF;
+  color: #000000;
   font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
   font-size: 11pt;
-  font-weight: normal;
   font-style: normal;
-  color: #000000;
-  background-color: #FFFFFF;
+  font-weight: normal;
 }
-.FatalContentFixed
+.fatalcontentfixed
 {
+  background-color: #FFFFFF;
+  color: #000000;
   font-family: 'Courier New', Courier, monospace;
   font-size: 10pt;
-  font-weight: normal;
   font-style: normal;
-  color: #000000;
-  background-color: #FFFFFF;
+  font-weight: normal;
 }
-.FolderAction
+.folderaction
 {
+  color: #000000;
   font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
   font-size: 11pt;
-  font-weight: normal;
   font-style: normal;
-  color: #000000;
-  margin-left: 6pt;
+  font-weight: normal;
   list-style-type: none;
+  margin-left: 6pt;
 }
-.Footer
+.footer
 {
+  background-color: #F1EACB;
+  color: #000000;
   font-family: Verdana, Arial, Helvetica, sans-serif;
   font-size: 11pt;
-  font-weight: bold;
   font-style: normal;
-  color: #000000;
-  background-color: #F1EACB;
+  font-weight: bold;
 }
-.FooterEmphasis
+.footeremphasis
 {
+  background-color: #F1EACB;
+  color: #000000;
   font-family: Verdana, Arial, Helvetica, sans-serif;
   font-size: 10pt;
-  font-weight: normal;
   font-style: italic;
-  color: #000000;
-  background-color: #F1EACB;
+  font-weight: normal;
 }
-.FooterEmphasisFixed
+.footeremphasisfixed
 {
+  background-color: #F1EACB;
+  color: #000000;
   font-family: 'Courier New', Courier, monospace;
   font-size: 10pt;
-  font-weight: normal;
   font-style: italic;
-  color: #000000;
-  background-color: #F1EACB;
-}
-.FooterEmpty
-{
-  font-family: Verdana, Arial, Helvetica, sans-serif;
-  font-size: 11pt;
-  font-weight: bold;
-  font-style: normal;
-  color: #000000;
-  background-color: #F1EACB;
-}
-.FooterFixed
-{
-  font-family: 'Courier New', Courier, monospace;
-  font-size: 10pt;
   font-weight: normal;
-  font-style: normal;
-  color: #000000;
-  background-color: #F1EACB;
 }
-.FooterStrong
+.footerempty
 {
+  background-color: #F1EACB;
+  color: #000000;
   font-family: Verdana, Arial, Helvetica, sans-serif;
   font-size: 11pt;
-  font-weight: bold;
   font-style: normal;
-  color: #000000;
-  background-color: #F1EACB;
+  font-weight: bold;
 }
-.FooterStrongFixed
+.footerfixed
 {
+  background-color: #F1EACB;
+  color: #000000;
   font-family: 'Courier New', Courier, monospace;
   font-size: 10pt;
-  font-weight: bold;
   font-style: normal;
-  color: #000000;
-  background-color: #F1EACB;
+  font-weight: normal;
 }
-.Frame
+.footerstrong
 {
+  background-color: #F1EACB;
+  color: #000000;
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 11pt;
+  font-style: normal;
+  font-weight: bold;
+}
+.footerstrongfixed
+{
+  background-color: #F1EACB;
+  color: #000000;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 10pt;
+  font-style: normal;
+  font-weight: bold;
+}
+.frame
+{
+  background-color: #FFFFFF;
+  color: #000000;
   font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
   font-size: 11pt;
-  font-weight: normal;
   font-style: normal;
-  color: #000000;
-  background-color: #FFFFFF;
+  font-weight: normal;
 }
-.Graph
+.graph
 {
-  font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
-  font-size: 11pt;
-  font-weight: normal;
-  font-style: normal;
-  color: #000000;
   background-color: #FFFFFF;
-  padding: 0px;
+  border: 1px solid #CCCCCC;
   border-collapse: separate;
   border-spacing: 1px;
-  border: 1px solid #CCCCCC;
+  color: #000000;
+  font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
+  font-size: 11pt;
+  font-style: normal;
+  font-weight: normal;
 }
-.Header
+.header
 {
+  background-color: #F1EACB;
+  color: #000000;
   font-family: Verdana, Arial, Helvetica, sans-serif;
   font-size: 11pt;
-  font-weight: bold;
   font-style: normal;
-  color: #000000;
-  background-color: #F1EACB;
+  font-weight: bold;
 }
-.HeaderEmphasis
+.headeremphasis
 {
+  background-color: #F1EACB;
+  color: #000000;
   font-family: Verdana, Arial, Helvetica, sans-serif;
   font-size: 10pt;
-  font-weight: normal;
   font-style: italic;
-  color: #000000;
-  background-color: #F1EACB;
+  font-weight: normal;
 }
-.HeaderEmphasisFixed
+.headeremphasisfixed
 {
+  background-color: #F1EACB;
+  color: #000000;
   font-family: 'Courier New', Courier, monospace;
   font-size: 10pt;
-  font-weight: normal;
   font-style: italic;
-  color: #000000;
-  background-color: #F1EACB;
+  font-weight: normal;
 }
-.HeaderEmpty
+.headerempty
 {
+  background-color: #F1EACB;
+  color: #000000;
   font-family: Verdana, Arial, Helvetica, sans-serif;
   font-size: 11pt;
-  font-weight: bold;
   font-style: normal;
-  color: #000000;
-  background-color: #F1EACB;
+  font-weight: bold;
 }
-.HeaderFixed
+.headerfixed
 {
+  background-color: #F1EACB;
+  color: #000000;
   font-family: 'Courier New', Courier, monospace;
   font-size: 10pt;
+  font-style: normal;
   font-weight: normal;
-  font-style: normal;
-  color: #000000;
-  background-color: #F1EACB;
 }
-.HeadersAndFooters
+.headersandfooters
 {
+  background-color: #F1EACB;
+  color: #000000;
   font-family: Verdana, Arial, Helvetica, sans-serif;
   font-size: 11pt;
-  font-weight: bold;
   font-style: normal;
-  color: #000000;
-  background-color: #F1EACB;
+  font-weight: bold;
 }
-.HeaderStrong
+.headerstrong
 {
+  background-color: #F1EACB;
+  color: #000000;
   font-family: Verdana, Arial, Helvetica, sans-serif;
   font-size: 11pt;
-  font-weight: bold;
   font-style: normal;
-  color: #000000;
-  background-color: #F1EACB;
+  font-weight: bold;
 }
-.HeaderStrongFixed
+.headerstrongfixed
 {
+  background-color: #F1EACB;
+  color: #000000;
   font-family: 'Courier New', Courier, monospace;
   font-size: 10pt;
+  font-style: normal;
   font-weight: bold;
-  font-style: normal;
-  color: #000000;
+}
+.heading1
+{
+  font-family: Arial, Helvetica, sans-serif;
+}
+.heading2
+{
+  font-family: Arial, Helvetica, sans-serif;
+}
+.heading3
+{
+  font-family: Arial, Helvetica, sans-serif;
+}
+.heading4
+{
+  font-family: Arial, Helvetica, sans-serif;
+}
+.heading5
+{
+  font-family: Arial, Helvetica, sans-serif;
+}
+.heading6
+{
+  font-family: Arial, Helvetica, sans-serif;
+}
+.index
+{
   background-color: #F1EACB;
-}
-.Index
-{
+  color: #000000;
   font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
   font-size: 11pt;
-  font-weight: normal;
   font-style: normal;
-  color: #000000;
-  background-color: #F1EACB;
+  font-weight: normal;
 }
-.IndexAction
+.indexaction
 {
+  color: #000000;
   font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
   font-size: 11pt;
-  font-weight: normal;
   font-style: normal;
-  color: #000000;
-  margin-left: 6pt;
+  font-weight: normal;
   list-style-type: none;
-}
-.IndexItem
-{
-  font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
-  font-size: 11pt;
-  font-weight: normal;
-  font-style: normal;
-  color: #000000;
   margin-left: 6pt;
-  list-style-type: none;
 }
-.IndexProcName
+.indexitem
 {
+  color: #000000;
   font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
   font-size: 11pt;
-  font-weight: normal;
   font-style: normal;
+  font-weight: normal;
+  list-style-type: none;
+  margin-left: 6pt;
+}
+.indexprocname
+{
   color: #000000;
+  font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
+  font-size: 11pt;
+  font-style: normal;
+  font-weight: normal;
   list-style-type: decimal;
 }
-.IndexTitle
+.indextitle
 {
+  color: #000000;
   font-family: Verdana, Arial, Helvetica, sans-serif;
   font-size: 10pt;
-  font-weight: normal;
   font-style: italic;
+  font-weight: normal;
+}
+.layoutcontainer
+{
+  border: 0px solid #000000;
+  border-spacing: 30px;
+}
+.layoutregion
+{
+  border: 0px solid #000000;
+  border-spacing: 30px;
+}
+.linecontent
+{
+  background-color: #FFFFFF;
   color: #000000;
-}
-.LayoutContainer
-{
-  padding: 0px;
-  border-spacing: 30px;
-  border: 0px solid #000000;
-}
-.LayoutRegion
-{
-  padding: 0px;
-  border-spacing: 30px;
-  border: 0px solid #000000;
-}
-.List
-{
   font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
   font-size: 11pt;
-  font-weight: normal;
   font-style: normal;
-  color: #000000;
+  font-weight: normal;
+}
+.list
+{
   background-color: #FFFFFF;
+  color: #000000;
+  font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
+  font-size: 11pt;
+  font-style: normal;
+  font-weight: normal;
   list-style-type: disc;
-  width: 100%;
-  text-align: left;
 }
-.List10
+.list10
 {
+  background-color: #FFFFFF;
+  color: #000000;
   font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
   font-size: 11pt;
-  font-weight: normal;
   font-style: normal;
-  color: #000000;
-  background-color: #FFFFFF;
+  font-weight: normal;
   list-style-type: square;
-  width: 100%;
-  text-align: left;
 }
-.List2
+.list2
 {
+  background-color: #FFFFFF;
+  color: #000000;
   font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
   font-size: 11pt;
-  font-weight: normal;
   font-style: normal;
-  color: #000000;
-  background-color: #FFFFFF;
+  font-weight: normal;
   list-style-type: circle;
-  width: 100%;
-  text-align: left;
 }
-.List3
+.list3
 {
+  background-color: #FFFFFF;
+  color: #000000;
   font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
   font-size: 11pt;
-  font-weight: normal;
   font-style: normal;
-  color: #000000;
-  background-color: #FFFFFF;
+  font-weight: normal;
   list-style-type: square;
-  width: 100%;
-  text-align: left;
 }
-.List4
+.list4
 {
+  background-color: #FFFFFF;
+  color: #000000;
   font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
   font-size: 11pt;
-  font-weight: normal;
   font-style: normal;
-  color: #000000;
-  background-color: #FFFFFF;
+  font-weight: normal;
   list-style-type: square;
-  width: 100%;
-  text-align: left;
 }
-.List5
+.list5
 {
+  background-color: #FFFFFF;
+  color: #000000;
   font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
   font-size: 11pt;
-  font-weight: normal;
   font-style: normal;
-  color: #000000;
-  background-color: #FFFFFF;
+  font-weight: normal;
   list-style-type: square;
-  width: 100%;
-  text-align: left;
 }
-.List6
+.list6
 {
+  background-color: #FFFFFF;
+  color: #000000;
   font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
   font-size: 11pt;
-  font-weight: normal;
   font-style: normal;
-  color: #000000;
-  background-color: #FFFFFF;
+  font-weight: normal;
   list-style-type: square;
-  width: 100%;
-  text-align: left;
 }
-.List7
+.list7
 {
+  background-color: #FFFFFF;
+  color: #000000;
   font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
   font-size: 11pt;
-  font-weight: normal;
   font-style: normal;
-  color: #000000;
-  background-color: #FFFFFF;
+  font-weight: normal;
   list-style-type: square;
-  width: 100%;
-  text-align: left;
 }
-.List8
+.list8
 {
+  background-color: #FFFFFF;
+  color: #000000;
   font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
   font-size: 11pt;
-  font-weight: normal;
   font-style: normal;
-  color: #000000;
-  background-color: #FFFFFF;
+  font-weight: normal;
   list-style-type: square;
-  width: 100%;
-  text-align: left;
 }
-.List9
+.list9
 {
+  background-color: #FFFFFF;
+  color: #000000;
   font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
   font-size: 11pt;
-  font-weight: normal;
   font-style: normal;
-  color: #000000;
-  background-color: #FFFFFF;
+  font-weight: normal;
   list-style-type: square;
-  width: 100%;
-  text-align: left;
 }
-.ListItem
+.listitem
 {
-  font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
-  font-size: 11pt;
-  font-weight: normal;
-  font-style: normal;
-  color: #000000;
   background-color: #FFFFFF;
-}
-.ListItem10
-{
-  font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
-  font-size: 11pt;
-  font-weight: normal;
-  font-style: normal;
   color: #000000;
-  background-color: #FFFFFF;
-}
-.ListItem2
-{
   font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
   font-size: 11pt;
-  font-weight: normal;
   font-style: normal;
-  color: #000000;
-  background-color: #FFFFFF;
-}
-.ListItem3
-{
-  font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
-  font-size: 11pt;
   font-weight: normal;
-  font-style: normal;
-  color: #000000;
-  background-color: #FFFFFF;
+  list-style-type: disc;
 }
-.ListItem4
+.listitem10
 {
+  background-color: #FFFFFF;
+  color: #000000;
   font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
   font-size: 11pt;
+  font-style: normal;
   font-weight: normal;
-  font-style: normal;
-  color: #000000;
-  background-color: #FFFFFF;
+  list-style-type: square;
 }
-.ListItem5
+.listitem2
 {
+  background-color: #FFFFFF;
+  color: #000000;
   font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
   font-size: 11pt;
+  font-style: normal;
   font-weight: normal;
-  font-style: normal;
-  color: #000000;
-  background-color: #FFFFFF;
+  list-style-type: circle;
 }
-.ListItem6
+.listitem3
 {
+  background-color: #FFFFFF;
+  color: #000000;
   font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
   font-size: 11pt;
+  font-style: normal;
   font-weight: normal;
-  font-style: normal;
-  color: #000000;
-  background-color: #FFFFFF;
+  list-style-type: square;
 }
-.ListItem7
+.listitem4
 {
+  background-color: #FFFFFF;
+  color: #000000;
   font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
   font-size: 11pt;
+  font-style: normal;
   font-weight: normal;
-  font-style: normal;
-  color: #000000;
-  background-color: #FFFFFF;
+  list-style-type: square;
 }
-.ListItem8
+.listitem5
 {
+  background-color: #FFFFFF;
+  color: #000000;
   font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
   font-size: 11pt;
+  font-style: normal;
   font-weight: normal;
-  font-style: normal;
-  color: #000000;
-  background-color: #FFFFFF;
+  list-style-type: square;
 }
-.ListItem9
+.listitem6
 {
+  background-color: #FFFFFF;
+  color: #000000;
   font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
   font-size: 11pt;
+  font-style: normal;
   font-weight: normal;
-  font-style: normal;
-  color: #000000;
-  background-color: #FFFFFF;
+  list-style-type: square;
 }
-.Note
+.listitem7
 {
+  background-color: #FFFFFF;
+  color: #000000;
   font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
   font-size: 11pt;
+  font-style: normal;
   font-weight: normal;
-  font-style: normal;
-  color: #000000;
-  background-color: #FFFFFF;
+  list-style-type: square;
 }
-.NoteBanner
+.listitem8
 {
+  background-color: #FFFFFF;
+  color: #000000;
   font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
   font-size: 11pt;
+  font-style: normal;
+  font-weight: normal;
+  list-style-type: square;
+}
+.listitem9
+{
+  background-color: #FFFFFF;
+  color: #000000;
+  font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
+  font-size: 11pt;
+  font-style: normal;
+  font-weight: normal;
+  list-style-type: square;
+}
+.note
+{
+  background-color: #FFFFFF;
+  color: #000000;
+  font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
+  font-size: 11pt;
+  font-style: normal;
+  font-weight: normal;
+}
+.notebanner
+{
+  background-color: #FFFFFF;
+  color: #000000;
+  font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
+  font-size: 11pt;
+  font-style: normal;
   font-weight: bold;
-  font-style: normal;
-  color: #000000;
-  background-color: #FFFFFF;
 }
-.NoteContent
+.notecontent
 {
+  background-color: #FFFFFF;
+  color: #000000;
   font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
   font-size: 11pt;
-  font-weight: normal;
   font-style: normal;
-  color: #000000;
-  background-color: #FFFFFF;
+  font-weight: normal;
 }
-.NoteContentFixed
+.notecontentfixed
 {
+  background-color: #FFFFFF;
+  color: #000000;
   font-family: 'Courier New', Courier, monospace;
   font-size: 10pt;
-  font-weight: normal;
   font-style: normal;
-  color: #000000;
-  background-color: #FFFFFF;
+  font-weight: normal;
 }
-.Output
+.output
 {
-  font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
-  font-size: 11pt;
-  font-weight: normal;
-  font-style: normal;
-  color: #000000;
   background-color: #FFFFFF;
-  padding: 7px;
+  border: 1px solid #CCCCCC;
   border-collapse: separate;
   border-spacing: 1px;
-  border: 1px solid #CCCCCC;
+  color: #000000;
+  font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
+  font-size: 11pt;
+  font-style: normal;
+  font-weight: normal;
 }
-.PageNo
+.pageno
 {
+  border-spacing: 0px;
+  color: #000000;
   font-family: Verdana, Arial, Helvetica, sans-serif;
   font-size: 11pt;
-  font-weight: bold;
   font-style: normal;
-  color: #000000;
-  padding: 0px;
-  border-spacing: 0px;
+  font-weight: bold;
   text-align: right;
   vertical-align: top;
 }
-.Pages
+.pages
 {
+  background-color: #F1EACB;
+  color: #000000;
   font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
   font-size: 11pt;
-  font-weight: normal;
   font-style: normal;
-  color: #000000;
-  background-color: #F1EACB;
+  font-weight: normal;
+  list-style-type: decimal;
   margin-left: 8px;
   margin-right: 8px;
-  list-style-type: decimal;
 }
-.PagesDate
+.pagesdate
 {
+  background-color: #F1EACB;
+  color: #000000;
   font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
   font-size: 11pt;
-  font-weight: normal;
   font-style: normal;
-  color: #000000;
-  background-color: #F1EACB;
+  font-weight: normal;
   width: 100%;
 }
-.PagesItem
+.pagesitem
 {
+  color: #000000;
   font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
   font-size: 11pt;
-  font-weight: normal;
   font-style: normal;
-  color: #000000;
-  margin-left: 6pt;
+  font-weight: normal;
   list-style-type: none;
+  margin-left: 6pt;
 }
-.PagesProcLabel
+.pagesproclabel
 {
+  color: #000000;
   font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
   font-size: 11pt;
-  font-weight: normal;
   font-style: normal;
-  color: #000000;
+  font-weight: normal;
   list-style-type: decimal;
 }
-.PagesProcName
+.pagesprocname
 {
+  color: #000000;
   font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
   font-size: 11pt;
-  font-weight: normal;
   font-style: normal;
-  color: #000000;
+  font-weight: normal;
   list-style-type: decimal;
 }
-.PagesTitle
+.pagestitle
 {
+  color: #000000;
   font-family: Verdana, Arial, Helvetica, sans-serif;
   font-size: 10pt;
-  font-weight: normal;
   font-style: italic;
-  color: #000000;
+  font-weight: normal;
 }
-.Paragraph
+.paragraph
 {
+  background-color: #FFFFFF;
+  color: #000000;
   font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
   font-size: 11pt;
-  font-weight: normal;
   font-style: normal;
-  color: #000000;
-  background-color: #FFFFFF;
-  width: 100%;
-  text-align: left;
+  font-weight: normal;
 }
-.Parskip
+.parskip
 {
+  border: 0px solid #000000;
+  border-spacing: 0px;
   font-family: Verdana, Arial, Helvetica, sans-serif;
   font-size: 11pt;
-  font-weight: bold;
   font-style: normal;
-  padding: 0px;
-  border-spacing: 0px;
-  border: 0px solid #000000;
+  font-weight: bold;
 }
-.PrePage
+.prepage
 {
+  background-color: #FFFFFF;
+  color: #000000;
   font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
   font-size: 11pt;
-  font-weight: normal;
   font-style: normal;
-  color: #000000;
-  background-color: #FFFFFF;
+  font-weight: normal;
   text-align: left;
 }
-.ProcTitle
+.proctitle
 {
+  color: #000000;
   font-family: Verdana, Arial, Helvetica, sans-serif;
   font-size: 12pt;
-  font-weight: bold;
   font-style: italic;
-  color: #000000;
+  font-weight: bold;
 }
-.ProcTitleFixed
+.proctitlefixed
 {
+  color: #000000;
   font-family: 'Courier New', Courier, monospace;
   font-size: 10pt;
-  font-weight: bold;
   font-style: normal;
-  color: #000000;
+  font-weight: bold;
 }
-.RowFooter
+.rowfooter
 {
+  background-color: #F1EACB;
+  color: #000000;
   font-family: Verdana, Arial, Helvetica, sans-serif;
   font-size: 11pt;
-  font-weight: bold;
   font-style: normal;
-  color: #000000;
-  background-color: #F1EACB;
+  font-weight: bold;
 }
-.RowFooterEmphasis
+.rowfooteremphasis
 {
+  background-color: #F1EACB;
+  color: #000000;
   font-family: Verdana, Arial, Helvetica, sans-serif;
   font-size: 10pt;
-  font-weight: normal;
   font-style: italic;
-  color: #000000;
-  background-color: #F1EACB;
+  font-weight: normal;
 }
-.RowFooterEmphasisFixed
+.rowfooteremphasisfixed
 {
+  background-color: #F1EACB;
+  color: #000000;
   font-family: 'Courier New', Courier, monospace;
   font-size: 10pt;
-  font-weight: normal;
   font-style: italic;
-  color: #000000;
-  background-color: #F1EACB;
+  font-weight: normal;
 }
-.RowFooterEmpty
+.rowfooterempty
 {
+  background-color: #F1EACB;
+  color: #000000;
   font-family: Verdana, Arial, Helvetica, sans-serif;
   font-size: 11pt;
-  font-weight: bold;
   font-style: normal;
-  color: #000000;
-  background-color: #F1EACB;
+  font-weight: bold;
 }
-.RowFooterFixed
+.rowfooterfixed
 {
+  background-color: #F1EACB;
+  color: #000000;
   font-family: 'Courier New', Courier, monospace;
   font-size: 10pt;
-  font-weight: normal;
   font-style: normal;
-  color: #000000;
-  background-color: #F1EACB;
+  font-weight: normal;
 }
-.RowFooterStrong
+.rowfooterstrong
 {
+  background-color: #F1EACB;
+  color: #000000;
   font-family: Verdana, Arial, Helvetica, sans-serif;
   font-size: 11pt;
-  font-weight: bold;
   font-style: normal;
-  color: #000000;
-  background-color: #F1EACB;
+  font-weight: bold;
 }
-.RowFooterStrongFixed
+.rowfooterstrongfixed
 {
+  background-color: #F1EACB;
+  color: #000000;
   font-family: 'Courier New', Courier, monospace;
   font-size: 10pt;
-  font-weight: bold;
   font-style: normal;
-  color: #000000;
-  background-color: #F1EACB;
+  font-weight: bold;
 }
-.RowHeader
+.rowheader
 {
+  background-color: #F1EACB;
+  color: #000000;
   font-family: Verdana, Arial, Helvetica, sans-serif;
   font-size: 11pt;
-  font-weight: bold;
   font-style: normal;
-  color: #000000;
-  background-color: #F1EACB;
+  font-weight: bold;
 }
-.RowHeaderEmphasis
+.rowheaderemphasis
 {
+  background-color: #F1EACB;
+  color: #000000;
   font-family: Verdana, Arial, Helvetica, sans-serif;
   font-size: 10pt;
-  font-weight: normal;
   font-style: italic;
-  color: #000000;
-  background-color: #F1EACB;
+  font-weight: normal;
 }
-.RowHeaderEmphasisFixed
+.rowheaderemphasisfixed
 {
+  background-color: #F1EACB;
+  color: #000000;
   font-family: 'Courier New', Courier, monospace;
   font-size: 10pt;
-  font-weight: normal;
   font-style: italic;
-  color: #000000;
-  background-color: #F1EACB;
+  font-weight: normal;
 }
-.RowHeaderEmpty
+.rowheaderempty
 {
+  background-color: #F1EACB;
+  color: #000000;
   font-family: Verdana, Arial, Helvetica, sans-serif;
   font-size: 11pt;
-  font-weight: bold;
   font-style: normal;
-  color: #000000;
-  background-color: #F1EACB;
+  font-weight: bold;
 }
-.RowHeaderFixed
+.rowheaderfixed
 {
+  background-color: #F1EACB;
+  color: #000000;
   font-family: 'Courier New', Courier, monospace;
   font-size: 10pt;
-  font-weight: normal;
   font-style: normal;
-  color: #000000;
-  background-color: #F1EACB;
+  font-weight: normal;
 }
-.RowHeaderStrong
+.rowheaderstrong
 {
+  background-color: #F1EACB;
+  color: #000000;
   font-family: Verdana, Arial, Helvetica, sans-serif;
   font-size: 11pt;
-  font-weight: bold;
   font-style: normal;
-  color: #000000;
-  background-color: #F1EACB;
+  font-weight: bold;
 }
-.RowHeaderStrongFixed
+.rowheaderstrongfixed
 {
+  background-color: #F1EACB;
+  color: #000000;
   font-family: 'Courier New', Courier, monospace;
   font-size: 10pt;
-  font-weight: bold;
   font-style: normal;
-  color: #000000;
-  background-color: #F1EACB;
+  font-weight: bold;
 }
-.SystemFooter
+.systemfooter
 {
+  color: #000000;
   font-family: Verdana, Arial, Helvetica, sans-serif;
   font-size: 13pt;
-  font-weight: bold;
   font-style: italic;
-  color: #000000;
+  font-weight: bold;
 }
-.SystemFooter10
+.systemfooter10
 {
+  color: #000000;
   font-family: Verdana, Arial, Helvetica, sans-serif;
   font-size: 13pt;
-  font-weight: bold;
   font-style: italic;
-  color: #000000;
+  font-weight: bold;
 }
-.SystemFooter2
+.systemfooter2
 {
+  color: #000000;
   font-family: Verdana, Arial, Helvetica, sans-serif;
   font-size: 13pt;
-  font-weight: bold;
   font-style: italic;
-  color: #000000;
+  font-weight: bold;
 }
-.SystemFooter3
+.systemfooter3
 {
+  color: #000000;
   font-family: Verdana, Arial, Helvetica, sans-serif;
   font-size: 13pt;
-  font-weight: bold;
   font-style: italic;
-  color: #000000;
+  font-weight: bold;
 }
-.SystemFooter4
+.systemfooter4
 {
+  color: #000000;
   font-family: Verdana, Arial, Helvetica, sans-serif;
   font-size: 13pt;
-  font-weight: bold;
   font-style: italic;
-  color: #000000;
+  font-weight: bold;
 }
-.SystemFooter5
+.systemfooter5
 {
+  color: #000000;
   font-family: Verdana, Arial, Helvetica, sans-serif;
   font-size: 13pt;
-  font-weight: bold;
   font-style: italic;
-  color: #000000;
+  font-weight: bold;
 }
-.SystemFooter6
+.systemfooter6
 {
+  color: #000000;
   font-family: Verdana, Arial, Helvetica, sans-serif;
   font-size: 13pt;
-  font-weight: bold;
   font-style: italic;
-  color: #000000;
+  font-weight: bold;
 }
-.SystemFooter7
+.systemfooter7
 {
+  color: #000000;
   font-family: Verdana, Arial, Helvetica, sans-serif;
   font-size: 13pt;
-  font-weight: bold;
   font-style: italic;
-  color: #000000;
+  font-weight: bold;
 }
-.SystemFooter8
+.systemfooter8
 {
+  color: #000000;
   font-family: Verdana, Arial, Helvetica, sans-serif;
   font-size: 13pt;
-  font-weight: bold;
   font-style: italic;
-  color: #000000;
+  font-weight: bold;
 }
-.SystemFooter9
+.systemfooter9
 {
+  color: #000000;
   font-family: Verdana, Arial, Helvetica, sans-serif;
   font-size: 13pt;
-  font-weight: bold;
   font-style: italic;
-  color: #000000;
+  font-weight: bold;
 }
-.SystemTitle
+.systemtitle
 {
+  color: #000000;
   font-family: Verdana, Arial, Helvetica, sans-serif;
   font-size: 13pt;
-  font-weight: bold;
   font-style: italic;
-  color: #000000;
+  font-weight: bold;
 }
-.SystemTitle10
+.systemtitle10
 {
+  color: #000000;
   font-family: Verdana, Arial, Helvetica, sans-serif;
   font-size: 13pt;
-  font-weight: bold;
   font-style: italic;
-  color: #000000;
+  font-weight: bold;
 }
-.SystemTitle2
+.systemtitle2
 {
+  color: #000000;
   font-family: Verdana, Arial, Helvetica, sans-serif;
   font-size: 13pt;
-  font-weight: bold;
   font-style: italic;
-  color: #000000;
+  font-weight: bold;
 }
-.SystemTitle3
+.systemtitle3
 {
+  color: #000000;
   font-family: Verdana, Arial, Helvetica, sans-serif;
   font-size: 13pt;
-  font-weight: bold;
   font-style: italic;
-  color: #000000;
+  font-weight: bold;
 }
-.SystemTitle4
+.systemtitle4
 {
+  color: #000000;
   font-family: Verdana, Arial, Helvetica, sans-serif;
   font-size: 13pt;
-  font-weight: bold;
   font-style: italic;
-  color: #000000;
+  font-weight: bold;
 }
-.SystemTitle5
+.systemtitle5
 {
+  color: #000000;
   font-family: Verdana, Arial, Helvetica, sans-serif;
   font-size: 13pt;
-  font-weight: bold;
   font-style: italic;
-  color: #000000;
+  font-weight: bold;
 }
-.SystemTitle6
+.systemtitle6
 {
+  color: #000000;
   font-family: Verdana, Arial, Helvetica, sans-serif;
   font-size: 13pt;
-  font-weight: bold;
   font-style: italic;
-  color: #000000;
+  font-weight: bold;
 }
-.SystemTitle7
+.systemtitle7
 {
+  color: #000000;
   font-family: Verdana, Arial, Helvetica, sans-serif;
   font-size: 13pt;
-  font-weight: bold;
   font-style: italic;
-  color: #000000;
+  font-weight: bold;
 }
-.SystemTitle8
+.systemtitle8
 {
+  color: #000000;
   font-family: Verdana, Arial, Helvetica, sans-serif;
   font-size: 13pt;
-  font-weight: bold;
   font-style: italic;
-  color: #000000;
+  font-weight: bold;
 }
-.SystemTitle9
+.systemtitle9
 {
+  color: #000000;
   font-family: Verdana, Arial, Helvetica, sans-serif;
   font-size: 13pt;
-  font-weight: bold;
   font-style: italic;
-  color: #000000;
+  font-weight: bold;
 }
-.SysTitleAndFooterContainer
+.systitleandfootercontainer
 {
+  background-color: #FFFFFF;
+  border: 0px solid #000000;
+  border-spacing: 1px;
+  color: #000000;
   font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
   font-size: 11pt;
-  font-weight: normal;
   font-style: normal;
-  color: #000000;
-  background-color: #FFFFFF;
-  padding: 1px;
-  border-spacing: 1px;
-  border: 0px solid #000000;
+  font-weight: normal;
   width: 100%;
 }
 .table
 {
-  font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
-  font-size: 11pt;
-  font-weight: normal;
-  font-style: normal;
-  color: #000000;
   background-color: #FFFFFF;
+  border: 1px solid #CCCCCC;
   border-collapse: separate;
   border-spacing: 0px;
-  border: 1px solid #CCCCCC;
+  color: #000000;
+  font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
+  font-size: 11pt;
+  font-style: normal;
+  font-weight: normal;
 }
 .top_stacked_value
 {
   padding-bottom: 1px;
+  border: 0;
 }
 .middle_stacked_value
 {
   padding-top: 1px;
   padding-bottom: 1px;
+  border: 0;
 }
 .bottom_stacked_value
 {
   padding-top: 1px;
+  border: 0;
 }
-.TitleAndNoteContainer
+.titleandnotecontainer
 {
+  background-color: #FFFFFF;
+  border: 0px solid #000000;
+  border-spacing: 1px;
+  color: #000000;
   font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
   font-size: 11pt;
-  font-weight: normal;
   font-style: normal;
-  color: #000000;
-  background-color: #FFFFFF;
-  padding: 1px;
-  border-spacing: 1px;
-  border: 0px solid #000000;
+  font-weight: normal;
   width: 100%;
 }
-.TitlesAndFooters
+.titlesandfooters
 {
+  color: #000000;
   font-family: Verdana, Arial, Helvetica, sans-serif;
   font-size: 12pt;
-  font-weight: bold;
   font-style: italic;
-  color: #000000;
-}
-.UserText
-{
-  font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
-  font-size: 11pt;
-  font-weight: normal;
-  font-style: normal;
-  color: #000000;
-  background-color: #FFFFFF;
-  text-align: left;
-}
-.WarnBanner
-{
-  font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
-  font-size: 11pt;
   font-weight: bold;
-  font-style: normal;
-  color: #000000;
-  background-color: #FFFFFF;
 }
-.WarnContent
+.usertext
 {
+  background-color: #FFFFFF;
+  color: #000000;
   font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
   font-size: 11pt;
-  font-weight: normal;
   font-style: normal;
-  color: #000000;
-  background-color: #FFFFFF;
+  font-weight: normal;
 }
-.WarnContentFixed
+.warnbanner
 {
+  background-color: #FFFFFF;
+  color: #000000;
+  font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
+  font-size: 11pt;
+  font-style: normal;
+  font-weight: bold;
+}
+.warncontent
+{
+  background-color: #FFFFFF;
+  color: #000000;
+  font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
+  font-size: 11pt;
+  font-style: normal;
+  font-weight: normal;
+}
+.warncontentfixed
+{
+  background-color: #FFFFFF;
+  color: #000000;
   font-family: 'Courier New', Courier, monospace;
   font-size: 10pt;
-  font-weight: normal;
   font-style: normal;
-  color: #000000;
-  background-color: #FFFFFF;
+  font-weight: normal;
 }
 .l {text-align: left }
 .c {text-align: center }
@@ -1372,7 +1379,7 @@ function shutdown(){
 </script>
 
 </head>
-<body onload="startup()" onunload="shutdown()" class="Body">
+<body onload="startup()" onunload="shutdown()" class="body">
 
 <script language="javascript" type="text/javascript">
 <!-- 
@@ -1380,15 +1387,16 @@ var _info = navigator.userAgent
 var _ie = (_info.indexOf("MSIE") > 0
           && _info.indexOf("Win") > 0
           && _info.indexOf("Windows 3.1") < 0);
+var _ie64 = _info.indexOf("x64") > 0
 
 //-->
 </script>
 
 <div class="branch">
 <a name="IDX"></a>
-<table class="SysTitleAndFooterContainer" width="100%" cellspacing="1" cellpadding="1" rules="none" frame="void" border="0" summary="Page Layout">
+<table class="systitleandfootercontainer" width="100%" cellspacing="1" cellpadding="1" rules="none" frame="void" border="0" summary="Page Layout">
 <tr>
-<td class="l SystemTitle">Urban-Greater DC Macro Library</td>
+<td class="l systemtitle">Urban-Greater DC Macro Library</td>
 </tr>
 </table><br>
 <div>
@@ -1400,104 +1408,104 @@ var _ie = (_info.indexOf("MSIE") > 0
 </colgroup>
 <thead>
 <tr>
-<th class="c Header" scope="col">Macro</th>
-<th class="c Header" scope="col">Description</th>
+<th class="c header" scope="col">Macro</th>
+<th class="c header" scope="col">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="l Data"><a href="Annchg.htm" target="Code">Annchg</a>
+<td class="l data"><a href="Annchg.htm" target="Code">Annchg</a>
 </td>
-<td class="l Data">Calculate annual percentage change between two numbers, &lt;start&gt; and &lt;end&gt;.</td>
+<td class="l data">Calculate annual percentage change between two numbers, &lt;start&gt; and &lt;end&gt;.</td>
 </tr>
 <tr>
-<td class="l Data"><a href="Archive_data_sets.htm" target="Code">Archive_data_sets.sas</a>
+<td class="l data"><a href="Archive_data_sets.htm" target="Code">Archive_data_sets.sas</a>
 </td>
-<td class="l Data">Autocall macro to archive DCData data sets. Note: Overwrite=N (default) prevents replacement of older files in a previously existing archive.</td>
+<td class="l data">Autocall macro to archive DCData data sets. Note: Overwrite=N (default) prevents replacement of older files in a previously existing archive.</td>
 </tr>
 <tr>
-<td class="l Data"><a href="Concat_lib.htm" target="Code">Concat_lib</a>
+<td class="l data"><a href="Concat_lib.htm" target="Code">Concat_lib</a>
 </td>
-<td class="l Data">Define a concatenated V8 &amp; V6 SAS library</td>
+<td class="l data">Define a concatenated V8 &amp; V6 SAS library</td>
 </tr>
 <tr>
-<td class="l Data"><a href="Concat_lr_lib.htm" target="Code">Concat_lr_lib</a>
+<td class="l data"><a href="Concat_lr_lib.htm" target="Code">Concat_lr_lib</a>
 </td>
-<td class="l Data">Define concatenated local/remote/confidential SAS library. Note: Local and remote library base names must be shortened to 6 chars to allow _r and _l suffixes. Can&#39;t define two different libraries that have same first 6 chars in name.</td>
+<td class="l data">Define concatenated local/remote/confidential SAS library. Note: Local and remote library base names must be shortened to 6 chars to allow _r and _l suffixes. Can&#39;t define two different libraries that have same first 6 chars in name.</td>
 </tr>
 <tr>
-<td class="l Data"><a href="ConvertLibname.htm" target="Code">ConvertLibname</a>
+<td class="l data"><a href="ConvertLibname.htm" target="Code">ConvertLibname</a>
 </td>
-<td class="l Data">Return local library name.</td>
+<td class="l data">Return local library name.</td>
 </tr>
 <tr>
-<td class="l Data"><a href="DCData_lib.htm" target="Code">DCData_lib</a>
+<td class="l data"><a href="DCData_lib.htm" target="Code">DCData_lib</a>
 </td>
-<td class="l Data">Define NeighborhoodInfo DC SAS libraries for local and remote sessions. Sets macro and format search paths.</td>
+<td class="l data">Define NeighborhoodInfo DC SAS libraries for local and remote sessions. Sets macro and format search paths.</td>
 </tr>
 <tr>
-<td class="l Data"><a href="DC_update_meta_file.htm" target="Code">DC_update_meta_file</a>
+<td class="l data"><a href="DC_update_meta_file.htm" target="Code">DC_update_meta_file</a>
 </td>
-<td class="l Data">Update file entry in metadata system.</td>
+<td class="l data">Update file entry in metadata system.</td>
 </tr>
 <tr>
-<td class="l Data"><a href="DC_update_meta_library.htm" target="Code">DC_update_meta_library</a>
+<td class="l data"><a href="DC_update_meta_library.htm" target="Code">DC_update_meta_library</a>
 </td>
-<td class="l Data">Update library entry in metadata system.</td>
+<td class="l data">Update library entry in metadata system.</td>
 </tr>
 <tr>
-<td class="l Data"><a href="Finalize_data_set.htm" target="Code">Finalize_data_set.sas</a>
+<td class="l data"><a href="Finalize_data_set.htm" target="Code">Finalize_data_set.sas</a>
 </td>
-<td class="l Data">Autocall macro to finalize SAS data set in DCData.</td>
+<td class="l data">Autocall macro to finalize SAS data set in DCData.</td>
 </tr>
 <tr>
-<td class="l Data"><a href="GetProgLib.htm" target="Code">GetProgLib</a>
+<td class="l data"><a href="GetProgLib.htm" target="Code">GetProgLib</a>
 </td>
-<td class="l Data">Return the library of the currently submitted SAS program to the global macro variable given by VAR. If running in interactive mode, macro returns an empty string.</td>
+<td class="l data">Return the library of the currently submitted SAS program to the global macro variable given by VAR. If running in interactive mode, macro returns an empty string.</td>
 </tr>
 <tr>
-<td class="l Data"><a href="Is_remote_batch.htm" target="Code">Is_remote_batch</a>
+<td class="l data"><a href="Is_remote_batch.htm" target="Code">Is_remote_batch</a>
 </td>
-<td class="l Data">Returns 1 if current SAS session is a remote batch submit, 0 if local batch or interactive.</td>
+<td class="l data">Returns 1 if current SAS session is a remote batch submit, 0 if local batch or interactive.</td>
 </tr>
 <tr>
-<td class="l Data"><a href="Label_var_years.htm" target="Code">Label_var_years</a>
+<td class="l data"><a href="Label_var_years.htm" target="Code">Label_var_years</a>
 </td>
-<td class="l Data">Label a series of variables across multiple years.</td>
+<td class="l data">Label a series of variables across multiple years.</td>
 </tr>
 <tr>
-<td class="l Data"><a href="mif_select.htm" target="Code">mif_select.sas</a>
+<td class="l data"><a href="mif_select.htm" target="Code">mif_select.sas</a>
 </td>
-<td class="l Data">Returns &lt;a&gt; if &lt;condition&gt; is true, &lt;b&gt; if false.</td>
+<td class="l data">Returns &lt;a&gt; if &lt;condition&gt; is true, &lt;b&gt; if false.</td>
 </tr>
 <tr>
-<td class="l Data"><a href="Pctchg.htm" target="Code">Pctchg</a>
+<td class="l data"><a href="Pctchg.htm" target="Code">Pctchg</a>
 </td>
-<td class="l Data">Calculate percentage change between two numbers, &lt;start&gt; and &lt;end&gt;.</td>
+<td class="l data">Calculate percentage change between two numbers, &lt;start&gt; and &lt;end&gt;.</td>
 </tr>
 <tr>
-<td class="l Data"><a href="Pct_calc.htm" target="Code">Pct_calc</a>
+<td class="l data"><a href="Pct_calc.htm" target="Code">Pct_calc</a>
 </td>
-<td class="l Data">Calculate percentages or rates across multiple years.</td>
+<td class="l data">Calculate percentages or rates across multiple years.</td>
 </tr>
 <tr>
-<td class="l Data"><a href="SAS_compatibility.htm" target="Code">SAS_compatibility</a>
+<td class="l data"><a href="SAS_compatibility.htm" target="Code">SAS_compatibility</a>
 </td>
-<td class="l Data">Set backward compatibility system options for later versions of SAS.</td>
+<td class="l data">Set backward compatibility system options for later versions of SAS.</td>
 </tr>
 <tr>
-<td class="l Data"><a href="Set_mrecall.htm" target="Code">Set_mrecall</a>
+<td class="l data"><a href="Set_mrecall.htm" target="Code">Set_mrecall</a>
 </td>
-<td class="l Data">Set MRECALL option based on value of _PROGRAM macro var.</td>
+<td class="l data">Set MRECALL option based on value of _PROGRAM macro var.</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
 <br>
-<table class="SysTitleAndFooterContainer" width="100%" cellspacing="1" cellpadding="1" rules="none" frame="void" border="0" summary="Page Layout">
+<table class="systitleandfootercontainer" width="100%" cellspacing="1" cellpadding="1" rules="none" frame="void" border="0" summary="Page Layout">
 <tr>
-<td class="l SystemFooter">Updated 02/23/2019</td>
+<td class="l systemfooter">Updated 08/02/2022</td>
 </tr>
 </table><br>
 </div>
