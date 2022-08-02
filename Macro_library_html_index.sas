@@ -332,7 +332,7 @@ ods listing;
 options mprint nosymbolgen nomlogic;
 options msglevel=n;
 
-%let _macro_library_path = %mif_select( &_remote_batch_submit, &_dcdata_r_drive:\SAS\Macros, &_dcdata_l_drive:\DCData\SAS\Macros );
+%let _macro_library_path = %mif_select( &_remote_batch_submit, &_dcdata_r_drive\SAS\Macros, &_dcdata_l_drive\DCData\SAS\Macros );
 
 %CodeIndex( 
 path=&_macro_library_path,
