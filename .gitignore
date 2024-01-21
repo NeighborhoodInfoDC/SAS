@@ -49,3 +49,6 @@ Temp/
 *.exe
 *.bat
 *.ps1
+
+# Other
+*.key

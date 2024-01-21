@@ -10,7 +10,7 @@
 **************************************************************************/
 
 %global _dcdata_l_drive _dcdata_r_drive _dcdata_l_path _dcdata_r_path 
-        _dcdata_path _dcdata_default_path 
+        _dcdata_path _dcdata_default_path _dcdata_census_api_key
         _remote_session _remote_batch_submit _userid;
 
 ** Check to see if drive letters are assigned in Autoexec, otherwise, default to D and L **;
@@ -69,3 +69,7 @@ title "&_library/&_program: Urban-Greater DC";
 %DCData_lib( General, env=windows, macdef=dcautos uiautos sasautos )
 
 %let _userid = %sysfunc( putc( %lowcase(&SYSUSERID), $longusr. ) );
+
+** Load Census API key **;
+
+%include "&_dcdata_r_drive\DCData\SAS\Inc\Census_api.key";
