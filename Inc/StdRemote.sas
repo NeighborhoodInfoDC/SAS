@@ -36,6 +36,7 @@ options sasautos=(dcautos uiautos sasautos);
 %GetProgDrive( _pdrive )
 
 %let _remote_batch_submit = %is_remote_batch( &_pdrive );
+%let _dcdata_default_path = &_dcdata_r_path;
 
 ** Metadata library **;
 
