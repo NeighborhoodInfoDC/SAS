@@ -13,10 +13,10 @@
         _dcdata_path _dcdata_default_path _dcdata_census_api_key
         _remote_session _remote_batch_submit _userid;
 
-** Check to see if drive letters are assigned in Autoexec, otherwise, default to D and L **;
+** Check to see if drive letters are assigned in Autoexec, otherwise, default to C: and \\sas1 **;
 %macro checkdrives ();
 %if %length(&_dcdata_l_drive)=0 %then %do;
-	%let _dcdata_l_drive = D:;
+	%let _dcdata_l_drive = C:;
 %end;
 
 %if %length(&_dcdata_r_drive)=0 %then %do;
