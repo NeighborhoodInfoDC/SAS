@@ -178,7 +178,7 @@
   %else %do;
   
     %if %Dataset_exists( &outlib..&out ) %then %do;
-      %warn_mput( macro=Finalize_data_set, msg=Existing data set %str(%upcase(&outlib..&out)) will be replaced on remote batch submit. )
+      %warn_mput( macro=Finalize_data_set, msg=Existing data set %str(%upcase(&outlib..&out)) will be replaced when data are finalized. )
     %end;
 
     %if %length( &sortby ) > 0 %then %do;
