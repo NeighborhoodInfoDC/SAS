@@ -103,11 +103,11 @@
   %else %do;
     %if %mparam_is_yes( &finalize ) %then %do;
       %let _will_finalize = 1;
-      %note_mput( macro=Finalize_data_set, msg=Remote session and finalize=&finalize. Data set will be finalized. )
+      %note_mput( macro=Finalize_data_set, msg=Remote session and finalize=&finalize.. Data set will be finalized. )
     %end;
     %else %do;
       %let _will_finalize = 0;
-      %note_mput( macro=Finalize_data_set, msg=Remote session and finalize=&finalize. Data set will NOT be finalized. )
+      %note_mput( macro=Finalize_data_set, msg=Remote session and finalize=&finalize.. Data set will NOT be finalized. )
     %end;
   %end;
   
