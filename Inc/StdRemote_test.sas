@@ -15,9 +15,9 @@
         _dcdata_path _dcdata_default_path _dcdata_census_api_key
         _remote_session _remote_batch_submit _userid;
 
-%let _dcdata_l_drive = ;
+%let _dcdata_l_drive = F;
 %let _dcdata_r_drive = F;
-%let _dcdata_l_path = ;
+%let _dcdata_l_path = &_dcdata_l_drive:\DCDATA\&SYSUSERID\Libraries;
 %let _dcdata_r_path = &_dcdata_r_drive:\DCDATA\Libraries;
 %let _dcdata_path = &_dcdata_r_path;
 
