@@ -7,36 +7,42 @@
  
  Description:  Standard header file for remote Windows environment.
  
- NOTE: NEED TO FIX _USERID FOR REMOTE SESSIONS.
-
 **************************************************************************/
 
 %global _dcdata_l_drive _dcdata_r_drive _dcdata_l_path _dcdata_r_path 
-        _dcdata_path _dcdata_default_path _dcdata_census_api_key
+        _dcdata_path _dcdata_default_path _dcdata_working_path _dcdata_final_path
+        _dcdata_census_api_key
         _remote_session _remote_batch_submit _userid;
+
+%** Set values for folder locations **;
 
 %let _dcdata_l_drive = F;
 %let _dcdata_r_drive = F;
 %let _dcdata_l_path = &_dcdata_l_drive:\DCDATA\&SYSUSERID\Libraries;
 %let _dcdata_r_path = &_dcdata_r_drive:\DCDATA\Libraries;
 %let _dcdata_path = &_dcdata_r_path;
-
-%let _remote_session = 1;
+%let _dcdata_working_path = &_dcdata_l_path;
+%let _dcdata_final_path = &_dcdata_r_path;
 
 ** Locations of SAS autocall macro libraries **;
 
-filename uiautos  "F:\DCData\Uiautos"; /** TEMPORARY FOR TESTING **/
+filename uiautos  "F:\DCData\Uiautos";
 filename dcautos  "&_dcdata_r_drive:\DCData\SAS\Macros";
 options sasautos=(dcautos uiautos sasautos);
+
+%** Set values for _remote_session, _remote_batch_submit **;
+
+%let _remote_session = 1;
+
+%let _remote_batch_submit = %mif_select( %sysfunc( find( &SYSPROCESSNAME, &_dcdata_r_path, 'i' ) ) > 0, 1, 0 );
+
+%let _dcdata_default_path = %mif_select( &_remote_batch_submit, &_dcdata_r_path, &_dcdata_l_path );
 
 ** Program name & library **;
 
 %GetProgName( _program )
 %GetProgLib( _library )
 %GetProgDrive( _pdrive )
-
-%let _remote_batch_submit = %is_remote_batch( &_pdrive );
-%let _dcdata_default_path = &_dcdata_r_path;
 
 ** Metadata library **;
 
