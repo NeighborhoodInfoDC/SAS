@@ -14,20 +14,23 @@
         _dcdata_census_api_key
         _remote_session _remote_batch_submit _userid;
 
+%** Assign local/remote drives **;
+
+%let _dcdata_l_drive = F:;
+%let _dcdata_r_drive = F:;
+
 %** Set values for folder locations **;
 
-%let _dcdata_l_drive = F;
-%let _dcdata_r_drive = F;
-%let _dcdata_l_path = &_dcdata_l_drive:\DCDATA\&SYSUSERID\Libraries;
-%let _dcdata_r_path = &_dcdata_r_drive:\DCDATA\Libraries;
+%let _dcdata_l_path = &_dcdata_l_drive\DCData\&SYSUSERID\Libraries;
+%let _dcdata_r_path = &_dcdata_r_drive\DCData\Libraries;
 %let _dcdata_path = &_dcdata_r_path;
 %let _dcdata_working_path = &_dcdata_l_path;
 %let _dcdata_final_path = &_dcdata_r_path;
 
 ** Locations of SAS autocall macro libraries **;
 
-filename uiautos  "F:\DCData\Uiautos";
-filename dcautos  "&_dcdata_r_drive:\DCData\SAS\Macros";
+filename uiautos  "&_dcdata_r_drive\DCData\Uiautos";
+filename dcautos  "&_dcdata_r_drive\DCData\SAS\Macros";
 options sasautos=(dcautos uiautos sasautos);
 
 %** Set values for _remote_session, _remote_batch_submit **;
@@ -69,4 +72,4 @@ title "&_library/&_program: Urban-Greater DC";
 
 ** Load Census API key **;
 
-%include "&_dcdata_r_drive:\DCData\SAS\Inc\Census_api.key";
+%include "&_dcdata_r_drive\DCData\SAS\Inc\Census_api.key";
