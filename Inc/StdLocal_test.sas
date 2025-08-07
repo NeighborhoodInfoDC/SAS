@@ -44,7 +44,7 @@ options sasautos=(dcautos uiautos sasautos);
 
 %let _remote_session = 0;
 
-%let _remote_batch_submit = %mif_select( %sysfunc( find( &SYSPROCESSNAME, &_dcdata_r_path, 'i' ) ) > 0, 1, 0 );
+%let _remote_batch_submit = %mif_select( %sysfunc( find( &SYSPROCESSNAME, &_dcdata_r_path, i ) ) > 0, 1, 0 );
 
 %let _dcdata_default_path = %mif_select( &_remote_batch_submit, &_dcdata_r_path, &_dcdata_l_path );
 
