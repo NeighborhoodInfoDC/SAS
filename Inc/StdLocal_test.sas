@@ -36,7 +36,7 @@
 
 ** Locations of SAS autocall macro libraries **;
 
-filename uiautos  "&_dcdata_r_drive\DCData\Uiautos"; 
+filename uiautos  "&_dcdata_r_drive\DCData\Uiautos";
 filename dcautos  "&_dcdata_r_drive\DCData\SAS\Macros";
 options sasautos=(dcautos uiautos sasautos);
 
