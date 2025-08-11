@@ -29,7 +29,7 @@
 %** Set values for folder locations **;
 
 %let _dcdata_l_path = &_dcdata_l_drive\DCData\Libraries;
-%let _dcdata_r_path = &_dcdata_r_drive\DCData\Libraries;
+%let _dcdata_r_path = &_dcdata_r_drive\DCData\Libraries\Final;
 %let _dcdata_path = &_dcdata_r_path;
 %let _dcdata_working_path = &_dcdata_l_path;
 %let _dcdata_final_path = &_dcdata_r_path;
