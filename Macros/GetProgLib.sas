@@ -28,9 +28,9 @@
     
     %let _FullName = %substr( &SYSPROCESSNAME, 10, %length( &SYSPROCESSNAME ) - 10 );
 
-        %let _index = %index( %upcase(&_FullName), %upcase(&_dcdata_r_path) );
+        %let _index = %index( %upcase(&_FullName), %upcase(&_dcdata_default_path) );
         %if &_index > 0 %then %do;
-          %let _len = %length( &_dcdata_r_path );
+          %let _len = %length( &_dcdata_default_path );
           %let _LibName = %substr( &_FullName, &_index + &_len + 1 );
           %let &var = %upcase( %substr( &_LibName, 1, %index( &_LibName, \ ) - 1 ) );
         %end;
