@@ -1,12 +1,12 @@
 /**************************************************************************
- Program:  StdRemote.sas
+ Program:  StdLocal.sas
  Project:  Urban-Greater DC
  Author:   P. Tatian
- Updated:  11/3/13
+ Updated:  11/2/13
  Version:  SAS 9.4
  
- Description:  Standard header file for remote Windows environment.
- 
+ Description:  Standard header file for local Windows session.
+
 **************************************************************************/
 
 %global _dcdata_l_drive _dcdata_r_drive _dcdata_l_path _dcdata_r_path 
@@ -14,14 +14,21 @@
         _dcdata_census_api_key
         _remote_session _remote_batch_submit _final_batch_submit _userid;
 
-%** Assign local/remote drives **;
+** Check to see if drive letters are assigned in Autoexec, otherwise, default to C: and \\sas1 **;
+%macro checkdrives ();
+%if %length(&_dcdata_l_drive)=0 %then %do;
+	%let _dcdata_l_drive = C:;
+%end;
 
-%let _dcdata_l_drive = F:;
-%let _dcdata_r_drive = F:;
+%if %length(&_dcdata_r_drive)=0 %then %do;
+	%let _dcdata_r_drive = \\sas1;
+%end;
+%mend checkdrives;
+%checkdrives;
 
 %** Set values for folder locations **;
 
-%let _dcdata_l_path = &_dcdata_l_drive\DCData\Libraries\&SYSUSERID;
+%let _dcdata_l_path = &_dcdata_l_drive\DCData\Libraries;
 %let _dcdata_r_path = &_dcdata_r_drive\DCData\Libraries\Final;
 %let _dcdata_path = &_dcdata_r_path;
 %let _dcdata_working_path = &_dcdata_l_path;
@@ -36,7 +43,7 @@ options sasautos=(dcautos uiautos sasautos);
 %** Set values for _remote_session, _final_batch_submit, _remote_batch_submit **;
 %** _remote_batch_submit is deprecated in favor of _final_batch_submit, but kept for backward compatibility **;
 
-%let _remote_session = 1;
+%let _remote_session = 0;
 
 %let _final_batch_submit = %mif_select( %sysfunc( find( &SYSPROCESSNAME, &_dcdata_r_path, i ) ) > 0, 1, 0 );
 %let _remote_batch_submit = &_final_batch_submit;

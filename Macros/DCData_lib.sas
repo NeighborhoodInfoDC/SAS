@@ -26,13 +26,9 @@
   %local conf_path prename l_exist r_exist c_exist l_ref r_ref c_ref
          l_libname r_libname c_libname;
 
-  %let mprint = %upcase( &mprint );
   %let env = %upcase( &env );
-  %let local = %upcase( &local);
-  %let remote = %upcase( &remote ); 
-  %let rreadonly = %upcase( &rreadonly );
 
-  %if &mprint = N %then %do;
+  %if %mparam_is_no( &mprint ) %then %do;
     options nomprint;
   %end;
   
@@ -97,7 +93,7 @@
       %note_mput( macro=DCData_lib, msg=The library %upcase(&library) does not exist on %upcase(&conf_path). )
     %end;
     
-    %if not( &local = N or &local = NO ) %then %do; 
+    %if not( %mparam_is_no( &local ) ) %then %do; 
       %if &l_exist %then %do;
         %let l_libname = &prename._l;
         libname &l_libname "&_dcdata_l_path\&library\Data";
@@ -108,10 +104,10 @@
       %end;
     %end;
         
-    %if not( &remote = N or &remote = NO ) %then %do; 
+    %if not( %mparam_is_no( &remote ) ) %then %do; 
       %if &r_exist %then %do;
         %let r_libname = &prename._r;
-        %if ( &_remote_batch_submit or &rreadonly = N ) and &rreadonly ~= Y %then %do;
+        %if ( &_remote_batch_submit or %mparam_is_no( &rreadonly ) ) and not( %mparam_is_yes( &rreadonly ) ) %then %do;
           libname &r_libname "&_dcdata_r_path\&library\Data";
         %end;
         %else %do;
@@ -196,7 +192,7 @@
     
     %let r_libname = &prename._r;
     
-    %if ( &_remote_batch_submit or &rreadonly = N ) and &rreadonly ~= Y %then %do;
+    %if ( &_remote_batch_submit or %mparam_is_no( &rreadonly ) ) and not( %mparam_is_yes( &rreadonly ) ) %then %do;
       %** Remote session, remote batch submit **;
       libname &r_libname "&_dcdata_r_path\&library\Data";
     %end;
