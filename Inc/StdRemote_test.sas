@@ -3,6 +3,7 @@
  Project:  Urban-Greater DC
  Author:   P. Tatian
  Updated:  11/3/13
+		   2/5/26 RP - update paths for new workflow on SAS1. 
  Version:  SAS 9.4
  
  Description:  Standard header file for remote Windows environment.
@@ -21,8 +22,8 @@
 
 %** Set values for folder locations **;
 
-%let _dcdata_l_path = &_dcdata_l_drive\DCData\Libraries\&SYSUSERID;
-%let _dcdata_r_path = &_dcdata_r_drive\DCData\Libraries\Final;
+%let _dcdata_l_path = &_dcdata_l_drive\DCData\&SYSUSERID\Libraries;
+%let _dcdata_r_path = &_dcdata_r_drive\DCData\Libraries;
 %let _dcdata_path = &_dcdata_r_path;
 %let _dcdata_working_path = &_dcdata_l_path;
 %let _dcdata_final_path = &_dcdata_r_path;
