@@ -16,7 +16,7 @@
 
 %macro Finalize_data_set( 
   /** Finalize data set parameters **/
-  finalize=N, /** Finalize data set flag (only works with remote session) **/
+  finalize=,  /** NO LONGER SUPPORTED **/
   data=,      /** Input temporary data set (required) **/
   out=,       /** Ouput data set name (required) **/
   outlib=,    /** Output data set library (required) **/
@@ -90,25 +90,13 @@
   
   %** Determine whether to finalize data set **;
   
-  %if not( &_remote_session ) %then %do;
-    %if &_remote_batch_submit %then %do;
-      %let _will_finalize = 1;
-      %note_mput( macro=Finalize_data_set, msg=Local session and remote batch submit. Data set will be finalized. )
-    %end;
-    %else %do;
-      %let _will_finalize = 0;
-      %note_mput( macro=Finalize_data_set, msg=Local session and not remote batch submit. Data set will NOT be finalized. )
-    %end;
+  %if &_final_batch_submit %then %do;
+    %let _will_finalize = 1;
+    %note_mput( macro=Finalize_data_set, msg=Final batch submit. )
   %end;
   %else %do;
-    %if %mparam_is_yes( &finalize ) %then %do;
-      %let _will_finalize = 1;
-      %note_mput( macro=Finalize_data_set, msg=Remote session and finalize=&finalize.. Data set will be finalized. )
-    %end;
-    %else %do;
-      %let _will_finalize = 0;
-      %note_mput( macro=Finalize_data_set, msg=Remote session and finalize=&finalize.. Data set will NOT be finalized. )
-    %end;
+    %let _will_finalize = 0;
+    %note_mput( macro=Finalize_data_set, msg=NOT final batch submit. )
   %end;
   
   %if &_will_finalize %then %do;
@@ -178,7 +166,7 @@
   %else %do;
   
     %if %Dataset_exists( &outlib..&out ) %then %do;
-      %warn_mput( macro=Finalize_data_set, msg=Existing data set %str(%upcase(&outlib..&out)) will be replaced when data are finalized. )
+      %warn_mput( macro=Finalize_data_set, msg=Existing data set %str(%upcase(&outlib..&out)) will be replaced on final batch submit. )
     %end;
 
     %if %length( &sortby ) > 0 %then %do;
