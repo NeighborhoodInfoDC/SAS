@@ -192,7 +192,7 @@
   
   %exit_macro:
 
-  %if &mprint = N %then %do;
+  %if %mparam_is_no( &mprint ) %then %do;
     options mprint;
   %end;
 
