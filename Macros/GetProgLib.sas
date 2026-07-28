@@ -14,6 +14,7 @@
    02/24/11 PAT Renamed and added declaration for local macro vars.
    12/04/12 PAT Added check for DCData K: path. 
    11/02/13 PAT Revised for use with new SAS server setup.
+   07/28/26 PAT Revised for new SAS1 folder setup.
  ************************************************************************/
 
 %macro GetProgLib( var );
@@ -26,7 +27,7 @@
   
     %if %substr( &SYSPROCESSNAME, 1, 7 ) = Program %then %do;
     
-    %let _FullName = %substr( &SYSPROCESSNAME, 10, %length( &SYSPROCESSNAME ) - 10 );
+    %let _FullName = %substr( &SYSPROCESSNAME, 9, %length( &SYSPROCESSNAME ) - 8 );
 
         %let _index = %index( %upcase(&_FullName), %upcase(&_dcdata_default_path) );
         %if &_index > 0 %then %do;
